@@ -1,0 +1,250 @@
+{
+  "branding": {
+    "logo": "/images/mirage-mark.svg",
+    "storeName": "MIRAGE PERFUMES"
+  },
+  "hero": {
+    "title": "АРОМАТЫ",
+    "subtitle": "которые остаются\nв памяти",
+    "buttonText": "Выбрать аромат"
+  },
+  "hitsSection": {
+    "title": "хиты Mirage"
+  },
+  "hits": [
+    {
+      "id": 1,
+      "image": "/images/mirage-amber.png",
+      "price": "2890 сом"
+    },
+    {
+      "id": 2,
+      "image": "/images/mirage-rose.png",
+      "price": "2690 сом"
+    },
+    {
+      "id": 3,
+      "image": "/images/mirage-oud.png",
+      "price": "3490 сом"
+    }
+  ],
+  "bannerText": "ПОДБЕРЁМ АРОМАТ ПОД ВАШ ХАРАКТЕР, НАСТРОЕНИЕ И РИТМ ЖИЗНИ",
+  "faq": [
+    {
+      "id": 1,
+      "question": "Как выбрать свой аромат?",
+      "answer": "Ориентируйтесь на любимые ноты и настроение. Если сомневаетесь — напишите нам, и мы подберём несколько вариантов под ваш характер."
+    },
+    {
+      "id": 2,
+      "question": "Есть ли оригинальная парфюмерия?",
+      "answer": "Да. Mirage Perfumes работает с оригинальными ароматами и проверенными поставщиками. Перед покупкой можно уточнить наличие и объём."
+    },
+    {
+      "id": 3,
+      "question": "Как быстро доставляете?",
+      "answer": "По Бишкеку отправляем в день заказа. Точный интервал и стоимость доставки согласуем в Telegram или WhatsApp."
+    },
+    {
+      "id": 4,
+      "question": "Можно ли заказать подарок?",
+      "answer": "Конечно. Подскажем аромат, красиво упакуем и добавим открытку к заказу — просто напишите нам пожелания."
+    },
+    {
+      "id": 5,
+      "question": "Где находится магазин?",
+      "answer": "Мы находимся в Бишкеке по адресу: ул. Молдобасанова, 13а. Перед визитом лучше уточнить режим работы по телефону."
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "text": "Помогли выбрать аромат на каждый день — звучит дорого, держится отлично. Отдельное спасибо за спокойную консультацию без навязывания.",
+      "stars": 5,
+      "color": "#1B1818",
+      "avatar": "/images/avatar1.png"
+    },
+    {
+      "id": 2,
+      "text": "Заказывала подарок в Бишкеке: красиво упаковали, быстро доставили и положили пробник. Теперь знаю, где искать свой аромат.",
+      "stars": 5,
+      "color": "#3A202A",
+      "avatar": "/images/avatar2.png"
+    },
+    {
+      "id": 3,
+      "text": "Нравится подборка нишевой и арабской парфюмерии. Нашёл свой вечерний аромат и вернулся за полноразмерным флаконом.",
+      "stars": 5,
+      "color": "#221D18",
+      "avatar": "/images/avatar3.png"
+    },
+    {
+      "id": 4,
+      "text": "Очень приятный магазин и сервис. Всё рассказали про ноты, шлейф и стойкость — покупка получилась точной, без экспериментов вслепую.",
+      "stars": 5,
+      "color": "#38242B",
+      "avatar": "/images/avatar1.png"
+    },
+    {
+      "id": 5,
+      "text": "Брала набор миниатюр в дорогу. Упаковка аккуратная, ароматы разные и все достойные. Буду собирать коллекцию дальше.",
+      "stars": 5,
+      "color": "#18191D",
+      "avatar": "/images/avatar2.png"
+    },
+    {
+      "id": 6,
+      "text": "Mirage — тот случай, когда онлайн-витрина ощущается как настоящий бутик. Быстро отвечают и действительно разбираются в ароматах.",
+      "stars": 5,
+      "color": "#2B2022",
+      "avatar": "/images/avatar3.png"
+    }
+  ],
+  "contacts": {
+    "telegram": {
+      "label": "Telegram",
+      "value": "@mirage_perumes",
+      "url": "https://t.me/mirage_perumes"
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "value": "+996 703 72 00 70",
+      "url": "https://wa.me/996703720070"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "value": "@mirage_perfumes.kg",
+      "url": "https://www.instagram.com/mirage_perfumes.kg/"
+    },
+    "phone": {
+      "label": "Телефон",
+      "value": "+996 703 72 00 70",
+      "url": "tel:+996703720070"
+    }
+  },
+  "categories": [
+    {
+      "id": "all",
+      "name": "Все ароматы"
+    },
+    {
+      "id": "men",
+      "name": "Мужские"
+    },
+    {
+      "id": "women",
+      "name": "Женские"
+    },
+    {
+      "id": "unisex",
+      "name": "Унисекс"
+    },
+    {
+      "id": "sets",
+      "name": "Наборы"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Asad Intense",
+      "price": 2890,
+      "image": "/images/mirage-amber.png",
+      "category": "men"
+    },
+    {
+      "id": 2,
+      "name": "Yara Pink",
+      "price": 2690,
+      "image": "/images/mirage-rose.png",
+      "category": "women"
+    },
+    {
+      "id": 3,
+      "name": "Oud Signature",
+      "price": 3490,
+      "image": "/images/mirage-oud.png",
+      "category": "unisex"
+    },
+    {
+      "id": 4,
+      "name": "Bleu de Chanel",
+      "price": 6900,
+      "image": "/images/mirage-oud.png",
+      "category": "men"
+    },
+    {
+      "id": 5,
+      "name": "Khamrah",
+      "price": 3190,
+      "image": "/images/mirage-amber.png",
+      "category": "unisex"
+    },
+    {
+      "id": 6,
+      "name": "Mini set · 5 ароматов",
+      "price": 3990,
+      "image": "/images/mirage-banner.png",
+      "category": "sets"
+    },
+    {
+      "id": 7,
+      "name": "Ombre Leather",
+      "price": 8900,
+      "image": "/images/mirage-oud.png",
+      "category": "men"
+    },
+    {
+      "id": 8,
+      "name": "Libre Intense",
+      "price": 7490,
+      "image": "/images/mirage-rose.png",
+      "category": "women"
+    }
+  ],
+  "cities": [
+    "Бишкек"
+  ],
+  "stores": [
+    {
+      "id": 1,
+      "address": "ул. Молдобасанова, 13а",
+      "city": "Бишкек",
+      "status": "open",
+      "hours": "10:00-20:00",
+      "timezone": "Asia/Bishkek"
+    }
+  ],
+  "orderForm": {
+    "fields": [
+      {
+        "id": "name",
+        "label": "Ваше имя",
+        "placeholder": "Как к вам обращаться?",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "phone",
+        "label": "Телефон",
+        "placeholder": "+996",
+        "type": "tel",
+        "required": true
+      },
+      {
+        "id": "address",
+        "label": "Адрес доставки",
+        "placeholder": "Улица, дом, квартира",
+        "type": "text",
+        "required": true
+      },
+      {
+        "id": "comment",
+        "label": "Пожелания",
+        "placeholder": "Объём, упаковка, повод или любимые ноты...",
+        "type": "text",
+        "required": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ-панель — Floristyle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <h1>🌸 Floristyle</h1>
+      <p>Админ-панель</p>
+      <form id="loginForm">
+        <input type="password" id="loginPassword" placeholder="Пароль" required autocomplete="current-password" />
+        <button type="submit">Войти</button>
+      </form>
+      <div class="login-error" id="loginError"></div>
+    </div>
+  </div>
+
+  <!-- Admin Panel -->
+  <div class="admin-panel" id="adminPanel" style="display:none;">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>🌸 Floristyle</h2>
+        <span class="sidebar-badge">admin</span>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="nav-btn active" data-section="branding">🎨 Бренд</button>
+        <button class="nav-btn" data-section="hero">🏠 Главная</button>
+        <button class="nav-btn" data-section="hits">⭐ Хиты</button>
+        <button class="nav-btn" data-section="banner">🖼 Баннер</button>
+        <button class="nav-btn" data-section="faq">❓ FAQ</button>
+        <button class="nav-btn" data-section="reviews">💬 Отзывы</button>
+        <button class="nav-btn" data-section="contacts">📞 Контакты</button>
+        <button class="nav-btn" data-section="categories">📂 Категории</button>
+        <button class="nav-btn" data-section="products">🛒 Товары</button>
+        <button class="nav-btn" data-section="stores">📍 Филиалы</button>
+        <button class="nav-btn" data-section="cities">🏙 Города</button>
+        <button class="nav-btn" data-section="orderForm">📋 Форма заказа</button>
+      </nav>
+      <button class="logout-btn" id="logoutBtn">Выйти</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <div class="admin-topbar">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        <h1 id="sectionTitle">Главная страница</h1>
+        <div class="topbar-actions">
+          <button class="save-btn" id="saveBtn">💾 Сохранить</button>
+        </div>
+      </div>
+      <div class="admin-content" id="adminContent">
+        <!-- Dynamic content loaded here -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="toast"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Оформить заказ — Mirage Perfumes</title>
+  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app order-page">
+
+    <!-- Back button -->
+    <div class="order-back-row">
+      <button class="order-back-btn" onclick="history.back()">
+        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1L1 7l6 6"/></svg>
+        <span>Назад</span>
+      </button>
+    </div>
+
+    <!-- Title -->
+    <h1 class="order-title">Оформить<br><em>заказ</em></h1>
+
+    <!-- Order items list -->
+    <div class="order-items" id="orderItems">
+      <!-- Filled dynamically -->
+    </div>
+
+    <!-- Form -->
+    <div class="order-form-card">
+      <form class="order-form" id="orderForm">
+        <div class="order-field"><label>Ваше имя</label><input type="text" name="name" placeholder="Как к вам обращаться?" required /></div>
+        <div class="order-field"><label>Телефон</label><input type="tel" name="phone" placeholder="+996" required maxlength="15" /></div>
+        <div class="order-field"><label>Адрес доставки</label><input type="text" name="address" placeholder="Улица, дом, квартира" required /></div>
+        <div class="order-field"><label>Пожелания</label><input type="text" name="comment" placeholder="Объём, упаковка, повод или любимые ноты..." /></div>
+      </form>
+    </div>
+
+    <div class="order-spacer"></div>
+  </div>
+
+  <!-- Submit bar -->
+  <div class="order-submit-bar">
+    <button type="submit" form="orderForm" class="order-submit-btn" id="orderSubmitBtn">
+      <span class="order-submit-title">Подтвердить заказ</span>
+      <span class="order-submit-subtitle" id="orderSubmitSubtitle">0 сом</span>
+    </button>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
