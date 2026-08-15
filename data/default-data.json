@@ -1,205 +1,195 @@
 {
   "branding": {
-    "logo": "/images/mirage-mark.svg",
-    "storeName": "MIRAGE PERFUMES"
+    "logo": "/images/healthy-mark.svg",
+    "storeName": "HEALTHY ANIMALS"
   },
   "hero": {
-    "title": "АРОМАТЫ",
-    "subtitle": "которые остаются\nв памяти",
-    "buttonText": "Выбрать аромат"
+    "title": "ЗДОРОВЬЕ",
+    "subtitle": "которое видно\nв каждом хвостике",
+    "buttonText": "Выбрать товар"
   },
   "hitsSection": {
-    "title": "хиты Mirage"
+    "title": "выбор Healthy Animals"
   },
   "hits": [
     {
       "id": 1,
-      "image": "/images/mirage-amber.png",
-      "price": "2890 сом"
+      "image": "/images/healthy-food.jpg",
+      "price": "от 650 сом"
     },
     {
       "id": 2,
-      "image": "/images/mirage-rose.png",
-      "price": "2690 сом"
+      "image": "/images/healthy-asd3.jpg",
+      "price": "250 сом"
     },
     {
       "id": 3,
-      "image": "/images/mirage-oud.png",
-      "price": "3490 сом"
+      "image": "/images/healthy-iodine.jpg",
+      "price": "350 сом"
     }
   ],
-  "bannerText": "ПОДБЕРЁМ АРОМАТ ПОД ВАШ ХАРАКТЕР, НАСТРОЕНИЕ И РИТМ ЖИЗНИ",
+  "bannerText": "ВЕТАПТЕКА И ЗООМАГАЗИН, ГДЕ ЗАБОТУ ПОДБИРАЮТ ПО-НАСТОЯЩЕМУ",
   "faq": [
     {
       "id": 1,
-      "question": "Как выбрать свой аромат?",
-      "answer": "Ориентируйтесь на любимые ноты и настроение. Если сомневаетесь — напишите нам, и мы подберём несколько вариантов под ваш характер."
+      "question": "Как подобрать корм питомцу?",
+      "answer": "Расскажите консультанту о возрасте, породе и особенностях питомца — поможем сориентироваться по линейке и формату корма."
     },
     {
       "id": 2,
-      "question": "Есть ли оригинальная парфюмерия?",
-      "answer": "Да. Mirage Perfumes работает с оригинальными ароматами и проверенными поставщиками. Перед покупкой можно уточнить наличие и объём."
+      "question": "Что есть в Healthy Animals?",
+      "answer": "Корма для кошек и собак, витамины, средства ухода и ветеринарные препараты для домашних и сельскохозяйственных животных."
     },
     {
       "id": 3,
-      "question": "Как быстро доставляете?",
-      "answer": "По Бишкеку отправляем в день заказа. Точный интервал и стоимость доставки согласуем в Telegram или WhatsApp."
+      "question": "Можно ли заказать доставку?",
+      "answer": "Да, оформите заказ через каталог — мы уточним наличие, адрес и удобное время доставки по Бишкеку."
     },
     {
       "id": 4,
-      "question": "Можно ли заказать подарок?",
-      "answer": "Конечно. Подскажем аромат, красиво упакуем и добавим открытку к заказу — просто напишите нам пожелания."
+      "question": "Поможете выбрать ветпрепарат?",
+      "answer": "Подскажем по назначению и инструкции. Если ситуация требует осмотра, обязательно рекомендуем обратиться к ветеринарному врачу."
     },
     {
       "id": 5,
       "question": "Где находится магазин?",
-      "answer": "Мы находимся в Бишкеке по адресу: ул. Молдобасанова, 13а. Перед визитом лучше уточнить режим работы по телефону."
+      "answer": "Мы находимся в Бишкеке по адресу: улица Камбаралы Бобулова, 1а/1. Перед визитом можно открыть карточку Healthy Animals в 2ГИС."
     }
   ],
   "reviews": [
     {
       "id": 1,
-      "text": "Помогли выбрать аромат на каждый день — звучит дорого, держится отлично. Отдельное спасибо за спокойную консультацию без навязывания.",
+      "text": "Нашли корм для кошки с чувствительным пищеварением. Спокойно всё объяснили, подсказали размер упаковки — питомец доволен.",
       "stars": 5,
-      "color": "#1B1818",
+      "color": "#1F6656",
       "avatar": "/images/avatar1.png"
     },
     {
       "id": 2,
-      "text": "Заказывала подарок в Бишкеке: красиво упаковали, быстро доставили и положили пробник. Теперь знаю, где искать свой аромат.",
+      "text": "Хороший выбор ветпрепаратов и всё по делу. Нужное средство было в наличии, быстро нашли на полке.",
       "stars": 5,
-      "color": "#3A202A",
+      "color": "#D56B4F",
       "avatar": "/images/avatar2.png"
     },
     {
       "id": 3,
-      "text": "Нравится подборка нишевой и арабской парфюмерии. Нашёл свой вечерний аромат и вернулся за полноразмерным флаконом.",
+      "text": "Заезжаем за кормом и витаминами для собаки. Нравится, что консультируют без навязывания и знают ассортимент.",
       "stars": 5,
-      "color": "#221D18",
+      "color": "#315F55",
       "avatar": "/images/avatar3.png"
     },
     {
       "id": 4,
-      "text": "Очень приятный магазин и сервис. Всё рассказали про ноты, шлейф и стойкость — покупка получилась точной, без экспериментов вслепую.",
+      "text": "Удобный магазин рядом с домом: корма, уход и аптечка в одном месте. Всегда подскажут, что есть сегодня.",
       "stars": 5,
-      "color": "#38242B",
+      "color": "#E1B35B",
       "avatar": "/images/avatar1.png"
     },
     {
       "id": 5,
-      "text": "Брала набор миниатюр в дорогу. Упаковка аккуратная, ароматы разные и все достойные. Буду собирать коллекцию дальше.",
+      "text": "Помогли собрать базовый набор для щенка: корм, витамины и средства гигиены. Спасибо за внимательное отношение.",
       "stars": 5,
-      "color": "#18191D",
+      "color": "#2B7766",
       "avatar": "/images/avatar2.png"
     },
     {
       "id": 6,
-      "text": "Mirage — тот случай, когда онлайн-витрина ощущается как настоящий бутик. Быстро отвечают и действительно разбираются в ароматах.",
+      "text": "Видно, что магазин работает с заботой о животных. Ассортимент большой, а нужные позиции быстро находят.",
       "stars": 5,
-      "color": "#2B2022",
+      "color": "#C95F49",
       "avatar": "/images/avatar3.png"
     }
   ],
   "contacts": {
-    "telegram": {
-      "label": "Telegram",
-      "value": "@mirage_perumes",
-      "url": "https://t.me/mirage_perumes"
+    "location": {
+      "label": "Адрес",
+      "value": "ул. Камбаралы Бобулова, 1а/1",
+      "url": "https://2gis.kg/bishkek/gallery/firm/70000001089418959/photoId/30258560259762327?m=74.574197%2C42.870458%2F14.74"
     },
-    "whatsapp": {
-      "label": "WhatsApp",
-      "value": "+996 703 72 00 70",
-      "url": "https://wa.me/996703720070"
-    },
-    "instagram": {
-      "label": "Instagram",
-      "value": "@mirage_perfumes.kg",
-      "url": "https://www.instagram.com/mirage_perfumes.kg/"
-    },
-    "phone": {
-      "label": "Телефон",
-      "value": "+996 703 72 00 70",
-      "url": "tel:+996703720070"
+    "service": {
+      "label": "Healthy Animals в 2ГИС",
+      "value": "Открыть карточку",
+      "url": "https://2gis.kg/bishkek/gallery/firm/70000001089418959/photoId/30258560259762327?m=74.574197%2C42.870458%2F14.74"
     }
   },
   "categories": [
     {
       "id": "all",
-      "name": "Все ароматы"
+      "name": "Все товары"
     },
     {
-      "id": "men",
-      "name": "Мужские"
+      "id": "food",
+      "name": "Корм"
     },
     {
-      "id": "women",
-      "name": "Женские"
+      "id": "vet",
+      "name": "Ветпрепараты"
     },
     {
-      "id": "unisex",
-      "name": "Унисекс"
+      "id": "care",
+      "name": "Уход"
     },
     {
-      "id": "sets",
-      "name": "Наборы"
+      "id": "vitamins",
+      "name": "Витамины"
     }
   ],
   "products": [
     {
       "id": 1,
-      "name": "Asad Intense",
-      "price": 2890,
-      "image": "/images/mirage-amber.png",
-      "category": "men"
+      "name": "Корм для кошек · 10 кг",
+      "price": 2800,
+      "image": "/images/healthy-food.jpg",
+      "category": "food"
     },
     {
       "id": 2,
-      "name": "Yara Pink",
-      "price": 2690,
-      "image": "/images/mirage-rose.png",
-      "category": "women"
+      "name": "Корм для собак · 10 кг",
+      "price": 3200,
+      "image": "/images/healthy-feed.jpg",
+      "category": "food"
     },
     {
       "id": 3,
-      "name": "Oud Signature",
-      "price": 3490,
-      "image": "/images/mirage-oud.png",
-      "category": "unisex"
+      "name": "АСД фракция 2 · 100 мл",
+      "price": 250,
+      "image": "/images/healthy-asd2.jpg",
+      "category": "vet"
     },
     {
       "id": 4,
-      "name": "Bleu de Chanel",
-      "price": 6900,
-      "image": "/images/mirage-oud.png",
-      "category": "men"
+      "name": "АСД фракция 3 · 100 мл",
+      "price": 250,
+      "image": "/images/healthy-asd3.jpg",
+      "category": "vet"
     },
     {
       "id": 5,
-      "name": "Khamrah",
-      "price": 3190,
-      "image": "/images/mirage-amber.png",
-      "category": "unisex"
+      "name": "Йод-спрей · 100 мл",
+      "price": 350,
+      "image": "/images/healthy-iodine.jpg",
+      "category": "care"
     },
     {
       "id": 6,
-      "name": "Mini set · 5 ароматов",
-      "price": 3990,
-      "image": "/images/mirage-banner.png",
-      "category": "sets"
+      "name": "Витамины для питомцев",
+      "price": 680,
+      "image": "/images/healthy-hero.jpg",
+      "category": "vitamins"
     },
     {
       "id": 7,
-      "name": "Ombre Leather",
-      "price": 8900,
-      "image": "/images/mirage-oud.png",
-      "category": "men"
+      "name": "Средства от паразитов",
+      "price": 520,
+      "image": "/images/healthy-pets.jpg",
+      "category": "vet"
     },
     {
       "id": 8,
-      "name": "Libre Intense",
-      "price": 7490,
-      "image": "/images/mirage-rose.png",
-      "category": "women"
+      "name": "Уход и гигиена",
+      "price": 490,
+      "image": "/images/healthy-hero.jpg",
+      "category": "care"
     }
   ],
   "cities": [
@@ -208,10 +198,10 @@
   "stores": [
     {
       "id": 1,
-      "address": "ул. Молдобасанова, 13а",
+      "address": "ул. Камбаралы Бобулова, 1а/1",
       "city": "Бишкек",
       "status": "open",
-      "hours": "10:00-20:00",
+      "hours": "Уточняйте в 2ГИС",
       "timezone": "Asia/Bishkek"
     }
   ],
@@ -240,8 +230,8 @@
       },
       {
         "id": "comment",
-        "label": "Пожелания",
-        "placeholder": "Объём, упаковка, повод или любимые ноты...",
+        "label": "Комментарий к заказу",
+        "placeholder": "Возраст питомца, вес или особые пожелания...",
         "type": "text",
         "required": false
       }

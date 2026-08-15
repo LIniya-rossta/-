@@ -559,8 +559,8 @@ const searchNoResults = document.getElementById('searchNoResults');
 const searchHits = document.getElementById('searchHits');
 
 if (searchOverlay) {
-  // Populate "Хиты сезона" from hit images
-  const hitImages = ['/images/mirage-amber.png', '/images/mirage-rose.png', '/images/mirage-oud.png'];
+  // Populate "Хиты сезона" from Healthy Animals products
+  const hitImages = ['/images/healthy-food.jpg', '/images/healthy-asd3.jpg', '/images/healthy-iodine.jpg'];
   if (searchHits) {
     hitImages.forEach(src => {
       const card = document.createElement('div');

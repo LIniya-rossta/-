@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Каталог — Mirage Perfumes</title>
+  <title>Каталог — Healthy Animals</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +12,11 @@
 <body>
   <div class="catalog-tabs">
     <div class="catalog-tab-pill"></div>
-    <button class="catalog-tab active" data-category="all">Все ароматы</button>
-    <button class="catalog-tab" data-category="men">Мужские</button>
-    <button class="catalog-tab" data-category="women">Женские</button>
-    <button class="catalog-tab" data-category="unisex">Унисекс</button>
-    <button class="catalog-tab" data-category="sets">Наборы</button>
+    <button class="catalog-tab active" data-category="all">Все товары</button>
+    <button class="catalog-tab" data-category="food">Корм</button>
+    <button class="catalog-tab" data-category="vet">Ветпрепараты</button>
+    <button class="catalog-tab" data-category="care">Уход</button>
+    <button class="catalog-tab" data-category="vitamins">Витамины</button>
   </div>
 
   <div class="price-filter" id="priceFilter">
@@ -31,43 +31,43 @@
 
   <div class="app catalog-page">
     <div class="catalog-intro">
-      <span class="eyebrow">MIRAGE / SELECTION</span>
-      <h1>Найди свой<br><em>signature scent</em></h1>
-      <p>Оригинальные ароматы и подарочные наборы из бутика Mirage Perfumes.</p>
+      <span class="eyebrow">HEALTHY ANIMALS / SELECTION</span>
+      <h1>Забота<br><em>для каждого хвостика</em></h1>
+      <p>Корма, ветпрепараты и уход для домашних и сельскохозяйственных животных.</p>
     </div>
 
     <div class="products-grid">
-      <div class="product-card" data-category="men" data-name="Asad Intense" data-price="2890">
-        <div class="product-image"><img src="/images/mirage-amber.png" alt="Asad Intense" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Asad Intense</div><div class="product-price">2890 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="food" data-name="Корм для кошек · 10 кг" data-price="2800">
+        <div class="product-image"><img src="/images/healthy-food.jpg" alt="Корм для кошек · 10 кг" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Корм для кошек · 10 кг</div><div class="product-price">2800 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="women" data-name="Yara Pink" data-price="2690">
-        <div class="product-image"><img src="/images/mirage-rose.png" alt="Yara Pink" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Yara Pink</div><div class="product-price">2690 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="food" data-name="Корм для собак · 10 кг" data-price="3200">
+        <div class="product-image"><img src="/images/healthy-feed.jpg" alt="Корм для собак · 10 кг" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Корм для собак · 10 кг</div><div class="product-price">3200 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="unisex" data-name="Oud Signature" data-price="3490">
-        <div class="product-image"><img src="/images/mirage-oud.png" alt="Oud Signature" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Oud Signature</div><div class="product-price">3490 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="vet" data-name="АСД фракция 2 · 100 мл" data-price="250">
+        <div class="product-image"><img src="/images/healthy-asd2.jpg" alt="АСД фракция 2 · 100 мл" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">АСД фракция 2 · 100 мл</div><div class="product-price">250 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="men" data-name="Bleu de Chanel" data-price="6900">
-        <div class="product-image"><img src="/images/mirage-oud.png" alt="Bleu de Chanel" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Bleu de Chanel</div><div class="product-price">6900 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="vet" data-name="АСД фракция 3 · 100 мл" data-price="250">
+        <div class="product-image"><img src="/images/healthy-asd3.jpg" alt="АСД фракция 3 · 100 мл" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">АСД фракция 3 · 100 мл</div><div class="product-price">250 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="unisex" data-name="Khamrah" data-price="3190">
-        <div class="product-image"><img src="/images/mirage-amber.png" alt="Khamrah" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Khamrah</div><div class="product-price">3190 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="care" data-name="Йод-спрей · 100 мл" data-price="350">
+        <div class="product-image"><img src="/images/healthy-iodine.jpg" alt="Йод-спрей · 100 мл" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Йод-спрей · 100 мл</div><div class="product-price">350 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="sets" data-name="Mini set · 5 ароматов" data-price="3990">
-        <div class="product-image"><img src="/images/mirage-banner.png" alt="Mini set · 5 ароматов" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Mini set · 5 ароматов</div><div class="product-price">3990 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="vitamins" data-name="Витамины для питомцев" data-price="680">
+        <div class="product-image"><img src="/images/healthy-hero.jpg" alt="Витамины для питомцев" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Витамины для питомцев</div><div class="product-price">680 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="men" data-name="Ombre Leather" data-price="8900">
-        <div class="product-image"><img src="/images/mirage-oud.png" alt="Ombre Leather" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Ombre Leather</div><div class="product-price">8900 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="vet" data-name="Средства от паразитов" data-price="520">
+        <div class="product-image"><img src="/images/healthy-pets.jpg" alt="Средства от паразитов" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Средства от паразитов</div><div class="product-price">520 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="women" data-name="Libre Intense" data-price="7490">
-        <div class="product-image"><img src="/images/mirage-rose.png" alt="Libre Intense" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Libre Intense</div><div class="product-price">7490 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="care" data-name="Уход и гигиена" data-price="490">
+        <div class="product-image"><img src="/images/healthy-hero.jpg" alt="Уход и гигиена" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Уход и гигиена</div><div class="product-price">490 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
     </div>
     <div class="spacer"></div>
@@ -84,7 +84,7 @@
     <a href="#" class="nav-search" aria-label="Поиск"><span>⌕</span></a>
   </nav>
 
-  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div><div id="searchDefault"><div class="search-section-header"><h3>Хиты Mirage</h3></div><div class="search-hits-scroll" id="searchHits"></div></div><div class="search-results" id="searchResults"></div><div class="search-no-results" id="searchNoResults">Ничего не найдено</div></div></div>
+  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div><div id="searchDefault"><div class="search-section-header"><h3>Популярное у питомцев</h3></div><div class="search-hits-scroll" id="searchHits"></div></div><div class="search-results" id="searchResults"></div><div class="search-no-results" id="searchNoResults">Ничего не найдено</div></div></div>
 
   <script type="module" src="/src/main.js"></script>
 </body>

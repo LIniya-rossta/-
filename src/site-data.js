@@ -16,7 +16,7 @@
       const logo = document.getElementById('heroLogo');
       const storeName = document.getElementById('heroStoreName');
       if (logo && data.branding.logo) {
-        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="Логотип" />`;
+        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="Healthy Animals" />`;
         logo.classList.add('visible');
       }
       if (storeName && data.branding.storeName) {
@@ -48,7 +48,7 @@
         scroll.innerHTML = data.hits.map(h => `
           <div class="hit-card">
             <div class="hit-card-bg"></div>
-            <div class="hit-image"><img src="${esc(h.image)}" alt="Аромат Mirage" /></div>
+            <div class="hit-image"><img src="${esc(h.image)}" alt="Товар Healthy Animals" /></div>
             <span class="hit-price">${esc(h.price)}</span>
           </div>`).join('');
       }
@@ -118,7 +118,7 @@
 
     // Contacts
     if (data.contacts) {
-      const icons = { telegram: 'telegram', whatsapp: 'whatsapp', instagram: 'mirage-mark', email: 'mail', phone: 'phone' };
+      const icons = { telegram: 'telegram', whatsapp: 'whatsapp', instagram: 'healthy-mark', email: 'mail', phone: 'phone', location: 'location', service: 'location' };
       const list = document.querySelector('.contacts-list');
       if (list) {
         list.innerHTML = Object.entries(data.contacts).map(([key, c]) => `
