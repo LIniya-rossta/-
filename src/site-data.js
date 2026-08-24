@@ -16,7 +16,7 @@
       const logo = document.getElementById('heroLogo');
       const storeName = document.getElementById('heroStoreName');
       if (logo && data.branding.logo) {
-        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="Healthy Animals" />`;
+        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="TM Barbershop" />`;
         logo.classList.add('visible');
       }
       if (storeName && data.branding.storeName) {
@@ -48,7 +48,7 @@
         scroll.innerHTML = data.hits.map(h => `
           <div class="hit-card">
             <div class="hit-card-bg"></div>
-            <div class="hit-image"><img src="${esc(h.image)}" alt="Товар Healthy Animals" /></div>
+            <div class="hit-image"><img src="${esc(h.image)}" alt="Услуга TM Barbershop" /></div>
             <span class="hit-price">${esc(h.price)}</span>
           </div>`).join('');
       }
@@ -118,7 +118,7 @@
 
     // Contacts
     if (data.contacts) {
-      const icons = { telegram: 'telegram', whatsapp: 'whatsapp', instagram: 'healthy-mark', email: 'mail', phone: 'phone', location: 'location', service: 'location' };
+      const icons = { telegram: 'telegram', whatsapp: 'whatsapp', instagram: 'instagram', email: 'mail', phone: 'phone', location: 'location', service: 'location' };
       const list = document.querySelector('.contacts-list');
       if (list) {
         list.innerHTML = Object.entries(data.contacts).map(([key, c]) => `
@@ -162,15 +162,15 @@
           <div class="product-card" data-category="${esc(p.category)}" data-name="${esc(p.name)}" data-price="${p.price}">
             <div class="product-image">
               <img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy" />
-              <button class="card-cart-badge" type="button" aria-label="Добавить в корзину">
+                <button class="card-cart-badge" type="button" aria-label="Добавить в запись">
                 <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 0.875C0.5 0.391751 0.891751 0 1.375 0H2.37862C3.16085 0 3.84765 0.536031 4.03906 1.30118L4.14379 1.71875H12.8037C14.1178 1.71875 15.0456 2.98476 14.4082 4.16302L12.8142 7.11153C12.5105 7.67263 11.9339 8.01042 11.3089 8.01042H6.14354C5.36131 8.01042 4.67451 7.47438 4.48309 6.70924L3.19602 1.58074C3.13197 1.32444 2.90258 1.14583 2.63766 1.14583H1.375C0.891751 1.14583 0.5 0.753084 0.5 0.269835C0.5 -0.213414 0.891751 0.875 0.891751 0.875H1.375ZM4.57825 2.86458L5.47329 6.43079C5.53734 6.68709 5.76674 6.86558 6.03165 6.86558H11.2089C11.4173 6.86558 11.6094 6.74874 11.7108 6.56571L13.3048 3.61719C13.5178 3.21908 13.2407 2.73698 12.8037 2.73698H5.24105H4.57825V2.86458ZM6.5 10.3125C6.5 11.1062 5.85616 11.75 5.0625 11.75C4.26884 11.75 3.625 11.1062 3.625 10.3125C3.625 9.51884 4.26884 8.875 5.0625 8.875C5.85616 8.875 6.5 9.51884 6.5 10.3125ZM12.25 10.3125C12.25 11.1062 11.6062 11.75 10.8125 11.75C10.0188 11.75 9.375 11.1062 9.375 10.3125C9.375 9.51884 10.0188 8.875 10.8125 8.875C11.6062 8.875 12.25 9.51884 12.25 10.3125Z" fill="white"/></svg>
               </button>
             </div>
             <div class="product-info">
               <div class="product-name">${esc(p.name)}</div>
-              <div class="product-price">${p.price} сом</div>
+              <div class="product-price">${esc(p.priceLabel || `${p.price} сом`)}</div>
               <div class="product-actions">
-                <button class="btn-order">Заказать</button>
+                <button class="btn-order">Записаться</button>
                 <div class="cart-qty-controls" style="display:none;">
                   <button class="qty-btn qty-minus">−</button>
                   <input type="number" class="qty-input" value="1" min="0" max="99" />
@@ -212,7 +212,7 @@
       const list = document.querySelector('.stores-list');
       if (list) {
         list.innerHTML = data.stores.map(s => `
-          <a href="https://maps.google.com/?q=${encodeURIComponent(`${s.address} ${s.city}`)}" class="store-card" data-status="${esc(s.status)}" target="_blank" rel="noopener">
+          <a href="${esc(s.url || 'https://2gis.kg/bishkek/firm/70000001031653946')}" class="store-card" data-status="${esc(s.status)}" target="_blank" rel="noopener">
             <div class="store-info">
               <p class="store-address">${esc(s.address)}</p>
               <p class="store-city">${esc(s.city)}</p>
@@ -250,8 +250,8 @@
       form.innerHTML = `
         <div class="order-field"><label>Ваше имя</label><input type="text" placeholder="Как к вам обращаться?" required /></div>
         <div class="order-field"><label>Телефон</label><input type="tel" placeholder="+996" required maxlength="15" /></div>
-        <div class="order-field"><label>Адрес доставки</label><input type="text" placeholder="Улица, дом, квартира" required /></div>
-        <div class="order-field"><label>Пожелания</label><input type="text" placeholder="Любые дополнительные пожелания..." /></div>`;
+        <div class="order-field"><label>Желаемое время</label><input type="text" placeholder="Например, сегодня после 18:00" required /></div>
+        <div class="order-field"><label>Пожелание</label><input type="text" placeholder="Мастер, услуга или комментарий к записи" /></div>`;
     }
   }
 })();

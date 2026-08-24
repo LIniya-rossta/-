@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Каталог — Healthy Animals</title>
+  <title>Услуги — TM Barbershop</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,11 +12,11 @@
 <body>
   <div class="catalog-tabs">
     <div class="catalog-tab-pill"></div>
-    <button class="catalog-tab active" data-category="all">Все товары</button>
-    <button class="catalog-tab" data-category="food">Корм</button>
-    <button class="catalog-tab" data-category="vet">Ветпрепараты</button>
+    <button class="catalog-tab active" data-category="all">Все услуги</button>
+    <button class="catalog-tab" data-category="hair">Стрижки</button>
+    <button class="catalog-tab" data-category="beard">Борода</button>
     <button class="catalog-tab" data-category="care">Уход</button>
-    <button class="catalog-tab" data-category="vitamins">Витамины</button>
+    <button class="catalog-tab" data-category="combo">Комбо</button>
   </div>
 
   <div class="price-filter" id="priceFilter">
@@ -31,49 +31,41 @@
 
   <div class="app catalog-page">
     <div class="catalog-intro">
-      <span class="eyebrow">HEALTHY ANIMALS / SELECTION</span>
-      <h1>Забота<br><em>для каждого хвостика</em></h1>
-      <p>Корма, ветпрепараты и уход для домашних и сельскохозяйственных животных.</p>
+      <span class="eyebrow">TM BARBERSHOP / SERVICES</span>
+      <h1>Твоя форма<br><em>в точных руках</em></h1>
+      <p>Мужские стрижки, борода и уход в современном барбершопе на Табышалиева, 57.</p>
     </div>
 
     <div class="products-grid">
-      <div class="product-card" data-category="food" data-name="Корм для кошек · 10 кг" data-price="2800">
-        <div class="product-image"><img src="/images/healthy-food.jpg" alt="Корм для кошек · 10 кг" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Корм для кошек · 10 кг</div><div class="product-price">2800 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="hair" data-name="Мужская стрижка" data-price="1000">
+        <div class="product-image"><img src="/images/tm-interior-hero.jpg" alt="Мужская стрижка" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Мужская стрижка</div><div class="product-price">от 1000 сом</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="food" data-name="Корм для собак · 10 кг" data-price="3200">
-        <div class="product-image"><img src="/images/healthy-feed.jpg" alt="Корм для собак · 10 кг" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Корм для собак · 10 кг</div><div class="product-price">3200 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="care" data-name="Полный мужской уход" data-price="999">
+        <div class="product-image"><img src="/images/tm-interior-detail.jpg" alt="Полный мужской уход" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Полный мужской уход</div><div class="product-price">999 сом</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="vet" data-name="АСД фракция 2 · 100 мл" data-price="250">
-        <div class="product-image"><img src="/images/healthy-asd2.jpg" alt="АСД фракция 2 · 100 мл" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">АСД фракция 2 · 100 мл</div><div class="product-price">250 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="beard" data-name="Стрижка бороды" data-price="700">
+        <div class="product-image"><img src="/images/tm-barber.jpg" alt="Стрижка бороды" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Стрижка бороды</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="vet" data-name="АСД фракция 3 · 100 мл" data-price="250">
-        <div class="product-image"><img src="/images/healthy-asd3.jpg" alt="АСД фракция 3 · 100 мл" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">АСД фракция 3 · 100 мл</div><div class="product-price">250 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="combo" data-name="Стрижка + уход за лицом" data-price="1500">
+        <div class="product-image"><img src="/images/tm-interior-detail.jpg" alt="Стрижка и уход за лицом" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Стрижка + уход за лицом</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="care" data-name="Йод-спрей · 100 мл" data-price="350">
-        <div class="product-image"><img src="/images/healthy-iodine.jpg" alt="Йод-спрей · 100 мл" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Йод-спрей · 100 мл</div><div class="product-price">350 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="hair" data-name="Детская стрижка" data-price="700">
+        <div class="product-image"><img src="/images/tm-interior-hero.jpg" alt="Детская стрижка" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Детская стрижка</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
-      <div class="product-card" data-category="vitamins" data-name="Витамины для питомцев" data-price="680">
-        <div class="product-image"><img src="/images/healthy-hero.jpg" alt="Витамины для питомцев" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Витамины для питомцев</div><div class="product-price">680 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
-      </div>
-      <div class="product-card" data-category="vet" data-name="Средства от паразитов" data-price="520">
-        <div class="product-image"><img src="/images/healthy-pets.jpg" alt="Средства от паразитов" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Средства от паразитов</div><div class="product-price">520 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
-      </div>
-      <div class="product-card" data-category="care" data-name="Уход и гигиена" data-price="490">
-        <div class="product-image"><img src="/images/healthy-hero.jpg" alt="Уход и гигиена" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в корзину"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Уход и гигиена</div><div class="product-price">490 сом</div><div class="product-actions"><button class="btn-order">Заказать</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card" data-category="care" data-name="Укладка и стайлинг" data-price="500">
+        <div class="product-image"><img src="/images/tm-barber.jpg" alt="Укладка и стайлинг" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Укладка и стайлинг</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
       </div>
     </div>
     <div class="spacer"></div>
   </div>
 
-  <div class="checkout-bar" id="checkoutBar"><button id="checkoutBarBtn"><span>Перейти к оформлению</span><small id="checkoutBarSubtitle"></small></button></div>
+  <div class="checkout-bar" id="checkoutBar"><button id="checkoutBarBtn"><span>Перейти к записи</span><small id="checkoutBarSubtitle"></small></button></div>
 
   <nav class="bottom-nav" id="bottomNav">
     <div class="bottom-nav-main"><div class="nav-pill"></div>
@@ -84,7 +76,7 @@
     <a href="#" class="nav-search" aria-label="Поиск"><span>⌕</span></a>
   </nav>
 
-  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div><div id="searchDefault"><div class="search-section-header"><h3>Популярное у питомцев</h3></div><div class="search-hits-scroll" id="searchHits"></div></div><div class="search-results" id="searchResults"></div><div class="search-no-results" id="searchNoResults">Ничего не найдено</div></div></div>
+  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск услуги" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div><div id="searchDefault"><div class="search-section-header"><h3>Популярные услуги</h3></div><div class="search-hits-scroll" id="searchHits"></div></div><div class="search-results" id="searchResults"></div><div class="search-no-results" id="searchNoResults">Ничего не найдено</div></div></div>
 
   <script type="module" src="/src/main.js"></script>
 </body>

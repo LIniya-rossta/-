@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Оформить заказ — Healthy Animals</title>
+  <title>Запись — TM Barbershop</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
     </div>
 
     <!-- Title -->
-    <h1 class="order-title">Оформить<br><em>заботу</em></h1>
+    <h1 class="order-title">Выбрать<br><em>своё время</em></h1>
 
     <!-- Order items list -->
     <div class="order-items" id="orderItems">
@@ -33,8 +33,8 @@
       <form class="order-form" id="orderForm">
         <div class="order-field"><label>Ваше имя</label><input type="text" name="name" placeholder="Как к вам обращаться?" required /></div>
         <div class="order-field"><label>Телефон</label><input type="tel" name="phone" placeholder="+996" required maxlength="15" /></div>
-        <div class="order-field"><label>Адрес доставки</label><input type="text" name="address" placeholder="Улица, дом, квартира" required /></div>
-        <div class="order-field"><label>Комментарий к заказу</label><input type="text" name="comment" placeholder="Возраст питомца, вес или особые пожелания..." /></div>
+        <div class="order-field"><label>Желаемое время</label><input type="text" name="time" placeholder="Например, сегодня после 18:00" required /></div>
+        <div class="order-field"><label>Пожелание</label><input type="text" name="comment" placeholder="Мастер, услуга или комментарий к записи" /></div>
       </form>
     </div>
 
@@ -44,7 +44,7 @@
   <!-- Submit bar -->
   <div class="order-submit-bar">
     <button type="submit" form="orderForm" class="order-submit-btn" id="orderSubmitBtn">
-      <span class="order-submit-title">Подтвердить заказ</span>
+      <span class="order-submit-title">Отправить запись</span>
       <span class="order-submit-subtitle" id="orderSubmitSubtitle">0 сом</span>
     </button>
   </div>

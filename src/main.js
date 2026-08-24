@@ -186,7 +186,7 @@ function updateCartUI() {
       bottomNav.classList.add('hidden-by-cart');
       checkoutBar.classList.add('visible');
       if (checkoutSubtitle) {
-        checkoutSubtitle.textContent = totalItems + 'шт., ' + totalPrice.toLocaleString('ru-RU') + ' сом';
+        checkoutSubtitle.textContent = totalItems + ' усл., ' + totalPrice.toLocaleString('ru-RU') + ' сом';
       }
     } else {
       bottomNav.classList.remove('hidden-by-cart');
@@ -256,7 +256,7 @@ function initCartSystem() {
       if (actions) actions.classList.add('has-qty');
     }
     
-    // "Заказать" → direct order (single item, not cart)
+  // "Записаться" → direct appointment (single service, not cart)
     if (orderBtn) {
       orderBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -346,7 +346,7 @@ function initCartSystem() {
 window.initCartSystem = initCartSystem;
 initCartSystem();
 
-// "Заказать" button → go to order page with single item
+// "Записаться" button → go to appointment page with single service
 window.openDirectOrderModal = function(name, price) {
   const directCart = {};
   directCart[name] = { qty: 1, price };
@@ -559,8 +559,8 @@ const searchNoResults = document.getElementById('searchNoResults');
 const searchHits = document.getElementById('searchHits');
 
 if (searchOverlay) {
-  // Populate "Хиты сезона" from Healthy Animals products
-  const hitImages = ['/images/healthy-food.jpg', '/images/healthy-asd3.jpg', '/images/healthy-iodine.jpg'];
+  // Populate the compact service preview without changing the existing search UI
+  const hitImages = ['/images/tm-interior-hero.jpg', '/images/tm-interior-detail.jpg', '/images/tm-barber.jpg'];
   if (searchHits) {
     hitImages.forEach(src => {
       const card = document.createElement('div');
@@ -695,7 +695,7 @@ if (document.querySelector('.order-page')) {
     const entries = Object.entries(orderCart).filter(([, v]) => v.qty > 0);
 
     if (entries.length === 0) {
-      orderItems.innerHTML = '<div style="padding:20px;text-align:center;color:#999;font-family:Nunito,sans-serif;font-size:14px;">Корзина пуста</div>';
+      orderItems.innerHTML = '<div style="padding:20px;text-align:center;color:#999;font-family:Nunito,sans-serif;font-size:14px;">Вы ещё не выбрали услугу</div>';
       if (submitSubtitle) submitSubtitle.textContent = '0 сом';
       return;
     }
@@ -725,7 +725,7 @@ if (document.querySelector('.order-page')) {
     }).join('');
 
     if (submitSubtitle) {
-      submitSubtitle.textContent = totalItems + 'шт., ' + totalPrice.toLocaleString('ru-RU') + ' сом';
+      submitSubtitle.textContent = totalItems + ' усл., ' + totalPrice.toLocaleString('ru-RU') + ' сом';
     }
 
     // Bind qty buttons
@@ -815,8 +815,8 @@ function showOrderSuccess() {
         <path d="M14 29L23 38L42 19" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <div class="order-success-label">Заказ оформлен!</div>
-    <div class="order-success-sublabel">Мы свяжемся с вами в ближайшее время</div>`;
+    <div class="order-success-label">Запись отправлена!</div>
+    <div class="order-success-sublabel">Мы свяжемся с вами и подтвердим время</div>`;
   document.body.appendChild(overlay);
 
   // Play sound

@@ -1,194 +1,201 @@
 {
   "branding": {
-    "logo": "/images/healthy-mark.svg",
-    "storeName": "HEALTHY ANIMALS"
+    "logo": "/images/tm-mark.svg",
+    "storeName": "TM BARBERSHOP"
   },
   "hero": {
-    "title": "ЗДОРОВЬЕ",
-    "subtitle": "которое видно\nв каждом хвостике",
-    "buttonText": "Выбрать товар"
+    "title": "TM",
+    "subtitle": "точность\nв каждой детали",
+    "buttonText": "Записаться"
   },
   "hitsSection": {
-    "title": "выбор Healthy Animals"
+    "title": "услуги TM"
   },
   "hits": [
     {
       "id": 1,
-      "image": "/images/healthy-food.jpg",
-      "price": "от 650 сом"
+      "image": "/images/tm-interior-hero.jpg",
+      "price": "от 1000 сом"
     },
     {
       "id": 2,
-      "image": "/images/healthy-asd3.jpg",
-      "price": "250 сом"
+      "image": "/images/tm-interior-detail.jpg",
+      "price": "999 сом"
     },
     {
       "id": 3,
-      "image": "/images/healthy-iodine.jpg",
-      "price": "350 сом"
+      "image": "/images/tm-barber.jpg",
+      "price": "по записи"
     }
   ],
-  "bannerText": "ВЕТАПТЕКА И ЗООМАГАЗИН, ГДЕ ЗАБОТУ ПОДБИРАЮТ ПО-НАСТОЯЩЕМУ",
+  "bannerText": "МУЖСКОЙ УХОД, В КОТОРОМ СТИЛЬ НАЧИНАЕТСЯ С ДЕТАЛЕЙ",
   "faq": [
     {
       "id": 1,
-      "question": "Как подобрать корм питомцу?",
-      "answer": "Расскажите консультанту о возрасте, породе и особенностях питомца — поможем сориентироваться по линейке и формату корма."
+      "question": "Можно ли выбрать мастера?",
+      "answer": "Да. При записи уточните желаемого мастера — администратор подскажет ближайшее свободное время."
     },
     {
       "id": 2,
-      "question": "Что есть в Healthy Animals?",
-      "answer": "Корма для кошек и собак, витамины, средства ухода и ветеринарные препараты для домашних и сельскохозяйственных животных."
+      "question": "Что входит в полный мужской уход?",
+      "answer": "Стрижка, аккуратная укладка и дополнительные уходовые процедуры. Актуальный состав и акцию на полный уход уточняйте при записи."
     },
     {
       "id": 3,
-      "question": "Можно ли заказать доставку?",
-      "answer": "Да, оформите заказ через каталог — мы уточним наличие, адрес и удобное время доставки по Бишкеку."
+      "question": "Как записаться в TM?",
+      "answer": "Позвоните по номеру +996 227 568 435 или напишите в WhatsApp / Instagram — ответим и подберём время."
     },
     {
       "id": 4,
-      "question": "Поможете выбрать ветпрепарат?",
-      "answer": "Подскажем по назначению и инструкции. Если ситуация требует осмотра, обязательно рекомендуем обратиться к ветеринарному врачу."
+      "question": "Где находится барбершоп?",
+      "answer": "Бишкек, улица Табышалиева, 57, 1 этаж. Рядом — Asia Trade Company и Аллея Молодёжи."
     },
     {
       "id": 5,
-      "question": "Где находится магазин?",
-      "answer": "Мы находимся в Бишкеке по адресу: улица Камбаралы Бобулова, 1а/1. Перед визитом можно открыть карточку Healthy Animals в 2ГИС."
+      "question": "Во сколько работаете?",
+      "answer": "Ежедневно с 10:00 до 22:00, до последнего клиента. Перед визитом лучше забронировать время."
     }
   ],
   "reviews": [
     {
       "id": 1,
-      "text": "Нашли корм для кошки с чувствительным пищеварением. Спокойно всё объяснили, подсказали размер упаковки — питомец доволен.",
+      "text": "Топ барберы. Топ место.",
       "stars": 5,
-      "color": "#1F6656",
-      "avatar": "/images/avatar1.png"
+      "color": "#202629",
+      "avatar": "/images/tm-mark.svg"
     },
     {
       "id": 2,
-      "text": "Хороший выбор ветпрепаратов и всё по делу. Нужное средство было в наличии, быстро нашли на полке.",
+      "text": "Приятная атмосфера, профессиональные мастера и качественная стрижка. Всё сделали именно так, как я хотел.",
       "stars": 5,
-      "color": "#D56B4F",
-      "avatar": "/images/avatar2.png"
+      "color": "#A96F59",
+      "avatar": "/images/tm-mark.svg"
     },
     {
       "id": 3,
-      "text": "Заезжаем за кормом и витаминами для собаки. Нравится, что консультируют без навязывания и знают ассортимент.",
+      "text": "Мастера действительно очень опытные. Уход за лицом топ, а стрижка ещё лучше 🔥",
       "stars": 5,
-      "color": "#315F55",
-      "avatar": "/images/avatar3.png"
+      "color": "#5A6261",
+      "avatar": "/images/tm-mark.svg"
     },
     {
       "id": 4,
-      "text": "Удобный магазин рядом с домом: корма, уход и аптечка в одном месте. Всегда подскажут, что есть сегодня.",
+      "text": "Чисто, уютно и красиво. Ребята знают своё дело, помогут и подскажут если нужно.",
       "stars": 5,
-      "color": "#E1B35B",
-      "avatar": "/images/avatar1.png"
+      "color": "#353C3F",
+      "avatar": "/images/tm-mark.svg"
     },
     {
       "id": 5,
-      "text": "Помогли собрать базовый набор для щенка: корм, витамины и средства гигиены. Спасибо за внимательное отношение.",
+      "text": "Очень крутое место, сервис топ. Чистка лица понравилась, мастер Темирлан лучший 💥",
       "stars": 5,
-      "color": "#2B7766",
-      "avatar": "/images/avatar2.png"
+      "color": "#B77D63",
+      "avatar": "/images/tm-mark.svg"
     },
     {
       "id": 6,
-      "text": "Видно, что магазин работает с заботой о животных. Ассортимент большой, а нужные позиции быстро находят.",
+      "text": "Самый комфортный и современный барбершоп в городе. 5 из 5.",
       "stars": 5,
-      "color": "#C95F49",
-      "avatar": "/images/avatar3.png"
+      "color": "#272D30",
+      "avatar": "/images/tm-mark.svg"
     }
   ],
   "contacts": {
     "location": {
       "label": "Адрес",
-      "value": "ул. Камбаралы Бобулова, 1а/1",
-      "url": "https://2gis.kg/bishkek/gallery/firm/70000001089418959/photoId/30258560259762327?m=74.574197%2C42.870458%2F14.74"
+      "value": "ул. Табышалиева, 57",
+      "url": "https://2gis.kg/bishkek/firm/70000001031653946"
     },
-    "service": {
-      "label": "Healthy Animals в 2ГИС",
-      "value": "Открыть карточку",
-      "url": "https://2gis.kg/bishkek/gallery/firm/70000001089418959/photoId/30258560259762327?m=74.574197%2C42.870458%2F14.74"
+    "phone": {
+      "label": "Телефон",
+      "value": "+996 227 568 435",
+      "url": "tel:+996227568435"
+    },
+    "instagram": {
+      "label": "Instagram",
+      "value": "@tmbishkek",
+      "url": "https://instagram.com/tmbishkek"
+    },
+    "whatsapp": {
+      "label": "WhatsApp",
+      "value": "Написать администратору",
+      "url": "https://wa.me/996507007507"
+    },
+    "email": {
+      "label": "Почта",
+      "value": "temirlan.ermatov.98@mail.ru",
+      "url": "mailto:temirlan.ermatov.98@mail.ru"
     }
   },
   "categories": [
     {
       "id": "all",
-      "name": "Все товары"
+      "name": "Все услуги"
     },
     {
-      "id": "food",
-      "name": "Корм"
+      "id": "hair",
+      "name": "Стрижки"
     },
     {
-      "id": "vet",
-      "name": "Ветпрепараты"
+      "id": "beard",
+      "name": "Борода"
     },
     {
       "id": "care",
       "name": "Уход"
     },
     {
-      "id": "vitamins",
-      "name": "Витамины"
+      "id": "combo",
+      "name": "Комбо"
     }
   ],
   "products": [
     {
       "id": 1,
-      "name": "Корм для кошек · 10 кг",
-      "price": 2800,
-      "image": "/images/healthy-food.jpg",
-      "category": "food"
+      "name": "Мужская стрижка",
+      "price": 1000,
+      "priceLabel": "от 1000 сом",
+      "image": "/images/tm-interior-hero.jpg",
+      "category": "hair"
     },
     {
       "id": 2,
-      "name": "Корм для собак · 10 кг",
-      "price": 3200,
-      "image": "/images/healthy-feed.jpg",
-      "category": "food"
-    },
-    {
-      "id": 3,
-      "name": "АСД фракция 2 · 100 мл",
-      "price": 250,
-      "image": "/images/healthy-asd2.jpg",
-      "category": "vet"
-    },
-    {
-      "id": 4,
-      "name": "АСД фракция 3 · 100 мл",
-      "price": 250,
-      "image": "/images/healthy-asd3.jpg",
-      "category": "vet"
-    },
-    {
-      "id": 5,
-      "name": "Йод-спрей · 100 мл",
-      "price": 350,
-      "image": "/images/healthy-iodine.jpg",
+      "name": "Полный мужской уход",
+      "price": 999,
+      "priceLabel": "999 сом",
+      "image": "/images/tm-interior-detail.jpg",
       "category": "care"
     },
     {
+      "id": 3,
+      "name": "Стрижка бороды",
+      "price": 700,
+      "priceLabel": "уточнить при записи",
+      "image": "/images/tm-barber.jpg",
+      "category": "beard"
+    },
+    {
+      "id": 4,
+      "name": "Стрижка + уход за лицом",
+      "price": 1500,
+      "priceLabel": "уточнить при записи",
+      "image": "/images/tm-interior-detail.jpg",
+      "category": "combo"
+    },
+    {
+      "id": 5,
+      "name": "Детская стрижка",
+      "price": 700,
+      "priceLabel": "уточнить при записи",
+      "image": "/images/tm-interior-hero.jpg",
+      "category": "hair"
+    },
+    {
       "id": 6,
-      "name": "Витамины для питомцев",
-      "price": 680,
-      "image": "/images/healthy-hero.jpg",
-      "category": "vitamins"
-    },
-    {
-      "id": 7,
-      "name": "Средства от паразитов",
-      "price": 520,
-      "image": "/images/healthy-pets.jpg",
-      "category": "vet"
-    },
-    {
-      "id": 8,
-      "name": "Уход и гигиена",
-      "price": 490,
-      "image": "/images/healthy-hero.jpg",
+      "name": "Укладка и стайлинг",
+      "price": 500,
+      "priceLabel": "уточнить при записи",
+      "image": "/images/tm-barber.jpg",
       "category": "care"
     }
   ],
@@ -198,10 +205,18 @@
   "stores": [
     {
       "id": 1,
-      "address": "ул. Камбаралы Бобулова, 1а/1",
+      "address": "ул. Табышалиева, 57",
       "city": "Бишкек",
       "status": "open",
-      "hours": "Уточняйте в 2ГИС",
+      "hours": "Ежедневно, 10:00–22:00",
+      "timezone": "Asia/Bishkek"
+    },
+    {
+      "id": 2,
+      "address": "2 филиала в Бишкеке",
+      "city": "Бишкек",
+      "status": "open",
+      "hours": "Уточняйте при записи",
       "timezone": "Asia/Bishkek"
     }
   ],
@@ -222,16 +237,16 @@
         "required": true
       },
       {
-        "id": "address",
-        "label": "Адрес доставки",
-        "placeholder": "Улица, дом, квартира",
+        "id": "time",
+        "label": "Желаемое время",
+        "placeholder": "Например, сегодня после 18:00",
         "type": "text",
         "required": true
       },
       {
         "id": "comment",
-        "label": "Комментарий к заказу",
-        "placeholder": "Возраст питомца, вес или особые пожелания...",
+        "label": "Пожелание",
+        "placeholder": "Мастер, услуга или комментарий к записи",
         "type": "text",
         "required": false
       }

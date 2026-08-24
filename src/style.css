@@ -3774,3 +3774,571 @@ body {
     background: #e7e3d8;
   }
 }
+
+/* ======= TM BARBERSHOP THEME ======= */
+:root {
+  --bg: #f2eee8;
+  --card-bg: #fffdf9;
+  --text: #1a1d1f;
+  --text-light: #727875;
+  --accent: #b97960;
+  --accent-soft: #d6b28e;
+  --sage: #b8beb8;
+  --forest: #202629;
+  --ink: #1a1d1f;
+  --line: rgba(32, 38, 41, 0.14);
+  --radius: 22px;
+}
+
+html,
+body {
+  background: #d8d4ce;
+}
+
+body {
+  color: var(--text);
+}
+
+.app,
+.catalog-page,
+.stores-page,
+.order-page {
+  background: var(--bg);
+}
+
+.hero {
+  border-color: rgba(255, 252, 247, 0.48);
+  box-shadow: 0 25px 70px rgba(24, 28, 30, 0.24), inset 0 1px rgba(255, 255, 255, 0.34);
+}
+
+.hero-bg {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(214, 178, 142, 0.6), transparent 28%),
+    linear-gradient(135deg, #111517 0%, #293034 54%, #896555 100%);
+}
+
+.hero-image {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.96;
+}
+
+.hero-image img {
+  object-position: center 52%;
+  filter: saturate(0.78) contrast(1.08) brightness(0.88);
+}
+
+.hero::after {
+  background: linear-gradient(180deg, rgba(15, 18, 20, 0.06) 20%, rgba(15, 18, 20, 0.84) 100%);
+}
+
+.hero-blur-bottom {
+  background: linear-gradient(to top, rgba(16, 20, 22, 0.78), transparent);
+}
+
+.hero-band {
+  background: linear-gradient(90deg, rgba(17, 21, 23, 0.18), rgba(214, 178, 142, 0.24), rgba(17, 21, 23, 0.08));
+  border-color: rgba(255, 252, 247, 0.25);
+}
+
+.hero-branding {
+  gap: 9px;
+}
+
+.hero-logo {
+  background: rgba(255, 252, 247, 0.88);
+  border-color: rgba(255, 252, 247, 0.9);
+  box-shadow: 0 6px 18px rgba(14, 17, 18, 0.28);
+}
+
+.hero-store-name {
+  color: #fffaf4;
+  text-shadow: 0 2px 12px rgba(14, 17, 18, 0.52);
+}
+
+.hero-cart {
+  background: rgba(255, 252, 247, 0.9);
+  border-color: rgba(255, 252, 247, 0.92);
+}
+
+.hero-cart img {
+  filter: brightness(0) saturate(100%) invert(16%) sepia(7%) saturate(809%) hue-rotate(160deg) brightness(92%) contrast(90%);
+}
+
+.hero-title {
+  top: 248px;
+  font-size: 56px;
+  letter-spacing: 0.14em;
+  color: #fffaf4;
+  text-shadow: 0 4px 24px rgba(14, 17, 18, 0.58);
+}
+
+.hero-subtitle {
+  top: 308px;
+  color: #e9cbb2;
+  text-shadow: 0 4px 20px rgba(14, 17, 18, 0.68);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #e1bd99, #ba765d);
+  color: #1a1d1f;
+  border-color: rgba(255, 238, 220, 0.74);
+  box-shadow: 0 10px 24px rgba(14, 17, 18, 0.3);
+}
+
+.section h2,
+.section-header h2,
+.faq h2,
+.reviews h2,
+.contacts h2 {
+  color: var(--ink);
+}
+
+.arrow-link {
+  color: var(--accent);
+}
+
+.hit-card-bg {
+  border-color: rgba(32, 38, 41, 0.16);
+}
+
+.hit-card:nth-child(1) .hit-card-bg { background: linear-gradient(145deg, #22282b, #9a6c5b); }
+.hit-card:nth-child(2) .hit-card-bg { background: linear-gradient(145deg, #b97960, #dfc1a5); }
+.hit-card:nth-child(3) .hit-card-bg { background: linear-gradient(145deg, #4e5758, #c3c8c2); }
+
+.hit-image {
+  box-shadow: inset 0 -24px 30px rgba(15, 18, 20, 0.36);
+}
+
+.hit-image img {
+  filter: saturate(0.78) contrast(1.06) brightness(0.94);
+}
+
+.hit-price {
+  background: rgba(24, 29, 31, 0.84);
+  border-color: rgba(235, 206, 178, 0.58);
+  color: #f8e6d3;
+}
+
+.banner-image {
+  border-color: rgba(32, 38, 41, 0.18);
+  box-shadow: 0 16px 36px rgba(24, 28, 30, 0.18);
+}
+
+.banner-image img {
+  filter: saturate(0.72) contrast(1.06) brightness(0.92);
+}
+
+.banner-blur {
+  background: linear-gradient(to top, rgba(16, 20, 22, 0.9), rgba(16, 20, 22, 0.06));
+}
+
+.banner-text {
+  color: #fff7ef;
+  text-shadow: 0 3px 18px rgba(14, 17, 18, 0.84);
+}
+
+.faq-item {
+  background: linear-gradient(135deg, #fffdf9, #e9e7e2);
+  border-color: rgba(32, 38, 41, 0.13);
+  box-shadow: 0 8px 20px rgba(24, 28, 30, 0.08);
+}
+
+.faq-item[data-open="true"] {
+  background: linear-gradient(135deg, #f4e1d3, #e4e6e1);
+  box-shadow: 0 12px 28px rgba(24, 28, 30, 0.14);
+}
+
+.faq-question {
+  color: var(--ink);
+}
+
+.faq-arrow {
+  color: var(--accent);
+}
+
+.faq-answer p {
+  color: #66706e;
+}
+
+.review-card {
+  border-color: rgba(255, 247, 239, 0.48);
+  box-shadow: 0 12px 24px rgba(24, 28, 30, 0.18);
+}
+
+.review-card p {
+  color: #fffaf4 !important;
+}
+
+.review-card:nth-child(odd),
+.review-card:nth-child(even),
+.review-card:nth-child(3n+1),
+.review-card:nth-child(3n+2),
+.review-card:nth-child(3n+3) {
+  background: linear-gradient(140deg, #202629, #3c4547);
+}
+
+.review-card:nth-child(2n) {
+  background: linear-gradient(140deg, #a86f5a, #c79476);
+}
+
+.review-avatar {
+  border-color: rgba(246, 218, 193, 0.78);
+  background: #111517;
+}
+
+.review-avatar img {
+  object-fit: cover;
+}
+
+.review-stars img {
+  filter: sepia(0.32) saturate(1.38) brightness(1.08);
+}
+
+.reviews-show-more {
+  color: var(--forest);
+  border-color: rgba(32, 38, 41, 0.34);
+  background: rgba(255, 253, 249, 0.7);
+}
+
+.contacts-list {
+  background: linear-gradient(135deg, #252c2f, #424a4b);
+  border-color: rgba(32, 38, 41, 0.18);
+}
+
+.contact-row {
+  background: rgba(255, 253, 249, 0.92);
+  border-color: rgba(32, 38, 41, 0.1);
+  box-shadow: 0 6px 16px rgba(24, 28, 30, 0.08);
+}
+
+.contact-row:active {
+  background: #f3e1d4;
+}
+
+.contact-icon img {
+  filter: none;
+}
+
+.contact-label,
+.contact-value,
+.creator-label,
+.creator-value {
+  color: var(--ink);
+}
+
+.contact-value,
+.creator-value {
+  color: var(--accent);
+}
+
+.creator-block {
+  background: rgba(255, 253, 249, 0.84);
+  border-color: rgba(32, 38, 41, 0.12);
+}
+
+.bottom-nav-main,
+.nav-search {
+  background: rgba(255, 253, 249, 0.88);
+  border-color: rgba(32, 38, 41, 0.17);
+  box-shadow: 0 18px 42px rgba(24, 28, 30, 0.2);
+}
+
+.nav-item,
+.nav-search {
+  color: var(--forest);
+}
+
+.nav-pill {
+  background: rgba(185, 121, 96, 0.18);
+}
+
+.catalog-page,
+.stores-page {
+  background: var(--bg);
+}
+
+.eyebrow {
+  color: var(--accent);
+}
+
+.catalog-intro h1,
+.stores-heading h1 {
+  color: var(--ink);
+}
+
+.catalog-intro h1 em,
+.stores-heading h1 em,
+.order-title em {
+  color: var(--accent);
+}
+
+.catalog-intro p,
+.stores-heading p {
+  color: var(--text-light);
+}
+
+.catalog-tabs,
+.price-filter-inner,
+.city-pill,
+.stores-filter {
+  background: rgba(255, 253, 249, 0.9);
+  border-color: rgba(32, 38, 41, 0.13);
+  box-shadow: 0 10px 30px rgba(24, 28, 30, 0.1);
+}
+
+.catalog-tab-pill {
+  background: linear-gradient(135deg, rgba(185, 121, 96, 0.2), rgba(214, 178, 142, 0.58));
+}
+
+.catalog-tab,
+.filter-btn {
+  color: var(--ink);
+}
+
+.price-filter-label,
+.price-filter-dash {
+  color: var(--text-light);
+}
+
+.price-input {
+  background: #fffdf9;
+  color: var(--ink);
+  border-color: rgba(32, 38, 41, 0.18);
+}
+
+.price-filter-btn {
+  background: var(--forest);
+  color: #fffaf4;
+}
+
+.product-image {
+  border-color: rgba(32, 38, 41, 0.14);
+  background: #fffdf9;
+  box-shadow: 0 12px 24px rgba(24, 28, 30, 0.12);
+}
+
+.product-image img {
+  filter: saturate(0.8) contrast(1.06);
+}
+
+.product-name,
+.product-price {
+  color: var(--ink);
+}
+
+.product-price {
+  color: var(--accent);
+}
+
+.btn-order {
+  background: linear-gradient(135deg, #e1bd99, #ba765d);
+  color: #1a1d1f;
+}
+
+.card-cart-badge {
+  background: rgba(24, 29, 31, 0.78);
+  border-color: rgba(246, 218, 193, 0.6);
+  color: #f2d4b8;
+}
+
+.card-cart-badge svg {
+  display: none;
+}
+
+.card-cart-badge::after {
+  content: '+';
+  font-size: 23px;
+  font-weight: 300;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.card-cart-badge span {
+  display: none;
+}
+
+.card-cart-badge.active {
+  background: rgba(185, 121, 96, 0.92);
+  color: #fffaf4;
+  box-shadow: 0 4px 14px rgba(185, 121, 96, 0.3);
+}
+
+.cart-qty-controls {
+  background: rgba(185, 121, 96, 0.12);
+  border-color: rgba(32, 38, 41, 0.18);
+}
+
+.qty-btn,
+.qty-input {
+  color: var(--forest);
+}
+
+.checkout-bar button,
+.order-submit-btn {
+  background: linear-gradient(135deg, #202629, #a86f5a);
+  border-color: rgba(246, 218, 193, 0.46);
+  color: #fffaf4;
+  box-shadow: 0 18px 42px rgba(24, 28, 30, 0.24);
+}
+
+.checkout-bar button small {
+  color: #f1d4bd;
+}
+
+.stores-top-blur {
+  background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+}
+
+.city-item {
+  background: #ece9e4;
+  color: var(--ink);
+}
+
+.city-item:hover {
+  background: #f2ded1;
+}
+
+.filter-pill {
+  background: rgba(185, 121, 96, 0.2);
+}
+
+.store-card {
+  background: linear-gradient(135deg, #fffdf9, #e8e9e5);
+  border-color: rgba(32, 38, 41, 0.13);
+  box-shadow: 0 12px 26px rgba(24, 28, 30, 0.1);
+}
+
+.store-card:hover {
+  background: #f2ded1;
+}
+
+.store-address {
+  color: var(--ink);
+}
+
+.store-city,
+.status-text {
+  color: var(--text-light);
+}
+
+.status-dot.open {
+  background: #7c9a83;
+  box-shadow: 0 0 0 4px rgba(124, 154, 131, 0.16);
+}
+
+.store-arrow {
+  stroke: var(--accent);
+}
+
+.store-note {
+  background: rgba(231, 233, 228, 0.84);
+  border-color: rgba(32, 38, 41, 0.13);
+  color: var(--text-light);
+}
+
+.store-note small {
+  color: #7f8883;
+}
+
+.store-note-dot {
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(185, 121, 96, 0.13);
+}
+
+.order-back-btn {
+  background: #fffdf9;
+  color: var(--ink);
+  border-color: rgba(32, 38, 41, 0.14);
+}
+
+.order-title {
+  color: var(--ink);
+}
+
+.order-item,
+.order-form-card {
+  background: linear-gradient(135deg, #fffdf9, #e8e9e5);
+  border-color: rgba(32, 38, 41, 0.13);
+  box-shadow: 0 14px 28px rgba(24, 28, 30, 0.1);
+}
+
+.order-item-name,
+.order-field label {
+  color: var(--ink);
+}
+
+.order-item-price {
+  color: var(--accent);
+}
+
+.order-item-qty {
+  background: rgba(185, 121, 96, 0.13);
+  border-color: rgba(32, 38, 41, 0.16);
+}
+
+.order-item-qty button,
+.order-item-qty span {
+  color: var(--forest);
+}
+
+.order-field input,
+.order-field textarea {
+  border-color: rgba(32, 38, 41, 0.18);
+  color: var(--ink);
+}
+
+.order-field input::placeholder,
+.order-field textarea::placeholder {
+  color: #9aa09d;
+}
+
+.order-field input:focus,
+.order-field textarea:focus {
+  border-color: var(--accent);
+}
+
+.search-overlay {
+  background: rgba(15, 18, 20, 0.72);
+}
+
+.search-container {
+  background: #f2eee8;
+  border-color: rgba(32, 38, 41, 0.16);
+}
+
+.search-bar {
+  background: #fffdf9;
+  border-color: rgba(32, 38, 41, 0.14);
+}
+
+.search-bar input,
+.search-bar span,
+.search-close,
+.search-section-header h3 {
+  color: var(--ink);
+}
+
+.search-bar input::placeholder {
+  color: #9aa09d;
+}
+
+.search-result-item {
+  background: #fffdf9;
+  border-color: rgba(32, 38, 41, 0.12);
+}
+
+.search-result-name {
+  color: var(--ink);
+}
+
+.search-result-price {
+  color: var(--accent);
+}
+
+@media (min-width: 481px) {
+  body {
+    background: #d8d4ce;
+  }
+}
