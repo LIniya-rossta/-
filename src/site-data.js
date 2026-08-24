@@ -16,7 +16,7 @@
       const logo = document.getElementById('heroLogo');
       const storeName = document.getElementById('heroStoreName');
       if (logo && data.branding.logo) {
-        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="TM Barbershop" />`;
+        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="Гараж Barbershop" />`;
         logo.classList.add('visible');
       }
       if (storeName && data.branding.storeName) {
@@ -48,7 +48,7 @@
         scroll.innerHTML = data.hits.map(h => `
           <div class="hit-card">
             <div class="hit-card-bg"></div>
-            <div class="hit-image"><img src="${esc(h.image)}" alt="Услуга TM Barbershop" /></div>
+            <div class="hit-image"><img src="${esc(h.image)}" alt="Услуга барбершопа «Гараж»" /></div>
             <span class="hit-price">${esc(h.price)}</span>
           </div>`).join('');
       }
@@ -154,8 +154,34 @@
       }
     }
 
-    // Products
-    if (data.products && data.products.length) {
+    // Barbers — the first step of the booking flow
+    if (data.barbers && data.barbers.length) {
+      const grid = document.querySelector('.products-grid');
+      if (grid) {
+        grid.innerHTML = data.barbers.map(b => `
+          <div class="product-card barber-card" data-category="${esc(b.category)}" data-name="${esc(b.name)}" data-price="0" data-barber-id="${esc(b.id)}" data-barber-role="${esc(b.role)}" data-barber-rating="${esc(b.rating || '')}" data-barber-image="${esc(b.image)}">
+            <div class="product-image">
+              <img src="${esc(b.image)}" alt="Барбер ${esc(b.name)}" loading="lazy" />
+              <button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button>
+            </div>
+            <div class="product-info">
+              <div class="product-name">${esc(b.name)}</div>
+              <div class="product-price">✦ ${esc(b.badge || 'Барбер')}</div>
+              <div class="product-actions">
+                <button class="btn-order" type="button" data-select-barber>Выбрать мастера</button>
+              </div>
+              <div class="barber-role">${esc(b.role)}</div>
+            </div>
+          </div>`).join('');
+
+        if (typeof window.initCartSystem === 'function') {
+          window.initCartSystem();
+        }
+      }
+    }
+
+    // Products are still used as the service list on the booking step
+    if (!data.barbers?.length && data.products && data.products.length) {
       const grid = document.querySelector('.products-grid');
       if (grid) {
         grid.innerHTML = data.products.map(p => `
@@ -212,13 +238,13 @@
       const list = document.querySelector('.stores-list');
       if (list) {
         list.innerHTML = data.stores.map(s => `
-          <a href="${esc(s.url || 'https://2gis.kg/bishkek/firm/70000001031653946')}" class="store-card" data-status="${esc(s.status)}" target="_blank" rel="noopener">
+          <a href="${esc(s.url || 'https://2gis.kg/bishkek/firm/70000001046783811')}" class="store-card" data-status="${esc(s.status)}" target="_blank" rel="noopener">
             <div class="store-info">
               <p class="store-address">${esc(s.address)}</p>
               <p class="store-city">${esc(s.city)}</p>
               <div class="store-status">
                 <span class="status-dot ${esc(s.status)}"></span>
-                <span class="status-text">${s.status === 'open' ? 'Открыто' : 'Закрыто'}</span>
+            <span class="status-text">${s.status === 'open' ? `Открыто · ${esc(s.hours || '10:00–21:00')}` : 'Закрыто'}</span>
               </div>
             </div>
             <svg class="store-arrow" width="8" height="14" viewBox="0 0 8 14" fill="none" stroke="#999" stroke-width="2"><path d="M1 1l6 6-6 6"/></svg>
@@ -238,6 +264,16 @@
 
   // ===== ORDER PAGE =====
   if (page === 'order.html') {
+    const serviceGrid = document.getElementById('serviceChoices');
+    if (serviceGrid && data.products && data.products.length) {
+      serviceGrid.innerHTML = data.products.map(p => `
+        <button class="service-choice" type="button" data-service-id="${esc(p.id)}" data-service-name="${esc(p.name)}" data-service-price="${esc(p.price)}" data-service-label="${esc(p.priceLabel || `${p.price} сом`)}" data-service-image="${esc(p.image)}">
+          <span class="service-choice-image"><img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>${esc(p.name)}</strong><small>${esc(p.priceLabel || `${p.price} сом`)}</small></span>
+          <span class="service-choice-check">✓</span>
+        </button>`).join('');
+    }
+
     const form = document.getElementById('orderForm');
     if (form && data.orderForm && data.orderForm.fields && data.orderForm.fields.length) {
       form.innerHTML = data.orderForm.fields.map(f => `

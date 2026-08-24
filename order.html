@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Запись — TM Barbershop</title>
+  <title>Запись — Гараж Barbershop</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,12 +21,65 @@
     </div>
 
     <!-- Title -->
-    <h1 class="order-title">Выбрать<br><em>своё время</em></h1>
+    <h1 class="order-title">Запись в<br><em>«Гараж»</em></h1>
 
-    <!-- Order items list -->
-    <div class="order-items" id="orderItems">
-      <!-- Filled dynamically -->
+    <!-- Selected barber -->
+    <div class="booking-barber" id="selectedBarber">
+      <div class="booking-empty">Сначала выберите мастера в каталоге</div>
     </div>
+
+    <!-- Service selection -->
+    <section class="service-picker" aria-labelledby="servicePickerTitle">
+      <div class="service-picker-heading">
+        <span class="eyebrow">ШАГ 2 / УСЛУГА</span>
+        <h2 id="servicePickerTitle">Выберите услугу<br><em>для своего стиля</em></h2>
+      </div>
+      <div class="service-choice-grid" id="serviceChoices">
+        <button class="service-choice" type="button" data-service-id="1" data-service-name="Мужская стрижка" data-service-price="700" data-service-label="700 сом" data-service-image="/images/garage/garage-front.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-front.jpg" alt="Мужская стрижка" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Мужская стрижка</strong><small>700 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="2" data-service-name="Детская стрижка до 12 лет" data-service-price="600" data-service-label="600 сом" data-service-image="/images/garage/garage-interior.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-interior.jpg" alt="Детская стрижка" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Детская стрижка до 12 лет</strong><small>600 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="3" data-service-name="Оформление бороды" data-service-price="600" data-service-label="600 сом" data-service-image="/images/garage/garage-detail.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-detail.jpg" alt="Оформление бороды" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Оформление бороды</strong><small>600 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="4" data-service-name="Коррекция бороды" data-service-price="400" data-service-label="400 сом" data-service-image="/images/garage/garage-front.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-front.jpg" alt="Коррекция бороды" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Коррекция бороды</strong><small>400 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="5" data-service-name="Королевское бритьё" data-service-price="600" data-service-label="600 сом" data-service-image="/images/garage/garage-interior.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-interior.jpg" alt="Королевское бритьё" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Королевское бритьё</strong><small>600 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="6" data-service-name="Стрижка + чистка лица" data-service-price="1200" data-service-label="1200 вместо 1400 сом" data-service-image="/images/garage/garage-front.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-front.jpg" alt="Стрижка и чистка лица" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Стрижка + чистка лица</strong><small>1200 вместо 1400 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="7" data-service-name="Чистка лица + чёрная маска" data-service-price="700" data-service-label="700 сом" data-service-image="/images/garage/garage-detail.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-detail.jpg" alt="Чистка лица" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Чистка лица + чёрная маска</strong><small>700 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="8" data-service-name="Чистка лица + маска с глиной" data-service-price="500" data-service-label="500 сом" data-service-image="/images/garage/garage-interior.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-interior.jpg" alt="Чистка лица с глиняной маской" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Чистка лица + маска с глиной</strong><small>500 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="9" data-service-name="Тонирование бороды" data-service-price="600" data-service-label="600 сом" data-service-image="/images/garage/garage-detail.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-detail.jpg" alt="Тонирование бороды" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Тонирование бороды</strong><small>600 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+        <button class="service-choice" type="button" data-service-id="10" data-service-name="Горячий воск" data-service-price="100" data-service-label="от 100 сом" data-service-image="/images/garage/garage-front.jpg">
+          <span class="service-choice-image"><img src="/images/garage/garage-front.jpg" alt="Горячий воск" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Горячий воск</strong><small>от 100 сом</small></span><span class="service-choice-check">✓</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Selected service summary -->
+    <div class="order-items" id="orderItems" aria-live="polite"></div>
 
     <!-- Form -->
     <div class="order-form-card">

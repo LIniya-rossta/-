@@ -1,255 +1,71 @@
 {
-  "branding": {
-    "logo": "/images/tm-mark.svg",
-    "storeName": "TM BARBERSHOP"
-  },
-  "hero": {
-    "title": "TM",
-    "subtitle": "точность\nв каждой детали",
-    "buttonText": "Записаться"
-  },
-  "hitsSection": {
-    "title": "услуги TM"
-  },
+  "branding": { "logo": "/images/garage-mark.svg", "storeName": "ГАРАЖ BARBERSHOP" },
+  "hero": { "title": "ГАРАЖ", "subtitle": "твой гараж —\nтвой стиль", "buttonText": "Записаться" },
+  "hitsSection": { "title": "услуги «Гаража»" },
   "hits": [
-    {
-      "id": 1,
-      "image": "/images/tm-interior-hero.jpg",
-      "price": "от 1000 сом"
-    },
-    {
-      "id": 2,
-      "image": "/images/tm-interior-detail.jpg",
-      "price": "999 сом"
-    },
-    {
-      "id": 3,
-      "image": "/images/tm-barber.jpg",
-      "price": "по записи"
-    }
+    { "id": 1, "image": "/images/garage/garage-front.jpg", "price": "700 сом" },
+    { "id": 2, "image": "/images/garage/garage-interior.jpg", "price": "600 сом" },
+    { "id": 3, "image": "/images/garage/garage-detail.jpg", "price": "от 100 сом" }
   ],
-  "bannerText": "МУЖСКОЙ УХОД, В КОТОРОМ СТИЛЬ НАЧИНАЕТСЯ С ДЕТАЛЕЙ",
+  "bannerText": "СТРИЖЕМ КАК ДЛЯ СЕБЯ — СТИЛЬ НАЧИНАЕТСЯ С ДЕТАЛЕЙ",
+  "barbers": [
+    { "id": "akzhol", "name": "Акжол", "role": "Барбер · рекомендуют постоянные гости", "badge": "любимец гостей", "rating": "", "category": "top", "image": "/images/garage/garage-front.jpg" },
+    { "id": "uluk", "name": "Улук", "role": "Барбер · точный фейд и контур", "badge": "точная работа", "rating": "", "category": "top", "image": "/images/garage/garage-interior.jpg" },
+    { "id": "raul", "name": "Рауль", "role": "Барбер · мужские стрижки", "badge": "мастер своего дела", "rating": "", "category": "barber", "image": "/images/garage/garage-detail.jpg" },
+    { "id": "elyaman", "name": "Эляман", "role": "Барбер · стрижки и укладка", "badge": "рекомендуют клиенты", "rating": "", "category": "barber", "image": "/images/garage/garage-front.jpg" },
+    { "id": "alibek", "name": "Алибек", "role": "Барбер · аккуратный стиль", "badge": "барбер", "rating": "", "category": "barber", "image": "/images/garage/garage-interior.jpg" }
+  ],
   "faq": [
-    {
-      "id": 1,
-      "question": "Можно ли выбрать мастера?",
-      "answer": "Да. При записи уточните желаемого мастера — администратор подскажет ближайшее свободное время."
-    },
-    {
-      "id": 2,
-      "question": "Что входит в полный мужской уход?",
-      "answer": "Стрижка, аккуратная укладка и дополнительные уходовые процедуры. Актуальный состав и акцию на полный уход уточняйте при записи."
-    },
-    {
-      "id": 3,
-      "question": "Как записаться в TM?",
-      "answer": "Позвоните по номеру +996 227 568 435 или напишите в WhatsApp / Instagram — ответим и подберём время."
-    },
-    {
-      "id": 4,
-      "question": "Где находится барбершоп?",
-      "answer": "Бишкек, улица Табышалиева, 57, 1 этаж. Рядом — Asia Trade Company и Аллея Молодёжи."
-    },
-    {
-      "id": 5,
-      "question": "Во сколько работаете?",
-      "answer": "Ежедневно с 10:00 до 22:00, до последнего клиента. Перед визитом лучше забронировать время."
-    }
+    { "id": 1, "question": "Можно ли выбрать мастера?", "answer": "Да. Сначала выберите барбера в каталоге, затем услугу и оставьте удобное время — администратор подтвердит запись." },
+    { "id": 2, "question": "Сколько стоит мужская стрижка?", "answer": "Мужская стрижка в «Гараже» — 700 сом. Детская стрижка до 12 лет — 600 сом." },
+    { "id": 3, "question": "Есть ли акция?", "answer": "Да: стрижка + чистка лица сейчас стоят 1200 сом вместо 1400 сом." },
+    { "id": 4, "question": "Где находится барбершоп?", "answer": "Бишкек, улица Токтогула, 129, 1 этаж, Первомайский район." },
+    { "id": 5, "question": "Во сколько работаете?", "answer": "Ежедневно с 10:00 до 21:00, по предварительной записи." }
   ],
   "reviews": [
-    {
-      "id": 1,
-      "text": "Топ барберы. Топ место.",
-      "stars": 5,
-      "color": "#202629",
-      "avatar": "/images/tm-mark.svg"
-    },
-    {
-      "id": 2,
-      "text": "Приятная атмосфера, профессиональные мастера и качественная стрижка. Всё сделали именно так, как я хотел.",
-      "stars": 5,
-      "color": "#A96F59",
-      "avatar": "/images/tm-mark.svg"
-    },
-    {
-      "id": 3,
-      "text": "Мастера действительно очень опытные. Уход за лицом топ, а стрижка ещё лучше 🔥",
-      "stars": 5,
-      "color": "#5A6261",
-      "avatar": "/images/tm-mark.svg"
-    },
-    {
-      "id": 4,
-      "text": "Чисто, уютно и красиво. Ребята знают своё дело, помогут и подскажут если нужно.",
-      "stars": 5,
-      "color": "#353C3F",
-      "avatar": "/images/tm-mark.svg"
-    },
-    {
-      "id": 5,
-      "text": "Очень крутое место, сервис топ. Чистка лица понравилась, мастер Темирлан лучший 💥",
-      "stars": 5,
-      "color": "#B77D63",
-      "avatar": "/images/tm-mark.svg"
-    },
-    {
-      "id": 6,
-      "text": "Самый комфортный и современный барбершоп в городе. 5 из 5.",
-      "stars": 5,
-      "color": "#272D30",
-      "avatar": "/images/tm-mark.svg"
-    }
+    { "id": 1, "text": "Хорошие мастера, постригли очень хорошо — рекомендую.", "stars": 5, "color": "#241b1a", "avatar": "/images/garage-mark.svg" },
+    { "id": 2, "text": "К Акжолу хожу давно — всегда делает ровно так, как я хочу.", "stars": 5, "color": "#7b302d", "avatar": "/images/garage-mark.svg" },
+    { "id": 3, "text": "Улук — отличный барбер: контур, линии и аккуратность на высшем уровне.", "stars": 5, "color": "#43312a", "avatar": "/images/garage-mark.svg" },
+    { "id": 4, "text": "Мастер Рауль — настоящий профессионал своего дела.", "stars": 5, "color": "#1e2527", "avatar": "/images/garage-mark.svg" },
+    { "id": 5, "text": "Эляман отличный мастер, постриг очень классно.", "stars": 5, "color": "#9b4b39", "avatar": "/images/garage-mark.svg" },
+    { "id": 6, "text": "Приятная атмосфера, хорошие мастера и отличное соотношение цены и качества.", "stars": 5, "color": "#5b332d", "avatar": "/images/garage-mark.svg" }
   ],
   "contacts": {
-    "location": {
-      "label": "Адрес",
-      "value": "ул. Табышалиева, 57",
-      "url": "https://2gis.kg/bishkek/firm/70000001031653946"
-    },
-    "phone": {
-      "label": "Телефон",
-      "value": "+996 227 568 435",
-      "url": "tel:+996227568435"
-    },
-    "instagram": {
-      "label": "Instagram",
-      "value": "@tmbishkek",
-      "url": "https://instagram.com/tmbishkek"
-    },
-    "whatsapp": {
-      "label": "WhatsApp",
-      "value": "Написать администратору",
-      "url": "https://wa.me/996507007507"
-    },
-    "email": {
-      "label": "Почта",
-      "value": "temirlan.ermatov.98@mail.ru",
-      "url": "mailto:temirlan.ermatov.98@mail.ru"
-    }
+    "location": { "label": "Адрес", "value": "ул. Токтогула, 129 · 1 этаж", "url": "https://2gis.kg/bishkek/firm/70000001046783811" },
+    "phone": { "label": "Телефон", "value": "+996 770 032 987", "url": "tel:+996770032987" },
+    "instagram": { "label": "Instagram", "value": "@garaj_center_barbershop", "url": "https://instagram.com/garaj_center_barbershop" },
+    "whatsapp": { "label": "WhatsApp", "value": "Написать администратору", "url": "https://wa.me/996770032987" }
   },
   "categories": [
-    {
-      "id": "all",
-      "name": "Все услуги"
-    },
-    {
-      "id": "hair",
-      "name": "Стрижки"
-    },
-    {
-      "id": "beard",
-      "name": "Борода"
-    },
-    {
-      "id": "care",
-      "name": "Уход"
-    },
-    {
-      "id": "combo",
-      "name": "Комбо"
-    }
+    { "id": "all", "name": "Все мастера" },
+    { "id": "top", "name": "По отзывам" },
+    { "id": "barber", "name": "Барберы" }
   ],
   "products": [
-    {
-      "id": 1,
-      "name": "Мужская стрижка",
-      "price": 1000,
-      "priceLabel": "от 1000 сом",
-      "image": "/images/tm-interior-hero.jpg",
-      "category": "hair"
-    },
-    {
-      "id": 2,
-      "name": "Полный мужской уход",
-      "price": 999,
-      "priceLabel": "999 сом",
-      "image": "/images/tm-interior-detail.jpg",
-      "category": "care"
-    },
-    {
-      "id": 3,
-      "name": "Стрижка бороды",
-      "price": 700,
-      "priceLabel": "уточнить при записи",
-      "image": "/images/tm-barber.jpg",
-      "category": "beard"
-    },
-    {
-      "id": 4,
-      "name": "Стрижка + уход за лицом",
-      "price": 1500,
-      "priceLabel": "уточнить при записи",
-      "image": "/images/tm-interior-detail.jpg",
-      "category": "combo"
-    },
-    {
-      "id": 5,
-      "name": "Детская стрижка",
-      "price": 700,
-      "priceLabel": "уточнить при записи",
-      "image": "/images/tm-interior-hero.jpg",
-      "category": "hair"
-    },
-    {
-      "id": 6,
-      "name": "Укладка и стайлинг",
-      "price": 500,
-      "priceLabel": "уточнить при записи",
-      "image": "/images/tm-barber.jpg",
-      "category": "care"
-    }
+    { "id": 1, "name": "Мужская стрижка", "price": 700, "priceLabel": "700 сом", "image": "/images/garage/garage-front.jpg", "category": "hair" },
+    { "id": 2, "name": "Детская стрижка до 12 лет", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-interior.jpg", "category": "hair" },
+    { "id": 3, "name": "Оформление бороды", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-detail.jpg", "category": "beard" },
+    { "id": 4, "name": "Коррекция бороды", "price": 400, "priceLabel": "400 сом", "image": "/images/garage/garage-front.jpg", "category": "beard" },
+    { "id": 5, "name": "Королевское бритьё", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-interior.jpg", "category": "beard" },
+    { "id": 6, "name": "Стрижка + чистка лица", "price": 1200, "priceLabel": "1200 вместо 1400 сом", "image": "/images/garage/garage-front.jpg", "category": "combo" },
+    { "id": 7, "name": "Чистка лица + чёрная маска", "price": 700, "priceLabel": "700 сом", "image": "/images/garage/garage-detail.jpg", "category": "care" },
+    { "id": 8, "name": "Чистка лица + маска с глиной", "price": 500, "priceLabel": "500 сом", "image": "/images/garage/garage-interior.jpg", "category": "care" },
+    { "id": 9, "name": "Тонирование бороды", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-detail.jpg", "category": "care" },
+    { "id": 10, "name": "Горячий воск", "price": 100, "priceLabel": "от 100 сом", "image": "/images/garage/garage-front.jpg", "category": "care" }
   ],
-  "cities": [
-    "Бишкек"
-  ],
+  "cities": ["Бишкек"],
   "stores": [
-    {
-      "id": 1,
-      "address": "ул. Табышалиева, 57",
-      "city": "Бишкек",
-      "status": "open",
-      "hours": "Ежедневно, 10:00–22:00",
-      "timezone": "Asia/Bishkek"
-    },
-    {
-      "id": 2,
-      "address": "2 филиала в Бишкеке",
-      "city": "Бишкек",
-      "status": "open",
-      "hours": "Уточняйте при записи",
-      "timezone": "Asia/Bishkek"
-    }
+    { "id": 1, "address": "ул. Токтогула, 129", "city": "Бишкек · 1 этаж", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/firm/70000001046783811" },
+    { "id": 2, "address": "ул. Ахматбека Суюмбаева, 16", "city": "Бишкек", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/branches/70000001046783810" },
+    { "id": 3, "address": "ул. Тыналиева, 2/4", "city": "Бишкек", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/branches/70000001046783810" },
+    { "id": 4, "address": "5-й микрорайон, 1", "city": "Бишкек", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/branches/70000001046783810" }
   ],
   "orderForm": {
     "fields": [
-      {
-        "id": "name",
-        "label": "Ваше имя",
-        "placeholder": "Как к вам обращаться?",
-        "type": "text",
-        "required": true
-      },
-      {
-        "id": "phone",
-        "label": "Телефон",
-        "placeholder": "+996",
-        "type": "tel",
-        "required": true
-      },
-      {
-        "id": "time",
-        "label": "Желаемое время",
-        "placeholder": "Например, сегодня после 18:00",
-        "type": "text",
-        "required": true
-      },
-      {
-        "id": "comment",
-        "label": "Пожелание",
-        "placeholder": "Мастер, услуга или комментарий к записи",
-        "type": "text",
-        "required": false
-      }
+      { "id": "name", "label": "Ваше имя", "placeholder": "Как к вам обращаться?", "type": "text", "required": true },
+      { "id": "phone", "label": "Телефон", "placeholder": "+996", "type": "tel", "required": true },
+      { "id": "time", "label": "Желаемое время", "placeholder": "Например, сегодня после 18:00", "type": "text", "required": true },
+      { "id": "comment", "label": "Пожелание", "placeholder": "Форма стрижки, борода или комментарий к записи", "type": "text", "required": false }
     ]
   }
 }

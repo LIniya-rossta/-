@@ -162,7 +162,9 @@ window.showToast = function(message) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 };
 
-// ─── SESSION CART (resets on page leave) ───
+const GARAGE_BOOKING_KEY = 'garage_booking_draft';
+
+// ─── SESSION CART (kept for the existing catalog controls) ───
 const cart = {};
 
 function updateCartUI() {
@@ -232,6 +234,28 @@ function renderCartModal() {
 // Cart controls on product cards — wrapped in function for re-init after dynamic DOM
 function initCartSystem() {
   document.querySelectorAll('.product-card').forEach(card => {
+    if (card.classList.contains('barber-card')) {
+      const selectButton = card.querySelector('[data-select-barber]') || card.querySelector('.btn-order');
+      const badge = card.querySelector('.card-cart-badge');
+      if (selectButton && selectButton.dataset.bound !== 'true') {
+        const selectBarber = (event) => {
+          event?.preventDefault();
+          event?.stopPropagation();
+          window.openBarberBooking(card);
+        };
+        selectButton.dataset.bound = 'true';
+        selectButton.addEventListener('click', selectBarber);
+        if (badge) {
+          badge.dataset.bound = 'true';
+          badge.addEventListener('click', selectBarber);
+        }
+        card.addEventListener('click', (event) => {
+          if (!event.target.closest('button')) selectBarber(event);
+        });
+      }
+      return;
+    }
+
     const name = card.dataset.name;
     const price = parseInt(card.dataset.price) || 0;
     const orderBtn = card.querySelector('.btn-order');
@@ -345,6 +369,26 @@ function initCartSystem() {
 }
 window.initCartSystem = initCartSystem;
 initCartSystem();
+
+// Select a barber first, then continue to the service step.
+window.openBarberBooking = function(card) {
+  const barber = {
+    id: card.dataset.barberId || '',
+    name: card.dataset.name || '',
+    role: card.dataset.barberRole || '',
+    rating: card.dataset.barberRating || '',
+    image: card.dataset.barberImage || card.querySelector('.product-image img')?.src || ''
+  };
+  sessionStorage.setItem(GARAGE_BOOKING_KEY, JSON.stringify({ barber }));
+  sessionStorage.removeItem('flowerskg_cart');
+  window.location.href = 'order.html';
+};
+
+window.openBarberByName = function(name) {
+  const card = Array.from(document.querySelectorAll('.barber-card')).find(item => item.dataset.name === name);
+  if (card) window.openBarberBooking(card);
+  else window.location.href = 'catalog.html';
+};
 
 // "Записаться" button → go to appointment page with single service
 window.openDirectOrderModal = function(name, price) {
@@ -560,7 +604,7 @@ const searchHits = document.getElementById('searchHits');
 
 if (searchOverlay) {
   // Populate the compact service preview without changing the existing search UI
-  const hitImages = ['/images/tm-interior-hero.jpg', '/images/tm-interior-detail.jpg', '/images/tm-barber.jpg'];
+  const hitImages = ['/images/garage/garage-front.jpg', '/images/garage/garage-interior.jpg', '/images/garage/garage-detail.jpg'];
   if (searchHits) {
     hitImages.forEach(src => {
       const card = document.createElement('div');
@@ -576,7 +620,7 @@ if (searchOverlay) {
     const name = card.querySelector('.product-name')?.textContent || '';
     const price = card.querySelector('.product-price')?.textContent || '';
     const img = card.querySelector('.product-image img')?.src || '';
-    if (name) products.push({ name, price, img });
+    if (name) products.push({ name, price, img, barber: card.classList.contains('barber-card') });
   });
 
   function openSearch() {
@@ -637,7 +681,7 @@ if (searchOverlay) {
     } else {
       searchNoResults.style.display = 'none';
       searchResults.innerHTML = filtered.map(p => `
-        <a class="search-result-item" href="#" onclick="openOrderModal('${p.name.replace(/'/g, "\\'")}'); return false;">
+        <a class="search-result-item" href="#" onclick="${p.barber ? `openBarberByName('${p.name.replace(/'/g, "\\'")}');` : `openOrderModal('${p.name.replace(/'/g, "\\'")}');`} return false;">
           <img src="${p.img}" alt="${p.name}" />
           <div class="search-result-info">
             <span class="search-result-name">${p.name}</span>
@@ -683,97 +727,125 @@ if (searchOverlay) {
   }
 }
 
-// ===== ORDER PAGE =====
+// ===== TWO-STEP BOOKING =====
 if (document.querySelector('.order-page')) {
-  const orderCart = JSON.parse(sessionStorage.getItem('flowerskg_cart') || '{}');
+  const booking = (() => {
+    try { return JSON.parse(sessionStorage.getItem(GARAGE_BOOKING_KEY) || '{}'); }
+    catch { return {}; }
+  })();
+  const selectedBarber = document.getElementById('selectedBarber');
+  const serviceGrid = document.getElementById('serviceChoices');
   const orderItems = document.getElementById('orderItems');
   const submitBtn = document.getElementById('orderSubmitBtn');
   const submitSubtitle = document.getElementById('orderSubmitSubtitle');
 
-  function renderOrderItems() {
-    if (!orderItems) return;
-    const entries = Object.entries(orderCart).filter(([, v]) => v.qty > 0);
+  function safeText(value) {
+    const node = document.createElement('span');
+    node.textContent = value || '';
+    return node.innerHTML;
+  }
 
-    if (entries.length === 0) {
-      orderItems.innerHTML = '<div style="padding:20px;text-align:center;color:#999;font-family:Nunito,sans-serif;font-size:14px;">Вы ещё не выбрали услугу</div>';
-      if (submitSubtitle) submitSubtitle.textContent = '0 сом';
+  function renderBooking() {
+    const barber = booking.barber;
+    const service = booking.service;
+
+    if (selectedBarber) {
+      selectedBarber.innerHTML = barber?.name ? `
+        <div class="booking-barber-image"><img src="${safeText(barber.image)}" alt="${safeText(barber.name)}" /></div>
+        <div class="booking-barber-copy">
+          <span class="booking-step">ШАГ 1 / МАСТЕР</span>
+          <strong>${safeText(barber.name)}</strong>
+          <small>${safeText(barber.role)}${barber.rating ? ` · ★ ${safeText(barber.rating)}` : ''}</small>
+        </div>
+        <a class="booking-change" href="catalog.html">Изменить</a>` :
+        '<div class="booking-empty">Сначала выберите мастера в каталоге</div>';
+    }
+
+    if (serviceGrid) {
+      serviceGrid.classList.toggle('is-disabled', !barber?.name);
+      serviceGrid.querySelectorAll('.service-choice').forEach(button => {
+        const isSelected = service?.id && String(service.id) === String(button.dataset.serviceId);
+        button.classList.toggle('selected', Boolean(isSelected));
+        button.disabled = !barber?.name;
+      });
+    }
+
+    if (orderItems) {
+      orderItems.innerHTML = service?.name ? `
+        <div class="booking-service-summary">
+          <span class="booking-step">ВЫБРАННАЯ УСЛУГА</span>
+          <strong>${safeText(service.name)}</strong>
+          <span>${safeText(service.label || `${service.price} сом`)}</span>
+        </div>` :
+        '<div class="booking-service-empty">Выберите одну услугу — она появится здесь перед отправкой записи.</div>';
+    }
+
+    if (submitSubtitle) {
+      submitSubtitle.textContent = service?.price
+        ? `${service.label || `${service.price} сом`}`
+        : 'Выберите услугу';
+    }
+    if (submitBtn) submitBtn.disabled = !barber?.name || !service?.name;
+  }
+
+  serviceGrid?.addEventListener('click', (event) => {
+    const button = event.target.closest('.service-choice');
+    if (!button || !booking.barber?.name) {
+      if (button && !booking.barber?.name) showToast('Сначала выберите мастера');
       return;
     }
 
-    let totalItems = 0;
-    let totalPrice = 0;
+    booking.service = {
+      id: button.dataset.serviceId || '',
+      name: button.dataset.serviceName || '',
+      price: Number(button.dataset.servicePrice) || 0,
+      label: button.dataset.serviceLabel || '',
+      image: button.dataset.serviceImage || ''
+    };
+    sessionStorage.setItem(GARAGE_BOOKING_KEY, JSON.stringify(booking));
+    renderBooking();
+  });
 
-    orderItems.innerHTML = entries.map(([name, item]) => {
-      totalItems += item.qty;
-      totalPrice += item.qty * item.price;
-      const imgSrc = item.image || '/images/placeholder.jpg';
-      return `
-        <div class="order-item" data-name="${name}">
-          <div class="order-item-image">
-            <img src="${imgSrc}" alt="${name}" />
-          </div>
-          <div class="order-item-info">
-            <p class="order-item-name">${name}</p>
-            <p class="order-item-price">${item.price} сом</p>
-            <div class="order-item-qty">
-              <button type="button" class="order-qty-minus">−</button>
-              <span class="order-qty-val">${item.qty}</span>
-              <button type="button" class="order-qty-plus">+</button>
-            </div>
-          </div>
-        </div>`;
-    }).join('');
+  renderBooking();
 
-    if (submitSubtitle) {
-      submitSubtitle.textContent = totalItems + ' усл., ' + totalPrice.toLocaleString('ru-RU') + ' сом';
-    }
-
-    // Bind qty buttons
-    orderItems.querySelectorAll('.order-item').forEach(el => {
-      const itemName = el.dataset.name;
-      el.querySelector('.order-qty-plus').addEventListener('click', () => {
-        orderCart[itemName].qty = Math.min(99, orderCart[itemName].qty + 1);
-        sessionStorage.setItem('flowerskg_cart', JSON.stringify(orderCart));
-        renderOrderItems();
-      });
-      el.querySelector('.order-qty-minus').addEventListener('click', () => {
-        orderCart[itemName].qty--;
-        if (orderCart[itemName].qty <= 0) {
-          delete orderCart[itemName];
-        }
-        sessionStorage.setItem('flowerskg_cart', JSON.stringify(orderCart));
-        renderOrderItems();
-      });
-    });
-  }
-
-  renderOrderItems();
-
-  // Form submit
   const orderForm = document.getElementById('orderForm');
   if (orderForm) {
     orderForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (!booking.barber?.name) {
+        showToast('Сначала выберите мастера');
+        return;
+      }
+      if (!booking.service?.name) {
+        showToast('Выберите услугу');
+        return;
+      }
 
-      // Collect form field values
-      const fields = Array.from(orderForm.querySelectorAll('.order-field')).map(el => ({
-        label: el.querySelector('label')?.textContent?.trim() || '',
-        value: el.querySelector('input,textarea,select')?.value?.trim() || ''
-      }));
+      const fields = [
+        { label: 'Барбер', value: booking.barber.name },
+        { label: 'Услуга', value: booking.service.name },
+        ...Array.from(orderForm.querySelectorAll('.order-field')).map(el => ({
+          label: el.querySelector('label')?.textContent?.trim() || '',
+          value: el.querySelector('input,textarea,select')?.value?.trim() || ''
+        }))
+      ];
+      const items = {
+        [booking.service.name]: {
+          qty: 1,
+          price: booking.service.price,
+          image: booking.service.image
+        }
+      };
 
-      // Calculate total
-      let total = 0;
-      Object.values(orderCart).forEach(item => { total += item.qty * item.price; });
-
-      // POST order (fire and forget — don't block animation)
       fetch('/api/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fields, items: orderCart, total })
-      }).then(r => { if (!r.ok) r.text().then(t => console.error('[order] Server error:', t)); })
-        .catch(e => console.error('[order] Network error:', e.message));
+        body: JSON.stringify({ fields, items, total: booking.service.price })
+      }).then(r => { if (!r.ok) r.text().then(t => console.error('[booking] Server error:', t)); })
+        .catch(error => console.error('[booking] Network error:', error.message));
 
-      sessionStorage.removeItem('flowerskg_cart');
+      sessionStorage.removeItem(GARAGE_BOOKING_KEY);
+      if (submitBtn) submitBtn.disabled = true;
       showOrderSuccess();
     });
   }

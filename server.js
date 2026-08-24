@@ -32,7 +32,7 @@ if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true });
 
 const VALID_SECTIONS = [
   'branding', 'hero', 'hitsSection', 'hits', 'bannerText',
-  'faq', 'reviews', 'contacts', 'categories',
+  'faq', 'reviews', 'contacts', 'categories', 'barbers',
   'products', 'cities', 'stores', 'orderForm'
 ];
 

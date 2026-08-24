@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Услуги — TM Barbershop</title>
+  <title>Барберы — Гараж Barbershop</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,14 @@
 <body>
   <div class="catalog-tabs">
     <div class="catalog-tab-pill"></div>
-    <button class="catalog-tab active" data-category="all">Все услуги</button>
-    <button class="catalog-tab" data-category="hair">Стрижки</button>
-    <button class="catalog-tab" data-category="beard">Борода</button>
-    <button class="catalog-tab" data-category="care">Уход</button>
-    <button class="catalog-tab" data-category="combo">Комбо</button>
+    <button class="catalog-tab active" data-category="all">Все мастера</button>
+    <button class="catalog-tab" data-category="top">По отзывам</button>
+    <button class="catalog-tab" data-category="barber">Барберы</button>
   </div>
 
   <div class="price-filter" id="priceFilter">
     <div class="price-filter-inner">
-      <span class="price-filter-label">Цена:</span>
+      <span class="price-filter-label">Рейтинг:</span>
       <input type="number" id="priceMin" class="price-input" placeholder="от" min="0" />
       <span class="price-filter-dash">–</span>
       <input type="number" id="priceMax" class="price-input" placeholder="до" min="0" />
@@ -29,37 +27,33 @@
     </div>
   </div>
 
-  <div class="app catalog-page">
+  <div class="app catalog-page barber-catalog">
     <div class="catalog-intro">
-      <span class="eyebrow">TM BARBERSHOP / SERVICES</span>
-      <h1>Твоя форма<br><em>в точных руках</em></h1>
-      <p>Мужские стрижки, борода и уход в современном барбершопе на Табышалиева, 57.</p>
+      <span class="eyebrow">ГАРАЖ / BARBERS</span>
+      <h1>Выберите<br><em>своего барбера</em></h1>
+      <p>Сначала выберите мастера «Гаража», а после — нужную услугу и удобное время записи.</p>
     </div>
 
     <div class="products-grid">
-      <div class="product-card" data-category="hair" data-name="Мужская стрижка" data-price="1000">
-        <div class="product-image"><img src="/images/tm-interior-hero.jpg" alt="Мужская стрижка" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Мужская стрижка</div><div class="product-price">от 1000 сом</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card barber-card" data-category="top" data-name="Акжол" data-price="0" data-barber-id="akzhol" data-barber-role="Барбер · рекомендуют постоянные гости" data-barber-rating="" data-barber-image="/images/garage/garage-front.jpg">
+        <div class="product-image"><img src="/images/garage/garage-front.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Акжол</div><div class="product-price">✦ любимец гостей</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · рекомендуют постоянные гости</div></div>
       </div>
-      <div class="product-card" data-category="care" data-name="Полный мужской уход" data-price="999">
-        <div class="product-image"><img src="/images/tm-interior-detail.jpg" alt="Полный мужской уход" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Полный мужской уход</div><div class="product-price">999 сом</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card barber-card" data-category="top" data-name="Улук" data-price="0" data-barber-id="uluk" data-barber-role="Барбер · точный фейд и контур" data-barber-rating="" data-barber-image="/images/garage/garage-interior.jpg">
+        <div class="product-image"><img src="/images/garage/garage-interior.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Улук</div><div class="product-price">✦ точная работа</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · точный фейд и контур</div></div>
       </div>
-      <div class="product-card" data-category="beard" data-name="Стрижка бороды" data-price="700">
-        <div class="product-image"><img src="/images/tm-barber.jpg" alt="Стрижка бороды" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Стрижка бороды</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card barber-card" data-category="barber" data-name="Рауль" data-price="0" data-barber-id="raul" data-barber-role="Барбер · мужские стрижки" data-barber-rating="" data-barber-image="/images/garage/garage-detail.jpg">
+        <div class="product-image"><img src="/images/garage/garage-detail.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Рауль</div><div class="product-price">✦ мастер своего дела</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · мужские стрижки</div></div>
       </div>
-      <div class="product-card" data-category="combo" data-name="Стрижка + уход за лицом" data-price="1500">
-        <div class="product-image"><img src="/images/tm-interior-detail.jpg" alt="Стрижка и уход за лицом" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Стрижка + уход за лицом</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card barber-card" data-category="barber" data-name="Эляман" data-price="0" data-barber-id="elyaman" data-barber-role="Барбер · стрижки и укладка" data-barber-rating="" data-barber-image="/images/garage/garage-front.jpg">
+        <div class="product-image"><img src="/images/garage/garage-front.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Эляман</div><div class="product-price">✦ рекомендуют клиенты</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · стрижки и укладка</div></div>
       </div>
-      <div class="product-card" data-category="hair" data-name="Детская стрижка" data-price="700">
-        <div class="product-image"><img src="/images/tm-interior-hero.jpg" alt="Детская стрижка" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Детская стрижка</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
-      </div>
-      <div class="product-card" data-category="care" data-name="Укладка и стайлинг" data-price="500">
-        <div class="product-image"><img src="/images/tm-barber.jpg" alt="Укладка и стайлинг" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Добавить в запись"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Укладка и стайлинг</div><div class="product-price">Уточнить при записи</div><div class="product-actions"><button class="btn-order">Записаться</button><div class="cart-qty-controls" style="display:none;"><button class="qty-btn qty-minus">−</button><input type="number" class="qty-input" value="1" min="0" max="99" /><button class="qty-btn qty-plus">+</button></div></div></div>
+      <div class="product-card barber-card" data-category="barber" data-name="Алибек" data-price="0" data-barber-id="alibek" data-barber-role="Барбер · аккуратный стиль" data-barber-rating="" data-barber-image="/images/garage/garage-interior.jpg">
+        <div class="product-image"><img src="/images/garage/garage-interior.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Алибек</div><div class="product-price">✦ барбер</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · аккуратный стиль</div></div>
       </div>
     </div>
     <div class="spacer"></div>
