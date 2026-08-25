@@ -52,6 +52,19 @@ function migrateBluebirdImages(value) {
   return { migrated, changed };
 }
 
+function migrateLegacyHeroCopy(data, defaults) {
+  const hero = data?.hero;
+  const defaultHero = defaults?.hero;
+  const legacySubtitle = 'ПТИЦА · портал\nдля родителей';
+  if (!hero || !defaultHero || hero.title !== 'СИНЯЯ' ||
+      String(hero.subtitle || '').replace(/\r\n/g, '\n').trim() !== legacySubtitle) {
+    return false;
+  }
+  hero.title = defaultHero.title;
+  hero.subtitle = defaultHero.subtitle;
+  return true;
+}
+
 function restrictProductsToAdmission(data, defaults) {
   if (!Array.isArray(data.products)) return false;
   const admission = data.products.find(product => product?.id === 'admission') || defaults.products?.[0];
@@ -91,6 +104,7 @@ function fileReadData() {
   // Merge new default keys
   const defaults = getDefaultData();
   let updated = false;
+  if (migrateLegacyHeroCopy(data, defaults)) updated = true;
   const imageMigration = migrateBluebirdImages(data);
   if (imageMigration.changed) {
     Object.assign(data, imageMigration.migrated);
@@ -170,6 +184,9 @@ async function dbInitDB() {
     );
   }
   const current = await dbReadData();
+  if (migrateLegacyHeroCopy(current, defaults)) {
+    await dbWriteSection('hero', current.hero);
+  }
   const imageMigration = migrateBluebirdImages(current);
   if (imageMigration.changed) {
     for (const [section, value] of Object.entries(imageMigration.migrated)) {
