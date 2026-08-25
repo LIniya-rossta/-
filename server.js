@@ -25,6 +25,7 @@ const BOT_SERVER_URL = (process.env.BOT_SERVER_URL || '').replace(/\/$/, '');
 const DATA_DIR = join(__dirname, 'data');
 const DATA_FILE = join(DATA_DIR, 'site-data.json');
 const DEFAULT_DATA_FILE = join(DATA_DIR, 'default-data.json');
+const BOOKINGS_FILE = join(DATA_DIR, 'booking-requests.json');
 const UPLOADS_DIR = join(__dirname, 'dist', 'uploads');
 
 if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
@@ -33,7 +34,7 @@ if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true });
 const VALID_SECTIONS = [
   'branding', 'hero', 'hitsSection', 'hits', 'bannerText',
   'faq', 'reviews', 'contacts', 'categories', 'barbers',
-  'products', 'cities', 'stores', 'orderForm'
+  'products', 'cities', 'stores', 'orderForm', 'guide', 'gallery'
 ];
 
 let pool = null;
@@ -60,6 +61,20 @@ function fileReadData() {
   for (const key of Object.keys(defaults)) {
     if (!(key in data)) { data[key] = defaults[key]; updated = true; }
   }
+  // Migrate the previous barbershop-shaped content so an old persistent file
+  // cannot bring back the obsolete filters and booking formats.
+  const hasGuideSections = Array.isArray(data.categories) && data.categories.some(item => item.id === 'program') &&
+    Array.isArray(data.products) && data.products.some(item => item.id === 'tour');
+  if (!hasGuideSections) {
+    data.hits = defaults.hits;
+    data.hitsSection = defaults.hitsSection;
+    data.categories = defaults.categories;
+    data.products = defaults.products;
+    data.orderForm = defaults.orderForm;
+    data.guide = defaults.guide;
+    data.gallery = defaults.gallery;
+    updated = true;
+  }
   if (updated) writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
   return data;
 }
@@ -68,6 +83,36 @@ function fileWriteSection(section, value) {
   const data = fileReadData();
   data[section] = value;
   writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
+}
+
+function saveBookingRequest({ fields = [], items = {}, total = 0, source = 'website' }) {
+  let requests = [];
+  if (existsSync(BOOKINGS_FILE)) {
+    try {
+      requests = JSON.parse(readFileSync(BOOKINGS_FILE, 'utf8'));
+      if (!Array.isArray(requests)) requests = [];
+    } catch {
+      requests = [];
+    }
+  }
+
+  const request = {
+    id: `visit_${Date.now().toString(36)}_${crypto.randomBytes(3).toString('hex')}`,
+    createdAt: new Date().toISOString(),
+    source: typeof source === 'string' ? source.slice(0, 80) : 'website',
+    fields: Array.isArray(fields)
+      ? fields.slice(0, 30).map(field => ({
+          label: String(field?.label || '').slice(0, 120),
+          value: String(field?.value || '').slice(0, 500)
+        })).filter(field => field.label && field.value)
+      : [],
+    items: items && typeof items === 'object' ? items : {},
+    total: Number.isFinite(Number(total)) ? Number(total) : 0
+  };
+
+  requests.push(request);
+  writeFileSync(BOOKINGS_FILE, JSON.stringify(requests.slice(-500), null, 2), 'utf8');
+  return request;
 }
 
 // --- DB helpers ---
@@ -84,6 +129,14 @@ async function dbInitDB() {
       'INSERT INTO site_data (section, value) VALUES ($1, $2) ON CONFLICT (section) DO NOTHING',
       [section, JSON.stringify(value)]
     );
+  }
+  const current = await dbReadData();
+  const hasGuideSections = Array.isArray(current.categories) && current.categories.some(item => item.id === 'program') &&
+    Array.isArray(current.products) && current.products.some(item => item.id === 'tour');
+  if (!hasGuideSections) {
+    for (const section of ['hitsSection', 'hits', 'categories', 'products', 'orderForm', 'guide', 'gallery']) {
+      await dbWriteSection(section, defaults[section]);
+    }
   }
   console.log('Database initialized');
 }
@@ -262,14 +315,23 @@ app.post('/api/admin/upload', requireAuth, upload.single('image'), (req, res) =>
 //   2. BOT_SERVER_URL is set    → proxy to central bot server (other shop deployments)
 app.post('/api/order', async (req, res) => {
   try {
-    const { fields, items, total } = req.body;
+    const { fields, items, total, source } = req.body || {};
+    const normalizedFields = Array.isArray(fields) ? fields : [];
+    const hasName = normalizedFields.some(field => /имя/i.test(String(field?.label || '')) && String(field?.value || '').trim());
+    const hasPhone = normalizedFields.some(field => /телефон/i.test(String(field?.label || '')) && String(field?.value || '').trim());
+    const hasFormat = normalizedFields.some(field => /формат/i.test(String(field?.label || '')) && String(field?.value || '').trim());
+    if (!hasName || !hasPhone || !hasFormat) {
+      return res.status(400).json({ error: 'Заполните имя, телефон и формат встречи' });
+    }
+
+    const request = saveBookingRequest({ fields: normalizedFields, items, total, source });
 
     if (BOT_SERVER_URL) {
       // Forward to central bot server
       const response = await fetch(`${BOT_SERVER_URL}/api/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fields, items, total, shopPassword: SHOP_PASSWORD })
+        body: JSON.stringify({ fields: normalizedFields, items, total, source, requestId: request.id, shopPassword: SHOP_PASSWORD })
       });
       const result = await response.json();
       return res.status(response.status).json(result);
@@ -277,10 +339,8 @@ app.post('/api/order', async (req, res) => {
 
     // Bot runs locally — shopPassword can come from env OR from proxied request
     const shopPw = req.body.shopPassword || SHOP_PASSWORD;
-    sendOrderToShop(shopPw, { fields, items, total }).catch(e =>
-      console.error('[order] Telegram send failed:', e.message)
-    );
-    res.json({ ok: true });
+    const delivered = await sendOrderToShop(shopPw, { fields: normalizedFields, items, total });
+    res.json({ ok: true, requestId: request.id, delivered });
   } catch (e) {
     console.error('[order] Error:', e.message);
     res.status(500).json({ error: 'Order failed' });

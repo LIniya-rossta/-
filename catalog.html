@@ -3,63 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Команда — Синяя птица</title>
+  <title>Всё о саде — Синяя птица</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="catalog-tabs">
+  <div class="catalog-tabs" role="tablist" aria-label="Разделы о саде">
     <div class="catalog-tab-pill"></div>
-    <button class="catalog-tab active" data-category="all">Вся команда</button>
-    <button class="catalog-tab" data-category="lead">Руководитель</button>
-    <button class="catalog-tab" data-category="pedagogues">Педагоги</button>
+    <button class="catalog-tab active" type="button" role="tab" aria-selected="true" data-category="program">Программа</button>
+    <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="menu">Питание</button>
+    <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="day">Распорядок</button>
+    <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="team">Педагоги</button>
+    <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="photos">Фото</button>
+    <button class="catalog-tab" type="button" role="tab" aria-selected="false" data-category="admission">Поступление</button>
   </div>
 
-  <div class="price-filter" id="priceFilter">
-    <div class="price-filter-inner">
-      <span class="price-filter-label">Возраст:</span>
-      <input type="number" id="priceMin" class="price-input" placeholder="от" min="0" />
-      <span class="price-filter-dash">–</span>
-      <input type="number" id="priceMax" class="price-input" placeholder="до" min="0" />
-      <button class="price-filter-btn" id="priceApply">ОК</button>
-    </div>
-  </div>
-
-  <div class="app catalog-page barber-catalog">
+  <div class="app catalog-page parent-guide-page">
     <div class="catalog-intro">
-      <span class="eyebrow">СИНЯЯ ПТИЦА / TEAM</span>
-      <h1>Познакомьтесь<br><em>с нашей командой</em></h1>
-      <p>Выберите педагога, с которым хотите познакомиться, а после — удобный формат экскурсии и время визита.</p>
+      <span class="eyebrow">СИНЯЯ ПТИЦА / GUIDE</span>
+      <h1>Всё о саде<br><em>до первого визита</em></h1>
+      <p>Выберите тему, которая важна вашей семье. Здесь собрали программу, питание, распорядок дня, команду, фотографии и условия поступления.</p>
+      <div class="guide-intro-actions">
+        <a class="guide-primary-link" href="order.html?format=tour">Записаться на экскурсию</a>
+        <span>Ответим на вопросы на встрече</span>
+      </div>
     </div>
 
-    <div class="products-grid">
-      <div class="product-card barber-card" data-category="lead" data-name="Камила" data-price="0" data-barber-id="camila" data-barber-role="Руководитель · развитие сада и атмосфера доверия" data-barber-rating="" data-barber-image="/images/bluebird/workshop.jpg">
-        <div class="product-image"><img src="/images/bluebird/workshop.jpg" alt="Камила, руководитель «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Камила</div><div class="product-price">✦ руководитель</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Руководитель · развитие сада и атмосфера доверия</div></div>
-      </div>
-      <div class="product-card barber-card" data-category="pedagogues" data-name="Назгуль" data-price="0" data-barber-id="nazgul" data-barber-role="Педагог · мягкая адаптация и ежедневная забота" data-barber-rating="" data-barber-image="/images/bluebird/activity-beads.jpg">
-        <div class="product-image"><img src="/images/bluebird/activity-beads.jpg" alt="Назгуль, педагог «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Назгуль</div><div class="product-price">✦ мягкая адаптация</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Педагог · мягкая адаптация и ежедневная забота</div></div>
-      </div>
-      <div class="product-card barber-card" data-category="pedagogues" data-name="Бермет" data-price="0" data-barber-id="bermet" data-barber-role="Педагог · уважительное сопровождение ребёнка" data-barber-rating="" data-barber-image="/images/bluebird/independent-work.jpg">
-        <div class="product-image"><img src="/images/bluebird/independent-work.jpg" alt="Бермет, педагог «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Бермет</div><div class="product-price">✦ педагог</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Педагог · уважительное сопровождение ребёнка</div></div>
-      </div>
-      <div class="product-card barber-card" data-category="pedagogues" data-name="Гүлайым" data-price="0" data-barber-id="gulayim" data-barber-role="Педагог · чуткость, внимание и спокойный ритм" data-barber-rating="" data-barber-image="/images/bluebird/classroom.jpg">
-        <div class="product-image"><img src="/images/bluebird/classroom.jpg" alt="Гүлайым, педагог «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Гүлайым</div><div class="product-price">✦ педагог</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Педагог · чуткость, внимание и спокойный ритм</div></div>
-      </div>
-      <div class="product-card barber-card" data-category="pedagogues" data-name="Татьяна" data-price="0" data-barber-id="tatiana" data-barber-role="Преподаватель · творчество и занятия по интересам" data-barber-rating="" data-barber-image="/images/bluebird/outdoor-space.jpg">
-        <div class="product-image"><img src="/images/bluebird/outdoor-space.jpg" alt="Татьяна, преподаватель «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Татьяна</div><div class="product-price">✦ творчество</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Преподаватель · творчество и занятия по интересам</div></div>
-      </div>
+    <main class="guide-content">
+      <section class="guide-panel" id="guidePanel" aria-live="polite">
+        <span class="guide-panel-eyebrow" id="guidePanelEyebrow">ПРОГРАММА / MONTESSORI</span>
+        <h2 id="guidePanelTitle">Развитие через самостоятельность</h2>
+        <p class="guide-panel-intro" id="guidePanelIntro"></p>
+        <div class="guide-panel-body" id="guidePanelBody"></div>
+        <div class="guide-panel-footer">
+          <p id="guidePanelNote"></p>
+          <a class="guide-panel-cta" id="guidePanelCta" href="order.html?format=tour">Записаться на экскурсию</a>
+        </div>
+      </section>
+
+      <section class="guide-panel guide-panel-team" id="teamPanel" hidden>
+        <span class="guide-panel-eyebrow">КОМАНДА / PEOPLE</span>
+        <h2>Педагоги, с которыми можно познакомиться</h2>
+        <p class="guide-panel-intro">Выберите педагога, если хотите адресовать экскурсию конкретному человеку. Это необязательно — можно записаться просто на знакомство с садом.</p>
+        <div class="products-grid" id="teamGrid"></div>
+        <div class="guide-panel-footer">
+          <p>Педагог выбирается по желанию и не влияет на доступность экскурсии.</p>
+          <a class="guide-panel-cta" href="order.html?format=tour">Записаться без выбора педагога</a>
+        </div>
+      </section>
+
+      <section class="guide-panel guide-panel-gallery" id="galleryPanel" hidden>
+        <span class="guide-panel-eyebrow">ФОТО / SPACE</span>
+        <h2>Посмотрите, как выглядит среда</h2>
+        <p class="guide-panel-intro">Фотографии помогают составить первое впечатление. На экскурсии можно увидеть пространство вживую и задать вопросы о группе.</p>
+        <div class="gallery-grid" id="galleryGrid"></div>
+        <div class="guide-panel-footer">
+          <p>Формат, возрастная группа и актуальные условия подтверждаются во время визита.</p>
+          <a class="guide-panel-cta" href="order.html?format=tour">Увидеть сад вживую</a>
+        </div>
+      </section>
+    </main>
+
+    <div class="guide-bottom-cta">
+      <a href="order.html?format=tour">Записаться на экскурсию</a>
+      <a href="stores.html">Адрес и часы работы</a>
     </div>
     <div class="spacer"></div>
   </div>
-
-  <div class="checkout-bar" id="checkoutBar"><button id="checkoutBarBtn"><span>Перейти к записи</span><small id="checkoutBarSubtitle"></small></button></div>
 
   <nav class="bottom-nav" id="bottomNav">
     <div class="bottom-nav-main"><div class="nav-pill"></div>
@@ -70,7 +82,20 @@
     <a href="#" class="nav-search" aria-label="Поиск"><span>⌕</span></a>
   </nav>
 
-  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск по команде" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div><div id="searchDefault"><div class="search-section-header"><h3>Форматы знакомства</h3></div><div class="search-hits-scroll" id="searchHits"></div></div><div class="search-results" id="searchResults"></div><div class="search-no-results" id="searchNoResults">Ничего не найдено</div></div></div>
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск по саду" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div>
+      <div id="searchDefault"><div class="search-section-header"><h3>Что посмотреть и обсудить</h3></div><div class="search-hits-scroll" id="searchHits"></div></div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-no-results" id="searchNoResults">Ничего не найдено</div>
+    </div>
+  </div>
+
+  <div class="photo-lightbox" id="photoLightbox" hidden>
+    <button class="photo-lightbox-close" type="button" aria-label="Закрыть фото">×</button>
+    <img id="photoLightboxImage" src="" alt="" />
+    <div class="photo-lightbox-caption" id="photoLightboxCaption"></div>
+  </div>
 
   <script type="module" src="/src/main.js"></script>
 </body>

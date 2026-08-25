@@ -1,156 +1,8 @@
 import './site-data.js';
 
-// FAQ accordion
-document.querySelectorAll('.faq-question').forEach(q => {
-  q.addEventListener('click', () => {
-    const item = q.closest('.faq-item');
-    const isOpen = item.getAttribute('data-open') === 'true';
-    // Close all others
-    document.querySelectorAll('.faq-item').forEach(i => {
-      if (i !== item || isOpen) {
-        i.setAttribute('data-open', 'false');
-      }
-    });
-    // Toggle current
-    if (!isOpen) {
-      item.setAttribute('data-open', 'true');
-    }
-  });
-});
+const BOOKING_KEY = 'bluebird_booking_draft';
 
-// Reviews "Show more" toggle
-const reviewsShowMore = document.getElementById('reviewsShowMore');
-const reviewsGrid = document.querySelector('.reviews-grid');
-if (reviewsShowMore && reviewsGrid) {
-  reviewsShowMore.addEventListener('click', () => {
-    const isOpen = reviewsGrid.classList.toggle('show-all');
-    reviewsShowMore.classList.toggle('expanded', isOpen);
-    reviewsShowMore.querySelector('span').textContent = isOpen ? 'Скрыть' : 'Показать ещё';
-  });
-}
-
-// City selector dropdown (stores page)
-const cityPill = document.getElementById('cityPill');
-const cityDropdown = document.getElementById('cityDropdown');
-if (cityPill && cityDropdown) {
-  cityPill.addEventListener('click', () => {
-    const isOpen = cityDropdown.classList.toggle('open');
-    cityPill.classList.toggle('open', isOpen);
-  });
-
-  // Use event delegation so dynamically-rendered city items still work
-  cityDropdown.addEventListener('click', (e) => {
-    const item = e.target.closest('.city-item');
-    if (!item) return;
-    e.preventDefault();
-    e.stopPropagation();
-    const selectedCity = item.dataset.city;
-    cityPill.querySelector('span').textContent = selectedCity;
-    cityDropdown.querySelectorAll('.city-item').forEach(c => c.classList.remove('active'));
-    item.classList.add('active');
-    cityDropdown.classList.remove('open');
-    cityPill.classList.remove('open');
-    // Filter store cards by city
-    document.querySelectorAll('.store-card').forEach(card => {
-      const cardCity = card.querySelector('.store-city')?.textContent || '';
-      const matches = cardCity.toLowerCase().includes(selectedCity.toLowerCase());
-      card.classList.toggle('city-hidden', !matches);
-    });
-    // Re-apply status filter
-    const activeFilter = document.querySelector('.filter-btn.active');
-    if (activeFilter) {
-      const filter = activeFilter.dataset.filter;
-      document.querySelectorAll('.store-card').forEach(card => {
-        if (!card.classList.contains('city-hidden')) {
-          card.classList.toggle('hidden', card.dataset.status !== filter);
-        }
-      });
-    }
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.city-selector')) {
-      cityDropdown.classList.remove('open');
-      cityPill.classList.remove('open');
-    }
-  });
-}
-
-// Store filter buttons with sliding pill (stores page)
-const filterContainer = document.querySelector('.stores-filter');
-const filterPill = document.querySelector('.filter-pill');
-const filterBtns = document.querySelectorAll('.filter-btn');
-
-function positionFilterPill(btn) {
-  if (!filterPill || !btn) return;
-  filterPill.style.left = btn.offsetLeft + 'px';
-  filterPill.style.width = btn.offsetWidth + 'px';
-}
-
-if (filterBtns.length && filterPill) {
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      positionFilterPill(btn);
-      const filter = btn.dataset.filter;
-      document.querySelectorAll('.store-card').forEach(card => {
-        if (!card.classList.contains('city-hidden')) {
-          card.classList.toggle('hidden', card.dataset.status !== filter);
-        }
-      });
-    });
-  });
-
-  // Initial position
-  const activeBtn = document.querySelector('.filter-btn.active');
-  if (activeBtn) {
-    // No transition on initial position
-    filterPill.style.transition = 'none';
-    positionFilterPill(activeBtn);
-    // Filter cards
-    const filter = activeBtn.dataset.filter;
-    document.querySelectorAll('.store-card').forEach(card => {
-      card.classList.toggle('hidden', card.dataset.status !== filter);
-    });
-    requestAnimationFrame(() => {
-      filterPill.style.transition = '';
-    });
-  }
-}
-
-// Order modal (cart checkout)
-window.openOrderModal = function() {
-  const overlay = document.getElementById('orderModal');
-  if (overlay) overlay.classList.add('active');
-};
-
-// Direct order modal (single item)
-window.openDirectOrderModal = function(name, price) {
-  const overlay = document.getElementById('directOrderModal');
-  if (overlay) {
-    const nameEl = document.getElementById('directProductName');
-    const priceEl = document.getElementById('directProductPrice');
-    if (nameEl) nameEl.textContent = name;
-    if (priceEl) priceEl.textContent = price + ' сом';
-    overlay.classList.add('active');
-  }
-};
-
-window.closeOrderModal = function() {
-  document.getElementById('orderModal')?.classList.remove('active');
-  document.getElementById('directOrderModal')?.classList.remove('active');
-};
-
-// Close modal on overlay click
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('modal-overlay')) {
-    window.closeOrderModal();
-  }
-});
-
-// Toast notification
-window.showToast = function(message) {
+function showToast(message) {
   let toast = document.querySelector('.toast');
   if (!toast) {
     toast = document.createElement('div');
@@ -159,750 +11,497 @@ window.showToast = function(message) {
   }
   toast.textContent = message;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2500);
-};
+  window.setTimeout(() => toast.classList.remove('show'), 2800);
+}
 
-const BLUEBIRD_BOOKING_KEY = 'bluebird_booking_draft';
-
-// ─── SESSION CART (kept for the existing catalog controls) ───
-const cart = {};
-
-function updateCartUI() {
-  const bottomNav = document.getElementById('bottomNav');
-  const checkoutBar = document.getElementById('checkoutBar');
-  
-  let totalItems = 0;
-  let totalPrice = 0;
-  
-  for (const name in cart) {
-    if (cart[name].qty > 0) {
-      totalItems += cart[name].qty;
-      totalPrice += cart[name].qty * cart[name].price;
-    }
-  }
-  
-  // Toggle bottom nav / checkout bar
-  if (bottomNav && checkoutBar) {
-    const checkoutSubtitle = document.getElementById('checkoutBarSubtitle');
-    if (totalItems > 0) {
-      bottomNav.classList.add('hidden-by-cart');
-      checkoutBar.classList.add('visible');
-      if (checkoutSubtitle) {
-        checkoutSubtitle.textContent = totalItems + ' усл., ' + totalPrice.toLocaleString('ru-RU') + ' сом';
-      }
-    } else {
-      bottomNav.classList.remove('hidden-by-cart');
-      checkoutBar.classList.remove('visible');
-    }
+function readBooking() {
+  try {
+    return JSON.parse(sessionStorage.getItem(BOOKING_KEY) || '{}');
+  } catch {
+    return {};
   }
 }
 
-function pluralize(n, one, few, many) {
-  const mod10 = n % 10;
-  const mod100 = n % 100;
-  if (mod10 === 1 && mod100 !== 11) return one;
-  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
-  return many;
+function saveBooking(booking) {
+  sessionStorage.setItem(BOOKING_KEY, JSON.stringify(booking));
 }
 
-function renderCartModal() {
-  const list = document.getElementById('cartItemsList');
-  const modalTotal = document.getElementById('cartModalTotal');
-  const submitTotal = document.getElementById('submitTotal');
-  if (!list) return;
-  
-  let html = '';
-  let total = 0;
-  
-  for (const name in cart) {
-    if (cart[name].qty > 0) {
-      const itemTotal = cart[name].qty * cart[name].price;
-      total += itemTotal;
-      html += `<div class="cart-modal-item">
-        <span class="cart-modal-item-name">${name}</span>
-        <span class="cart-modal-item-qty">×${cart[name].qty}</span>
-        <span class="cart-modal-item-price">${itemTotal.toLocaleString('ru-RU')} сом</span>
-      </div>`;
-    }
-  }
-  
-  list.innerHTML = html || '<p style="color:#999;font-size:14px;">Корзина пуста</p>';
-  if (modalTotal) modalTotal.textContent = total.toLocaleString('ru-RU') + ' сом';
-  if (submitTotal) submitTotal.textContent = total.toLocaleString('ru-RU') + ' сом';
+function clearBooking() {
+  sessionStorage.removeItem(BOOKING_KEY);
 }
 
-// Cart controls on product cards — wrapped in function for re-init after dynamic DOM
-function initCartSystem() {
-  document.querySelectorAll('.product-card').forEach(card => {
-    if (card.classList.contains('barber-card')) {
-      const selectButton = card.querySelector('[data-select-barber]') || card.querySelector('.btn-order');
-      const badge = card.querySelector('.card-cart-badge');
-      if (selectButton && selectButton.dataset.bound !== 'true') {
-        const selectBarber = (event) => {
-          event?.preventDefault();
-          event?.stopPropagation();
-          window.openBarberBooking(card);
-        };
-        selectButton.dataset.bound = 'true';
-        selectButton.addEventListener('click', selectBarber);
-        if (badge) {
-          badge.dataset.bound = 'true';
-          badge.addEventListener('click', selectBarber);
-        }
-        card.addEventListener('click', (event) => {
-          if (!event.target.closest('button')) selectBarber(event);
-        });
-      }
-      return;
-    }
+function safeText(value) {
+  const node = document.createElement('span');
+  node.textContent = value == null ? '' : String(value);
+  return node.innerHTML;
+}
 
-    const name = card.dataset.name;
-    const price = parseInt(card.dataset.price) || 0;
-    const orderBtn = card.querySelector('.btn-order');
-    const qtyControls = card.querySelector('.cart-qty-controls');
-    const qtyInput = card.querySelector('.qty-input');
-    const minusBtn = card.querySelector('.qty-minus');
-    const plusBtn = card.querySelector('.qty-plus');
-    const badge = card.querySelector('.card-cart-badge');
-    const actions = card.querySelector('.product-actions');
-    
-    if (!name) return;
-
-    // Get image URL for this card
-    const cardImg = card.querySelector('.product-image img');
-    const imageUrl = cardImg ? cardImg.src : '';
-
-    // Restore cart state if item was already in cart
-    if (cart[name]) {
-      badge && badge.classList.add('active');
-      if (qtyControls) qtyControls.style.display = '';
-      if (qtyInput) qtyInput.value = cart[name].qty;
-      if (actions) actions.classList.add('has-qty');
-    }
-    
-  // "Записаться" → direct appointment (single service, not cart)
-    if (orderBtn) {
-      orderBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        window.openDirectOrderModal(name, price);
+// FAQ accordion works both for static content and content loaded from the API.
+function initFaq() {
+  document.querySelectorAll('.faq-list').forEach(list => {
+    if (list.dataset.bound === 'true') return;
+    list.dataset.bound = 'true';
+    list.addEventListener('click', event => {
+      const question = event.target.closest('.faq-question');
+      if (!question) return;
+      const item = question.closest('.faq-item');
+      const isOpen = item?.getAttribute('data-open') === 'true';
+      list.querySelectorAll('.faq-item').forEach(other => {
+        other.setAttribute('data-open', other === item && !isOpen ? 'true' : 'false');
+        const answer = other.querySelector('.faq-answer');
+        if (answer) answer.style.maxHeight = other === item && !isOpen ? `${answer.scrollHeight}px` : '0';
       });
-    }
-    
-    // Badge click → toggle add to cart
-    if (badge) {
-      badge.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (cart[name]) {
-          // Remove from cart
-          delete cart[name];
-          badge.classList.remove('active');
-          qtyControls.style.display = 'none';
-          actions.classList.remove('has-qty');
-        } else {
-          // Add to cart
-          cart[name] = { qty: 1, price, image: imageUrl };
-          badge.classList.add('active');
-          qtyControls.style.display = '';
-          qtyInput.value = 1;
-          actions.classList.add('has-qty');
-        }
-        updateCartUI();
-      });
-    }
-    
-    if (plusBtn) {
-      plusBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (!cart[name]) cart[name] = { qty: 0, price, image: imageUrl };
-        cart[name].qty = Math.min(99, cart[name].qty + 1);
-        qtyInput.value = cart[name].qty;
-        updateCartUI();
-      });
-    }
-    
-    if (minusBtn) {
-      minusBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (!cart[name]) return;
-        cart[name].qty--;
-        if (cart[name].qty <= 0) {
-          delete cart[name];
-          qtyControls.style.display = 'none';
-          actions.classList.remove('has-qty');
-          if (badge) badge.classList.remove('active');
-        } else {
-          qtyInput.value = cart[name].qty;
-        }
-        updateCartUI();
-      });
-    }
-    
-    if (qtyInput) {
-      qtyInput.addEventListener('change', (e) => {
-        e.stopPropagation();
-        let val = parseInt(qtyInput.value) || 0;
-        val = Math.max(0, Math.min(99, val));
-        if (val <= 0) {
-          delete cart[name];
-          qtyControls.style.display = 'none';
-          actions.classList.remove('has-qty');
-          if (badge) badge.classList.remove('active');
-        } else {
-          if (!cart[name]) cart[name] = { qty: 0, price, image: imageUrl };
-          cart[name].qty = val;
-          qtyInput.value = val;
-        }
-        updateCartUI();
-      });
-      qtyInput.addEventListener('click', (e) => e.stopPropagation());
-    }
+    });
   });
+}
 
-  // Checkout bar → go to order page
-  const checkoutBarBtn = document.getElementById('checkoutBarBtn');
-  if (checkoutBarBtn) {
-    checkoutBarBtn.addEventListener('click', () => {
-      sessionStorage.setItem('flowerskg_cart', JSON.stringify(cart));
-      window.location.href = 'order.html';
+// Team preview on the home page.
+function initReviewsToggle() {
+  const button = document.getElementById('reviewsShowMore');
+  const grid = document.querySelector('.reviews-grid');
+  if (!button || !grid || button.dataset.bound === 'true') return;
+  button.dataset.bound = 'true';
+  button.addEventListener('click', () => {
+    const open = grid.classList.toggle('show-all');
+    button.classList.toggle('expanded', open);
+    const label = button.querySelector('span');
+    if (label) label.textContent = open ? 'Скрыть' : 'Показать ещё';
+  });
+}
+
+// Location page controls.
+function initStores() {
+  const cityPill = document.getElementById('cityPill');
+  const cityDropdown = document.getElementById('cityDropdown');
+  if (cityPill && cityDropdown && cityPill.dataset.bound !== 'true') {
+    cityPill.dataset.bound = 'true';
+    cityPill.addEventListener('click', event => {
+      event.stopPropagation();
+      const open = cityDropdown.classList.toggle('open');
+      cityPill.classList.toggle('open', open);
+    });
+    cityDropdown.addEventListener('click', event => {
+      const item = event.target.closest('.city-item');
+      if (!item) return;
+      event.preventDefault();
+      const city = item.dataset.city || '';
+      cityPill.querySelector('span').textContent = city;
+      cityDropdown.querySelectorAll('.city-item').forEach(other => other.classList.toggle('active', other === item));
+      cityDropdown.classList.remove('open');
+      cityPill.classList.remove('open');
+      document.querySelectorAll('.store-card').forEach(card => {
+        const cardCity = card.querySelector('.store-city')?.textContent || '';
+        card.classList.toggle('city-hidden', !cardCity.toLowerCase().includes(city.toLowerCase()));
+      });
+      applyStoreFilter();
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.city-selector')) {
+        cityDropdown.classList.remove('open');
+        cityPill.classList.remove('open');
+      }
     });
   }
-}
-window.initCartSystem = initCartSystem;
-initCartSystem();
 
-// Select a teacher first, then continue to the visit format step.
+  const filterPill = document.querySelector('.filter-pill');
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  if (!filterButtons.length || !filterPill || filterButtons[0].dataset.bound === 'true') return;
+  filterButtons.forEach(button => {
+    button.dataset.bound = 'true';
+    button.addEventListener('click', () => {
+      filterButtons.forEach(other => other.classList.toggle('active', other === button));
+      positionFilterPill(button);
+      applyStoreFilter();
+    });
+  });
+  const active = document.querySelector('.filter-btn.active') || filterButtons[0];
+  filterPill.style.transition = 'none';
+  positionFilterPill(active);
+  applyStoreFilter();
+  requestAnimationFrame(() => { filterPill.style.transition = ''; });
+}
+
+function positionFilterPill(button) {
+  const pill = document.querySelector('.filter-pill');
+  if (!pill || !button) return;
+  pill.style.left = `${button.offsetLeft}px`;
+  pill.style.width = `${button.offsetWidth}px`;
+}
+
+function applyStoreFilter() {
+  const filter = document.querySelector('.filter-btn.active')?.dataset.filter || 'open';
+  document.querySelectorAll('.store-card').forEach(card => {
+    card.classList.toggle('hidden', card.dataset.status !== filter || card.classList.contains('city-hidden'));
+  });
+}
+
+// Parent guide tabs. The content itself is rendered by site-data.js.
+function initCatalogTabs() {
+  const tabs = document.querySelector('.catalog-tabs');
+  const pill = tabs?.querySelector('.catalog-tab-pill');
+  if (!tabs || !pill) return;
+
+  const position = tab => {
+    if (!tab) return;
+    pill.style.left = `${tab.offsetLeft}px`;
+    pill.style.width = `${tab.offsetWidth}px`;
+  };
+
+  tabs.querySelectorAll('.catalog-tab').forEach(tab => {
+    if (tab.dataset.bound === 'true') return;
+    tab.dataset.bound = 'true';
+    tab.addEventListener('click', () => {
+      tabs.querySelectorAll('.catalog-tab').forEach(other => other.classList.toggle('active', other === tab));
+      tabs.querySelectorAll('.catalog-tab').forEach(other => other.setAttribute('aria-selected', other === tab ? 'true' : 'false'));
+      position(tab);
+      const scrollTarget = tab.offsetLeft - tabs.clientWidth / 2 + tab.offsetWidth / 2;
+      tabs.scrollTo({ left: Math.max(0, scrollTarget), behavior: 'smooth' });
+      if (typeof window.renderGuideSection === 'function') window.renderGuideSection(tab.dataset.category);
+    });
+  });
+
+  const active = tabs.querySelector('.catalog-tab.active') || tabs.querySelector('.catalog-tab');
+  position(active);
+  window.addEventListener('resize', () => position(tabs.querySelector('.catalog-tab.active')));
+}
+window.initCatalogTabs = initCatalogTabs;
+
+// A teacher can be selected, but never blocks a regular tour booking.
+function initTeacherCards() {
+  document.querySelectorAll('.barber-card').forEach(card => {
+    if (card.dataset.bound === 'true') return;
+    card.dataset.bound = 'true';
+    const choose = event => {
+      event.preventDefault();
+      event.stopPropagation();
+      window.openBarberBooking(card);
+    };
+    card.querySelector('[data-select-barber]')?.addEventListener('click', choose);
+    card.querySelector('.card-cart-badge')?.addEventListener('click', choose);
+    card.addEventListener('click', event => {
+      if (!event.target.closest('button')) choose(event);
+    });
+  });
+}
+window.initCartSystem = initTeacherCards;
+
 window.openBarberBooking = function(card) {
-  const barber = {
+  const booking = readBooking();
+  booking.barber = {
     id: card.dataset.barberId || '',
     name: card.dataset.name || '',
     role: card.dataset.barberRole || '',
-    rating: card.dataset.barberRating || '',
     image: card.dataset.barberImage || card.querySelector('.product-image img')?.src || ''
   };
-  sessionStorage.setItem(BLUEBIRD_BOOKING_KEY, JSON.stringify({ barber }));
-  sessionStorage.removeItem('flowerskg_cart');
-  window.location.href = 'order.html';
+  saveBooking(booking);
+  window.location.href = 'order.html?format=tour';
 };
 
 window.openBarberByName = function(name) {
   const card = Array.from(document.querySelectorAll('.barber-card')).find(item => item.dataset.name === name);
-  if (card) window.openBarberBooking(card);
-  else window.location.href = 'catalog.html';
+  if (card) return window.openBarberBooking(card);
+  window.location.href = 'catalog.html?section=team';
 };
 
-// "Записаться" button → go to appointment page with single service
-window.openDirectOrderModal = function(name, price) {
-  const directCart = {};
-  directCart[name] = { qty: 1, price };
-  // Find image from product card
-  const cards = document.querySelectorAll('.product-card');
-  cards.forEach(card => {
-    if (card.dataset.name === name) {
-      const img = card.querySelector('.product-image img');
-      if (img) directCart[name].image = img.src;
-    }
-  });
-  sessionStorage.setItem('flowerskg_cart', JSON.stringify(directCart));
-  window.location.href = 'order.html';
-};
+// Search uses all parent-facing content, not a hidden price/service catalog.
+function initSearch(data = window.__blueBirdSiteData || {}) {
+  const overlay = document.getElementById('searchOverlay');
+  if (!overlay || overlay.dataset.bound === 'true') return;
+  overlay.dataset.bound = 'true';
+  const input = document.getElementById('searchInput');
+  const close = document.getElementById('searchClose');
+  const results = document.getElementById('searchResults');
+  const defaultBlock = document.getElementById('searchDefault');
+  const empty = document.getElementById('searchNoResults');
+  const hits = document.getElementById('searchHits');
 
-// Form submit (both cart and direct order forms)
-document.addEventListener('submit', (e) => {
-  if (e.target.closest('.order-form')) {
-    e.preventDefault();
-    closeOrderModal();
-    
-    // If it's the cart form, clear cart
-    if (e.target.id === 'orderForm') {
-      for (const key in cart) delete cart[key];
-      document.querySelectorAll('.product-card').forEach(card => {
-        const qtyControls = card.querySelector('.cart-qty-controls');
-        const badge = card.querySelector('.card-cart-badge');
-        const actions = card.querySelector('.product-actions');
-        if (qtyControls) qtyControls.style.display = 'none';
-        if (badge) badge.classList.remove('active');
-        if (actions) actions.classList.remove('has-qty');
-      });
-      updateCartUI();
-    }
-    
-  }
-});
+  const guideItems = Object.entries(data.guide || {}).map(([id, guide]) => ({
+    kind: 'guide', id, title: guide.title, text: guide.intro, href: `catalog.html?section=${id}`, image: data.gallery?.[0]?.image
+  }));
+  const teacherItems = (data.barbers || []).map(teacher => ({
+    kind: 'teacher', id: teacher.id, title: teacher.name, text: teacher.role, href: 'catalog.html?section=team', image: teacher.image
+  }));
+  const formatItems = (data.products || []).map(product => ({
+    kind: 'format', id: product.id, title: product.name, text: product.priceLabel || 'по записи', href: `order.html?format=${product.id}`, image: product.image
+  }));
+  const items = [...guideItems, ...teacherItems, ...formatItems];
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', (e) => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-
-// Catalog tab filtering with animation — wrapped for re-init after dynamic DOM
-function initCatalogTabs() {
-  const catalogTabPill = document.querySelector('.catalog-tab-pill');
-  const catalogTabs = document.querySelectorAll('.catalog-tab');
-
-  function positionCatalogPill(tab) {
-    if (!catalogTabPill || !tab) return;
-    catalogTabPill.style.left = (tab.offsetLeft) + 'px';
-    catalogTabPill.style.width = tab.offsetWidth + 'px';
+  if (hits) {
+    hits.innerHTML = items.slice(0, 4).map(item => `<a class="search-hit-card" href="${safeText(item.href)}"><img src="${safeText(item.image || '')}" alt="${safeText(item.title)}" /></a>`).join('');
   }
 
-  // Initial position
-  const activeCatalogTab = document.querySelector('.catalog-tab.active');
-  if (activeCatalogTab && catalogTabPill) {
-    positionCatalogPill(activeCatalogTab);
-  }
-
-  catalogTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      catalogTabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      positionCatalogPill(tab);
-
-      // Scroll active tab into view within the container
-      const container = tab.parentElement;
-      const tabLeft = tab.offsetLeft;
-      const tabWidth = tab.offsetWidth;
-      const containerWidth = container.clientWidth;
-      const scrollTarget = tabLeft - (containerWidth / 2) + (tabWidth / 2);
-      container.scrollTo({ left: scrollTarget, behavior: 'smooth' });
-      
-      const category = tab.dataset.category;
-      const cards = document.querySelectorAll('.product-card');
-      let delay = 0;
-      cards.forEach(card => {
-        const show = category === 'all' || card.dataset.category === category;
-        if (show) {
-          card.style.display = '';
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            card.style.transition = 'opacity 0.35s cubic-bezier(0.22,1,0.36,1), transform 0.35s cubic-bezier(0.22,1,0.36,1)';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, delay);
-          delay += 50;
-        } else {
-          card.style.transition = 'opacity 0.2s';
-          card.style.opacity = '0';
-          setTimeout(() => { card.style.display = 'none'; }, 200);
-        }
-      });
-    });
-  });
-}
-window.initCatalogTabs = initCatalogTabs;
-initCatalogTabs();
-
-// Price filter
-const priceApplyBtn = document.getElementById('priceApply');
-if (priceApplyBtn) {
-  const priceMinInput = document.getElementById('priceMin');
-  const priceMaxInput = document.getElementById('priceMax');
-  
-  function applyPriceFilter() {
-    const min = parseInt(priceMinInput.value) || 0;
-    const max = parseInt(priceMaxInput.value) || Infinity;
-    const activeTab = document.querySelector('.catalog-tab.active');
-    const category = activeTab ? activeTab.dataset.category : 'all';
-    const cards = document.querySelectorAll('.product-card');
-    
-    cards.forEach(card => {
-      const price = parseInt(card.dataset.price) || 0;
-      const catMatch = category === 'all' || card.dataset.category === category;
-      const priceMatch = price >= min && price <= max;
-      card.style.display = (catMatch && priceMatch) ? '' : 'none';
-      if (catMatch && priceMatch) {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }
-    });
-  }
-  
-  priceApplyBtn.addEventListener('click', applyPriceFilter);
-  priceMinInput.addEventListener('keydown', e => { if (e.key === 'Enter') applyPriceFilter(); });
-  priceMaxInput.addEventListener('keydown', e => { if (e.key === 'Enter') applyPriceFilter(); });
-}
-
-// Bottom nav sliding pill
-const navPill = document.querySelector('.nav-pill');
-const navMain = document.querySelector('.bottom-nav-main');
-const activeNavItem = document.querySelector('.bottom-nav-main .nav-item.active');
-
-function positionPillOn(item) {
-  if (!navPill || !item) return;
-  const parentRect = navMain.getBoundingClientRect();
-  const itemRect = item.getBoundingClientRect();
-  navPill.style.left = (itemRect.left - parentRect.left) + 'px';
-  navPill.style.width = itemRect.width + 'px';
-}
-
-if (navPill && activeNavItem) {
-  positionPillOn(activeNavItem);
-  window.addEventListener('resize', () => positionPillOn(activeNavItem));
-
-  // Animate pill to clicked item before navigating
-  document.querySelectorAll('.bottom-nav-main .nav-item').forEach(item => {
-    item.addEventListener('click', (e) => {
-      if (item.classList.contains('active')) return;
-      e.preventDefault();
-      positionPillOn(item);
-      const href = item.getAttribute('href');
-      setTimeout(() => { window.location.href = href; }, 350);
-    });
-  });
-}
-
-// Section fade-in on scroll
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      fadeObserver.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.section, .banner, .contacts, .faq').forEach(el => {
-  fadeObserver.observe(el);
-});
-
-// Staggered store cards animation
-const storeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const cards = entry.target.querySelectorAll('.store-card');
-      cards.forEach((card, i) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(12px)';
-        setTimeout(() => {
-          card.style.transition = 'opacity 0.4s cubic-bezier(0.22,1,0.36,1), transform 0.4s cubic-bezier(0.22,1,0.36,1)';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, i * 60);
-      });
-      storeObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.05 });
-
-document.querySelectorAll('.stores-list').forEach(el => storeObserver.observe(el));
-
-// ─── Search Overlay ───
-const searchOverlay = document.getElementById('searchOverlay');
-const searchInput = document.getElementById('searchInput');
-const searchClose = document.getElementById('searchClose');
-const searchResults = document.getElementById('searchResults');
-const searchDefault = document.getElementById('searchDefault');
-const searchNoResults = document.getElementById('searchNoResults');
-const searchHits = document.getElementById('searchHits');
-
-if (searchOverlay) {
-  // Populate the compact service preview without changing the existing search UI
-  const hitImages = ['/images/bluebird/workshop-wide.jpg', '/images/bluebird/independent-work.jpg', '/images/bluebird/outdoor-space.jpg'];
-  if (searchHits) {
-    hitImages.forEach(src => {
-      const card = document.createElement('div');
-      card.className = 'search-hit-card';
-      card.innerHTML = `<img src="${src}" alt="Хит" />`;
-      searchHits.appendChild(card);
-    });
-  }
-
-  // Collect products from catalog page cards
-  const products = [];
-  document.querySelectorAll('.product-card').forEach(card => {
-    const name = card.querySelector('.product-name')?.textContent || '';
-    const price = card.querySelector('.product-price')?.textContent || '';
-    const img = card.querySelector('.product-image img')?.src || '';
-    if (name) products.push({ name, price, img, barber: card.classList.contains('barber-card') });
-  });
-
-  function openSearch() {
-    searchOverlay.classList.add('active');
+  const open = () => {
+    overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => searchInput.focus(), 100);
-  }
-
-  function closeSearch() {
-    searchOverlay.classList.remove('active');
+    window.setTimeout(() => input?.focus(), 80);
+  };
+  const reset = () => {
+    overlay.classList.remove('active');
     document.body.style.overflow = '';
-    searchInput.value = '';
-    searchResults.innerHTML = '';
-    searchNoResults.style.display = 'none';
-    if (searchDefault) searchDefault.style.display = '';
-  }
+    if (input) input.value = '';
+    if (results) results.innerHTML = '';
+    if (empty) empty.style.display = 'none';
+    if (defaultBlock) defaultBlock.style.display = '';
+  };
 
-  // Open on nav-search click
-  document.querySelectorAll('.nav-search').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openSearch();
-    });
+  document.querySelectorAll('.nav-search').forEach(button => button.addEventListener('click', event => {
+    event.preventDefault();
+    open();
+  }));
+  close?.addEventListener('click', reset);
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && overlay.classList.contains('active')) reset();
   });
-
-  // Close button
-  searchClose.addEventListener('click', closeSearch);
-
-  // Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
-      closeSearch();
-    }
-  });
-
-  // Search filtering
-  searchInput.addEventListener('input', () => {
-    runSearch();
-  });
-
-  function runSearch() {
-    const query = searchInput.value.trim().toLowerCase();
-
+  input?.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase();
     if (!query) {
-      searchResults.innerHTML = '';
-      searchNoResults.style.display = 'none';
-      if (searchDefault) searchDefault.style.display = '';
+      resetSearchResults();
       return;
     }
+    if (defaultBlock) defaultBlock.style.display = 'none';
+    const matched = items.filter(item => `${item.title} ${item.text}`.toLowerCase().includes(query));
+    if (empty) empty.style.display = matched.length ? 'none' : 'block';
+    if (results) results.innerHTML = matched.map(item => `
+      <a class="search-result-item" href="${safeText(item.href)}">
+        <img src="${safeText(item.image || '')}" alt="${safeText(item.title)}" />
+        <div class="search-result-info"><span class="search-result-name">${safeText(item.title)}</span><span class="search-result-price">${safeText(item.text)}</span></div>
+      </a>`).join('');
+  });
 
-    if (searchDefault) searchDefault.style.display = 'none';
-
-    const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-
-    if (filtered.length === 0) {
-      searchResults.innerHTML = '';
-      searchNoResults.style.display = 'block';
-    } else {
-      searchNoResults.style.display = 'none';
-      searchResults.innerHTML = filtered.map(p => `
-        <a class="search-result-item" href="#" onclick="${p.barber ? `openBarberByName('${p.name.replace(/'/g, "\\'")}');` : `openOrderModal('${p.name.replace(/'/g, "\\'")}');`} return false;">
-          <img src="${p.img}" alt="${p.name}" />
-          <div class="search-result-info">
-            <span class="search-result-name">${p.name}</span>
-            <span class="search-result-price">${p.price}</span>
-          </div>
-        </a>
-      `).join('');
-    }
+  function resetSearchResults() {
+    if (results) results.innerHTML = '';
+    if (empty) empty.style.display = 'none';
+    if (defaultBlock) defaultBlock.style.display = '';
   }
 
-  // Voice input (Web Speech API)
-  const searchMic = document.getElementById('searchMic');
+  const mic = document.getElementById('searchMic');
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  if (searchMic && SpeechRecognition) {
+  if (mic && SpeechRecognition) {
     const recognition = new SpeechRecognition();
     recognition.lang = 'ru-RU';
-    recognition.interimResults = true;
-    recognition.continuous = false;
-
-    searchMic.addEventListener('click', () => {
-      searchMic.classList.add('listening');
+    recognition.interimResults = false;
+    mic.addEventListener('click', () => {
+      mic.classList.add('listening');
       recognition.start();
     });
-
-    recognition.addEventListener('result', (e) => {
-      const transcript = Array.from(e.results)
-        .map(r => r[0].transcript)
-        .join('');
-      searchInput.value = transcript;
-      runSearch();
+    recognition.addEventListener('result', event => {
+      if (input) input.value = Array.from(event.results).map(result => result[0].transcript).join('');
+      input?.dispatchEvent(new Event('input'));
     });
-
-    recognition.addEventListener('end', () => {
-      searchMic.classList.remove('listening');
-    });
-
-    recognition.addEventListener('error', () => {
-      searchMic.classList.remove('listening');
-    });
-  } else if (searchMic) {
-    searchMic.style.display = 'none';
+    recognition.addEventListener('end', () => mic.classList.remove('listening'));
+    recognition.addEventListener('error', () => mic.classList.remove('listening'));
+  } else if (mic) {
+    mic.style.display = 'none';
   }
 }
 
-// ===== TWO-STEP BOOKING =====
-if (document.querySelector('.order-page')) {
-  const booking = (() => {
-    try { return JSON.parse(sessionStorage.getItem(BLUEBIRD_BOOKING_KEY) || '{}'); }
-    catch { return {}; }
-  })();
-  const selectedBarber = document.getElementById('selectedBarber');
-  const serviceGrid = document.getElementById('serviceChoices');
-  const orderItems = document.getElementById('orderItems');
-  const submitBtn = document.getElementById('orderSubmitBtn');
-  const submitSubtitle = document.getElementById('orderSubmitSubtitle');
-
-  function safeText(value) {
-    const node = document.createElement('span');
-    node.textContent = value || '';
-    return node.innerHTML;
-  }
-
-  function renderBooking() {
-    const barber = booking.barber;
-    const service = booking.service;
-
-    if (selectedBarber) {
-      selectedBarber.innerHTML = barber?.name ? `
-        <div class="booking-barber-image"><img src="${safeText(barber.image)}" alt="${safeText(barber.name)}" /></div>
-        <div class="booking-barber-copy">
-          <span class="booking-step">ШАГ 1 / ПЕДАГОГ</span>
-          <strong>${safeText(barber.name)}</strong>
-          <small>${safeText(barber.role)}${barber.rating ? ` · ★ ${safeText(barber.rating)}` : ''}</small>
-        </div>
-        <a class="booking-change" href="catalog.html">Изменить</a>` :
-        '<div class="booking-empty">Сначала выберите педагога в команде</div>';
-    }
-
-    if (serviceGrid) {
-      serviceGrid.classList.toggle('is-disabled', !barber?.name);
-      serviceGrid.querySelectorAll('.service-choice').forEach(button => {
-        const isSelected = service?.id && String(service.id) === String(button.dataset.serviceId);
-        button.classList.toggle('selected', Boolean(isSelected));
-        button.disabled = !barber?.name;
-      });
-    }
-
-    if (orderItems) {
-      orderItems.innerHTML = service?.name ? `
-        <div class="booking-service-summary">
-          <span class="booking-step">ВЫБРАННЫЙ ФОРМАТ</span>
-          <strong>${safeText(service.name)}</strong>
-          <span>${safeText(service.label || `${service.price} сом`)}</span>
-        </div>` :
-        '<div class="booking-service-empty">Выберите один формат — он появится здесь перед отправкой заявки.</div>';
-    }
-
-    if (submitSubtitle) {
-      submitSubtitle.textContent = service?.name
-        ? `${service.label || 'по записи'}`
-        : 'Выберите формат';
-    }
-    if (submitBtn) submitBtn.disabled = !barber?.name || !service?.name;
-  }
-
-  serviceGrid?.addEventListener('click', (event) => {
-    const button = event.target.closest('.service-choice');
-    if (!button || !booking.barber?.name) {
-      if (button && !booking.barber?.name) showToast('Сначала выберите педагога');
+// Photo preview without changing the gallery layout.
+function initLightbox() {
+  const lightbox = document.getElementById('photoLightbox');
+  const image = document.getElementById('photoLightboxImage');
+  const caption = document.getElementById('photoLightboxCaption');
+  if (!lightbox || lightbox.dataset.bound === 'true') return;
+  lightbox.dataset.bound = 'true';
+  const close = () => {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('click', event => {
+    const card = event.target.closest('.gallery-card');
+    if (card && image) {
+      event.preventDefault();
+      image.src = card.dataset.image || '';
+      image.alt = card.dataset.title || '';
+      if (caption) caption.textContent = `${card.dataset.title || ''} · ${card.dataset.text || ''}`;
+      lightbox.hidden = false;
+      document.body.style.overflow = 'hidden';
       return;
     }
+    if (event.target === lightbox || event.target.closest('.photo-lightbox-close')) close();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !lightbox.hidden) close();
+  });
+}
 
+// Bottom navigation keeps the same sliding pill as the reference UI.
+function initBottomNav() {
+  const nav = document.querySelector('.bottom-nav-main');
+  const pill = nav?.querySelector('.nav-pill');
+  const active = nav?.querySelector('.nav-item.active');
+  if (!nav || !pill || !active || nav.dataset.bound === 'true') return;
+  nav.dataset.bound = 'true';
+  const position = item => {
+    const navRect = nav.getBoundingClientRect();
+    const itemRect = item.getBoundingClientRect();
+    pill.style.left = `${itemRect.left - navRect.left}px`;
+    pill.style.width = `${itemRect.width}px`;
+  };
+  position(active);
+  window.addEventListener('resize', () => position(active));
+  nav.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', event => {
+    if (item.classList.contains('active')) return;
+    event.preventDefault();
+    position(item);
+    window.setTimeout(() => { window.location.href = item.href; }, 220);
+  }));
+}
+
+function initScrollEffects() {
+  if (!('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.section, .banner, .contacts, .faq').forEach(element => observer.observe(element));
+}
+
+// Optional teacher selection is passed into the same order form.
+if (document.querySelector('.order-page')) {
+  const booking = readBooking();
+  const selectedTeacher = document.getElementById('selectedBarber');
+  const serviceGrid = document.getElementById('serviceChoices');
+  const summary = document.getElementById('orderItems');
+  const submitButton = document.getElementById('orderSubmitBtn');
+  const submitSubtitle = document.getElementById('orderSubmitSubtitle');
+
+  function renderBooking() {
+    if (selectedTeacher) {
+      selectedTeacher.innerHTML = booking.barber?.name ? `
+        <div class="booking-barber-image"><img src="${safeText(booking.barber.image)}" alt="${safeText(booking.barber.name)}" /></div>
+        <div class="booking-barber-copy"><span class="booking-step">ДОПОЛНИТЕЛЬНО / ПЕДАГОГ</span><strong>${safeText(booking.barber.name)}</strong><small>${safeText(booking.barber.role)}</small></div>
+        <a class="booking-change" href="catalog.html?section=team">Изменить</a>` :
+        '<div class="booking-empty">Педагог не выбран — это нормально. При желании можно <a href="catalog.html?section=team">выбрать его отдельно</a>.</div>';
+    }
+
+    serviceGrid?.querySelectorAll('.service-choice').forEach(button => {
+      const selected = booking.service?.id && String(booking.service.id) === String(button.dataset.serviceId);
+      button.classList.toggle('selected', Boolean(selected));
+      button.disabled = false;
+    });
+
+    if (summary) {
+      summary.innerHTML = booking.service?.name ? `
+        <div class="booking-service-summary"><span class="booking-step">ВЫБРАННЫЙ ФОРМАТ</span><strong>${safeText(booking.service.name)}</strong><span>${safeText(booking.service.label || 'по записи')}</span></div>` :
+        '<div class="booking-service-empty">Выберите один формат встречи — после этого появится кнопка отправки заявки.</div>';
+    }
+    if (submitSubtitle) submitSubtitle.textContent = booking.service?.name ? 'Заявка без оплаты' : 'Выберите формат';
+    if (submitButton) submitButton.disabled = !booking.service?.name;
+  }
+
+  function selectService(button) {
     booking.service = {
       id: button.dataset.serviceId || '',
       name: button.dataset.serviceName || '',
       price: Number(button.dataset.servicePrice) || 0,
-      label: button.dataset.serviceLabel || '',
+      label: button.dataset.serviceLabel || 'по записи',
       image: button.dataset.serviceImage || ''
     };
-    sessionStorage.setItem(BLUEBIRD_BOOKING_KEY, JSON.stringify(booking));
+    saveBooking(booking);
+    renderBooking();
+  }
+
+  serviceGrid?.addEventListener('click', event => {
+    const button = event.target.closest('.service-choice');
+    if (button) selectService(button);
+  });
+
+  function applyQueryFormat() {
+    const format = new URLSearchParams(location.search).get('format');
+    if (!format || booking.service?.id) return;
+    const button = Array.from(serviceGrid?.querySelectorAll('.service-choice') || []).find(item => item.dataset.serviceId === format);
+    if (button) selectService(button);
+  }
+
+  renderBooking();
+  applyQueryFormat();
+
+  document.addEventListener('siteDataReady', () => {
+    applyQueryFormat();
     renderBooking();
   });
 
-  renderBooking();
+  document.getElementById('orderForm')?.addEventListener('submit', async event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!booking.service?.name) {
+      showToast('Выберите формат встречи');
+      return;
+    }
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-  const orderForm = document.getElementById('orderForm');
-  if (orderForm) {
-    orderForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!booking.barber?.name) {
-        showToast('Сначала выберите педагога');
-        return;
-      }
-      if (!booking.service?.name) {
-        showToast('Выберите формат встречи');
-        return;
-      }
+    if (submitButton) {
+      submitButton.disabled = true;
+      const title = submitButton.querySelector('.order-submit-title');
+      if (title) title.textContent = 'Отправляем заявку…';
+    }
 
-      const fields = [
-        { label: 'Педагог', value: booking.barber.name },
-        { label: 'Формат встречи', value: booking.service.name },
-        ...Array.from(orderForm.querySelectorAll('.order-field')).map(el => ({
-          label: el.querySelector('label')?.textContent?.trim() || '',
-          value: el.querySelector('input,textarea,select')?.value?.trim() || ''
-        }))
-      ];
-      const items = {
-        [booking.service.name]: {
-          qty: 1,
-          price: booking.service.price,
-          image: booking.service.image
-        }
-      };
+    const fields = [
+      ...(booking.barber?.name ? [{ label: 'Педагог', value: booking.barber.name }] : []),
+      { label: 'Формат встречи', value: booking.service.name },
+      ...Array.from(form.querySelectorAll('.order-field')).map(field => ({
+        label: field.querySelector('label')?.textContent?.trim() || '',
+        value: field.querySelector('input, textarea, select')?.value?.trim() || ''
+      }))
+    ];
+    const items = { [booking.service.name]: { qty: 1, price: booking.service.price, image: booking.service.image } };
 
-      fetch('/api/order', {
+    try {
+      const response = await fetch('/api/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fields, items, total: booking.service.price })
-      }).then(r => { if (!r.ok) r.text().then(t => console.error('[booking] Server error:', t)); })
-        .catch(error => console.error('[booking] Network error:', error.message));
-
-      sessionStorage.removeItem(BLUEBIRD_BOOKING_KEY);
-      if (submitBtn) submitBtn.disabled = true;
-      showOrderSuccess();
-    });
-  }
-}
-
-// ===== ORDER SUCCESS ANIMATION =====
-function playSuccessSound() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // iPhone-style success: two ascending tones
-    function playTone(freq, startTime, duration, gain) {
-      const osc = ctx.createOscillator();
-      const vol = ctx.createGain();
-      osc.connect(vol);
-      vol.connect(ctx.destination);
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, startTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 1.02, startTime + duration * 0.8);
-      vol.gain.setValueAtTime(0, startTime);
-      vol.gain.linearRampToValueAtTime(gain, startTime + 0.01);
-      vol.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
+        body: JSON.stringify({ fields, items, total: booking.service.price, source: 'bluebird-excursion' })
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.ok === false) throw new Error(result.error || 'Не удалось отправить заявку');
+      clearBooking();
+      showOrderSuccess(result.requestId);
+    } catch (error) {
+      if (submitButton) {
+        submitButton.disabled = false;
+        const title = submitButton.querySelector('.order-submit-title');
+        if (title) title.textContent = 'Отправить заявку';
+      }
+      showToast(error.message || 'Не удалось отправить заявку. Позвоните нам, пожалуйста.');
     }
-    const t = ctx.currentTime;
-    playTone(880, t,        0.12, 0.35);
-    playTone(1108, t + 0.1, 0.14, 0.3);
-    playTone(1320, t + 0.2, 0.22, 0.25);
-  } catch {}
+  });
 }
 
-function showOrderSuccess() {
-  // Create overlay
+function showOrderSuccess(requestId) {
+  const existing = document.querySelector('.order-success-overlay');
+  existing?.remove();
   const overlay = document.createElement('div');
   overlay.className = 'order-success-overlay';
   overlay.innerHTML = `
-    <div class="order-success-circle">
-      <svg class="order-success-check" width="56" height="56" viewBox="0 0 56 56" fill="none">
-        <path d="M14 29L23 38L42 19" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-    <div class="order-success-label">Заявка отправлена!</div>
-    <div class="order-success-sublabel">Мы свяжемся с вами и подтвердим экскурсию</div>`;
+    <div class="order-success-circle"><svg class="order-success-check" width="56" height="56" viewBox="0 0 56 56" fill="none"><path d="M14 29L23 38L42 19" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="order-success-label">Заявка принята</div>
+    <div class="order-success-sublabel">Мы свяжемся с вами для подтверждения экскурсии.</div>
+    <div class="order-success-actions"><a href="index.html">Вернуться на сайт</a><a href="https://2gis.kg/bishkek/firm/70000001019326314" target="_blank" rel="noopener">Открыть 2ГИС</a></div>`;
   document.body.appendChild(overlay);
-
-  // Play sound
-  playSuccessSound();
-
-  // Trigger animation
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      overlay.classList.add('visible');
-    });
-  });
-
-  // Redirect after animation
-  setTimeout(() => {
-    window.location.href = 'catalog.html';
-  }, 2200);
+  requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('visible')));
 }
+
+initFaq();
+initReviewsToggle();
+initStores();
+initCatalogTabs();
+initTeacherCards();
+initLightbox();
+initBottomNav();
+initScrollEffects();
+
+document.addEventListener('siteDataReady', event => {
+  initFaq();
+  initReviewsToggle();
+  initStores();
+  initCatalogTabs();
+  initTeacherCards();
+  initSearch(event.detail);
+});

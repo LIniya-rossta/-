@@ -286,17 +286,17 @@ export async function createBot(pool) {
 
 // ===== SEND ORDER TO SHOP =====
 export async function sendOrderToShop(shopPassword, orderData) {
-  if (!bot || !shopPassword) return;
+  if (!bot || !shopPassword) return false;
   const data = await readBotData();
   const shop = data.shops.find(s => s.password === shopPassword);
   if (!shop) {
     console.warn('[bot] Shop not found for password:', shopPassword);
-    return;
+    return false;
   }
   const subs = data.subscriptions.filter(s => s.shopId === shop.id);
   if (!subs.length) {
     console.warn('[bot] No subscribers for shop:', shop.name);
-    return;
+    return false;
   }
 
   const { fields = [], items = {}, total = 0 } = orderData;
@@ -324,11 +324,14 @@ export async function sendOrderToShop(shopPassword, orderData) {
     `💰 <b>Итого: ${Number(total).toLocaleString('ru-RU')} сом</b>\n\n` +
     `🕐 ${time}`;
 
+  let delivered = false;
   for (const sub of subs) {
     try {
       await bot.sendMessage(sub.chatId, text, { parse_mode: 'HTML' });
+      delivered = true;
     } catch (e) {
       console.error('[bot] Failed to send to', sub.chatId, e.message);
     }
   }
+  return delivered;
 }

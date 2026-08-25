@@ -21,18 +21,19 @@
     </div>
 
     <!-- Title -->
-    <h1 class="order-title">Экскурсия в<br><em>«Синюю птицу»</em></h1>
+    <h1 class="order-title">Запись на экскурсию<br><em>в «Синюю птицу»</em></h1>
 
     <!-- Selected barber -->
     <div class="booking-barber" id="selectedBarber">
-      <div class="booking-empty">Сначала выберите педагога в команде</div>
+      <div class="booking-empty">Педагог — по желанию. Его можно выбрать отдельно в разделе «Педагоги».</div>
     </div>
 
     <!-- Service selection -->
     <section class="service-picker" aria-labelledby="servicePickerTitle">
       <div class="service-picker-heading">
-        <span class="eyebrow">ШАГ 2 / ФОРМАТ</span>
-        <h2 id="servicePickerTitle">Выберите формат<br><em>знакомства с садом</em></h2>
+        <span class="eyebrow">ШАГ 1 / ФОРМАТ</span>
+        <h2 id="servicePickerTitle">Как хотите<br><em>познакомиться с садом?</em></h2>
+        <p class="order-helper">Обычно выбирают экскурсию по саду. Если у вас есть конкретный вопрос, можно сразу выбрать встречу по поступлению или адаптации.</p>
       </div>
       <div class="service-choice-grid" id="serviceChoices">
         <button class="service-choice" type="button" data-service-id="1" data-service-name="Экскурсия по саду" data-service-price="0" data-service-label="по записи" data-service-image="/images/bluebird/workshop-wide.jpg">
@@ -63,7 +64,8 @@
         <div class="order-field"><label>Ваше имя</label><input type="text" name="name" placeholder="Как к вам обращаться?" required /></div>
         <div class="order-field"><label>Телефон</label><input type="tel" name="phone" placeholder="+996" required maxlength="15" /></div>
         <div class="order-field"><label>Желаемая дата и время экскурсии</label><input type="text" name="time" placeholder="Например, в субботу после 11:00" required /></div>
-        <div class="order-field"><label>Возраст ребёнка и вопросы</label><input type="text" name="comment" placeholder="Возраст ребёнка, питание, адаптация или другой вопрос" /></div>
+        <div class="order-field"><label>Возраст ребёнка</label><input type="text" name="childAge" placeholder="Например, 2 года" required /></div>
+        <div class="order-field"><label>Что важно обсудить</label><input type="text" name="comment" placeholder="Питание, адаптация, документы или другой вопрос" /></div>
       </form>
     </div>
 

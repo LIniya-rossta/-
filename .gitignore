@@ -26,4 +26,5 @@ package-lock.json
 
 # Admin data (created at runtime)
 data/site-data.json
+data/booking-requests.json
 dist/uploads/
