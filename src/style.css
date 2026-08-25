@@ -5429,3 +5429,241 @@ body {
 .parent-menu-row {
   align-items: start;
 }
+
+/* Clear parent-portal home: one entry point, six sections, one daily update. */
+.portal-home-page {
+  padding-bottom: 138px;
+}
+
+.portal-home-intro,
+.portal-sections,
+.portal-today,
+.portal-contact-strip {
+  padding-right: 18px;
+  padding-left: 18px;
+}
+
+.portal-home-intro {
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.portal-home-intro h2,
+.portal-section-heading h2,
+.portal-contact-strip h2 {
+  margin: 0;
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-size: 22px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.portal-home-intro h2 em {
+  color: var(--accent);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.portal-home-intro p {
+  max-width: 300px;
+  margin-top: 9px;
+  color: var(--text-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.portal-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.portal-section-heading .eyebrow {
+  margin-bottom: 6px;
+}
+
+.portal-section-count {
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.portal-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.portal-section-card {
+  position: relative;
+  display: grid;
+  min-height: 112px;
+  align-content: end;
+  gap: 4px;
+  padding: 13px;
+  overflow: hidden;
+  border: 1px solid rgba(185, 69, 56, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 250, 242, 0.8);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(67, 40, 31, 0.06);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.portal-section-card:active {
+  transform: scale(0.98);
+}
+
+.portal-section-card:hover {
+  border-color: rgba(185, 69, 56, 0.42);
+}
+
+.portal-section-card-admission {
+  background: linear-gradient(145deg, rgba(255, 245, 228, 0.96), rgba(238, 213, 184, 0.9));
+}
+
+.portal-section-index {
+  position: absolute;
+  top: 11px;
+  left: 13px;
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.portal-section-card strong {
+  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.portal-section-card small {
+  color: var(--text-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  line-height: 1.15;
+}
+
+.portal-section-arrow {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.portal-today {
+  margin-top: 24px;
+}
+
+.portal-section-heading > a,
+.portal-contact-strip > a {
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.portal-today-content {
+  padding: 12px;
+  border: 1px solid rgba(33, 27, 26, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 250, 242, 0.76);
+}
+
+.portal-today-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.portal-today-card {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.portal-today-card > span {
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.portal-today-card strong {
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.portal-today-card p {
+  margin: 0;
+  color: var(--text-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+.portal-contact-strip {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  padding-bottom: 14px;
+  border-top: 1px solid rgba(33, 27, 26, 0.12);
+}
+
+@media (max-width: 360px) {
+  .portal-section-card {
+    min-height: 104px;
+    padding: 11px;
+  }
+
+  .portal-section-card strong {
+    font-size: 13px;
+  }
+
+  .portal-today-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.bottom-nav-main .nav-item,
+.bottom-nav .nav-search {
+  flex-direction: column;
+  gap: 1px;
+}
+
+.bottom-nav .nav-label {
+  display: block;
+  width: auto;
+  height: auto;
+  flex: 0 0 auto;
+  place-items: initial;
+  color: currentColor;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.bottom-nav .nav-search .nav-label {
+  margin-top: -1px;
+}
