@@ -16,7 +16,7 @@
       const logo = document.getElementById('heroLogo');
       const storeName = document.getElementById('heroStoreName');
       if (logo && data.branding.logo) {
-        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="Гараж Barbershop" />`;
+        logo.innerHTML = `<img src="${esc(data.branding.logo)}" alt="Синяя птица" />`;
         logo.classList.add('visible');
       }
       if (storeName && data.branding.storeName) {
@@ -30,7 +30,7 @@
       const title = document.querySelector('.hero-title');
       const subtitle = document.querySelector('.hero-subtitle');
       const btn = document.querySelector('.btn-primary');
-      if (title) title.textContent = data.hero.title;
+      if (title) title.innerHTML = esc(data.hero.title).replace(/\n/g, '<br>');
       if (subtitle) subtitle.innerHTML = (data.hero.subtitle || '').replace(/\n/g, '<br>');
       if (btn) btn.textContent = data.hero.buttonText;
     }
@@ -48,7 +48,7 @@
         scroll.innerHTML = data.hits.map(h => `
           <div class="hit-card">
             <div class="hit-card-bg"></div>
-            <div class="hit-image"><img src="${esc(h.image)}" alt="Услуга барбершопа «Гараж»" /></div>
+        <div class="hit-image"><img src="${esc(h.image)}" alt="${esc(h.alt || h.price || 'Синяя птица')}" /></div>
             <span class="hit-price">${esc(h.price)}</span>
           </div>`).join('');
       }
@@ -98,9 +98,7 @@
               <img src="${esc(r.avatar)}" alt="" loading="lazy" decoding="async" />
             </div>
             <p>${esc(r.text)}</p>
-            <div class="review-stars"><div class="stars-bg">
-              ${'<img src="/images/star.svg" alt="★" />'.repeat(r.stars)}
-            </div></div>
+            <div class="review-stars"><span class="teacher-role">${esc(r.role || 'Команда «Синей птицы»')}</span></div>
           </div>`).join('');
 
         // Re-bind show more
@@ -161,14 +159,14 @@
         grid.innerHTML = data.barbers.map(b => `
           <div class="product-card barber-card" data-category="${esc(b.category)}" data-name="${esc(b.name)}" data-price="0" data-barber-id="${esc(b.id)}" data-barber-role="${esc(b.role)}" data-barber-rating="${esc(b.rating || '')}" data-barber-image="${esc(b.image)}">
             <div class="product-image">
-              <img src="${esc(b.image)}" alt="Барбер ${esc(b.name)}" loading="lazy" />
-              <button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button>
+              <img src="${esc(b.image)}" alt="Педагог ${esc(b.name)}" loading="lazy" />
+              <button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button>
             </div>
             <div class="product-info">
               <div class="product-name">${esc(b.name)}</div>
-              <div class="product-price">✦ ${esc(b.badge || 'Барбер')}</div>
+              <div class="product-price">✦ ${esc(b.badge || 'Педагог')}</div>
               <div class="product-actions">
-                <button class="btn-order" type="button" data-select-barber>Выбрать мастера</button>
+                <button class="btn-order" type="button" data-select-barber>Выбрать педагога</button>
               </div>
               <div class="barber-role">${esc(b.role)}</div>
             </div>
@@ -286,8 +284,8 @@
       form.innerHTML = `
         <div class="order-field"><label>Ваше имя</label><input type="text" placeholder="Как к вам обращаться?" required /></div>
         <div class="order-field"><label>Телефон</label><input type="tel" placeholder="+996" required maxlength="15" /></div>
-        <div class="order-field"><label>Желаемое время</label><input type="text" placeholder="Например, сегодня после 18:00" required /></div>
-        <div class="order-field"><label>Пожелание</label><input type="text" placeholder="Мастер, услуга или комментарий к записи" /></div>`;
+        <div class="order-field"><label>Желаемая дата и время экскурсии</label><input type="text" placeholder="Например, в субботу после 11:00" required /></div>
+        <div class="order-field"><label>Возраст ребёнка и вопросы</label><input type="text" placeholder="Возраст ребёнка, питание, адаптация или другой вопрос" /></div>`;
     }
   }
 })();

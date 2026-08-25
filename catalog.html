@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Барберы — Гараж Barbershop</title>
+  <title>Команда — Синяя птица</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,14 +12,14 @@
 <body>
   <div class="catalog-tabs">
     <div class="catalog-tab-pill"></div>
-    <button class="catalog-tab active" data-category="all">Все мастера</button>
-    <button class="catalog-tab" data-category="top">По отзывам</button>
-    <button class="catalog-tab" data-category="barber">Барберы</button>
+    <button class="catalog-tab active" data-category="all">Вся команда</button>
+    <button class="catalog-tab" data-category="lead">Руководитель</button>
+    <button class="catalog-tab" data-category="pedagogues">Педагоги</button>
   </div>
 
   <div class="price-filter" id="priceFilter">
     <div class="price-filter-inner">
-      <span class="price-filter-label">Рейтинг:</span>
+      <span class="price-filter-label">Возраст:</span>
       <input type="number" id="priceMin" class="price-input" placeholder="от" min="0" />
       <span class="price-filter-dash">–</span>
       <input type="number" id="priceMax" class="price-input" placeholder="до" min="0" />
@@ -29,31 +29,31 @@
 
   <div class="app catalog-page barber-catalog">
     <div class="catalog-intro">
-      <span class="eyebrow">ГАРАЖ / BARBERS</span>
-      <h1>Выберите<br><em>своего барбера</em></h1>
-      <p>Сначала выберите мастера «Гаража», а после — нужную услугу и удобное время записи.</p>
+      <span class="eyebrow">СИНЯЯ ПТИЦА / TEAM</span>
+      <h1>Познакомьтесь<br><em>с нашей командой</em></h1>
+      <p>Выберите педагога, с которым хотите познакомиться, а после — удобный формат экскурсии и время визита.</p>
     </div>
 
     <div class="products-grid">
-      <div class="product-card barber-card" data-category="top" data-name="Акжол" data-price="0" data-barber-id="akzhol" data-barber-role="Барбер · рекомендуют постоянные гости" data-barber-rating="" data-barber-image="/images/garage/garage-front.jpg">
-        <div class="product-image"><img src="/images/garage/garage-front.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Акжол</div><div class="product-price">✦ любимец гостей</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · рекомендуют постоянные гости</div></div>
+      <div class="product-card barber-card" data-category="lead" data-name="Камила" data-price="0" data-barber-id="camila" data-barber-role="Руководитель · развитие сада и атмосфера доверия" data-barber-rating="" data-barber-image="/images/bluebird/workshop.jpg">
+        <div class="product-image"><img src="/images/bluebird/workshop.jpg" alt="Камила, руководитель «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Камила</div><div class="product-price">✦ руководитель</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Руководитель · развитие сада и атмосфера доверия</div></div>
       </div>
-      <div class="product-card barber-card" data-category="top" data-name="Улук" data-price="0" data-barber-id="uluk" data-barber-role="Барбер · точный фейд и контур" data-barber-rating="" data-barber-image="/images/garage/garage-interior.jpg">
-        <div class="product-image"><img src="/images/garage/garage-interior.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Улук</div><div class="product-price">✦ точная работа</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · точный фейд и контур</div></div>
+      <div class="product-card barber-card" data-category="pedagogues" data-name="Назгуль" data-price="0" data-barber-id="nazgul" data-barber-role="Педагог · мягкая адаптация и ежедневная забота" data-barber-rating="" data-barber-image="/images/bluebird/activity-beads.jpg">
+        <div class="product-image"><img src="/images/bluebird/activity-beads.jpg" alt="Назгуль, педагог «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Назгуль</div><div class="product-price">✦ мягкая адаптация</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Педагог · мягкая адаптация и ежедневная забота</div></div>
       </div>
-      <div class="product-card barber-card" data-category="barber" data-name="Рауль" data-price="0" data-barber-id="raul" data-barber-role="Барбер · мужские стрижки" data-barber-rating="" data-barber-image="/images/garage/garage-detail.jpg">
-        <div class="product-image"><img src="/images/garage/garage-detail.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Рауль</div><div class="product-price">✦ мастер своего дела</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · мужские стрижки</div></div>
+      <div class="product-card barber-card" data-category="pedagogues" data-name="Бермет" data-price="0" data-barber-id="bermet" data-barber-role="Педагог · уважительное сопровождение ребёнка" data-barber-rating="" data-barber-image="/images/bluebird/independent-work.jpg">
+        <div class="product-image"><img src="/images/bluebird/independent-work.jpg" alt="Бермет, педагог «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Бермет</div><div class="product-price">✦ педагог</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Педагог · уважительное сопровождение ребёнка</div></div>
       </div>
-      <div class="product-card barber-card" data-category="barber" data-name="Эляман" data-price="0" data-barber-id="elyaman" data-barber-role="Барбер · стрижки и укладка" data-barber-rating="" data-barber-image="/images/garage/garage-front.jpg">
-        <div class="product-image"><img src="/images/garage/garage-front.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Эляман</div><div class="product-price">✦ рекомендуют клиенты</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · стрижки и укладка</div></div>
+      <div class="product-card barber-card" data-category="pedagogues" data-name="Гүлайым" data-price="0" data-barber-id="gulayim" data-barber-role="Педагог · чуткость, внимание и спокойный ритм" data-barber-rating="" data-barber-image="/images/bluebird/classroom.jpg">
+        <div class="product-image"><img src="/images/bluebird/classroom.jpg" alt="Гүлайым, педагог «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Гүлайым</div><div class="product-price">✦ педагог</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Педагог · чуткость, внимание и спокойный ритм</div></div>
       </div>
-      <div class="product-card barber-card" data-category="barber" data-name="Алибек" data-price="0" data-barber-id="alibek" data-barber-role="Барбер · аккуратный стиль" data-barber-rating="" data-barber-image="/images/garage/garage-interior.jpg">
-        <div class="product-image"><img src="/images/garage/garage-interior.jpg" alt="Работа барбершопа «Гараж»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать мастера"><span>+</span></button></div>
-        <div class="product-info"><div class="product-name">Алибек</div><div class="product-price">✦ барбер</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать мастера</button></div><div class="barber-role">Барбер · аккуратный стиль</div></div>
+      <div class="product-card barber-card" data-category="pedagogues" data-name="Татьяна" data-price="0" data-barber-id="tatiana" data-barber-role="Преподаватель · творчество и занятия по интересам" data-barber-rating="" data-barber-image="/images/bluebird/outdoor-space.jpg">
+        <div class="product-image"><img src="/images/bluebird/outdoor-space.jpg" alt="Татьяна, преподаватель «Синей птицы»" loading="lazy" /><button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button></div>
+        <div class="product-info"><div class="product-name">Татьяна</div><div class="product-price">✦ творчество</div><div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div><div class="barber-role">Преподаватель · творчество и занятия по интересам</div></div>
       </div>
     </div>
     <div class="spacer"></div>
@@ -70,7 +70,7 @@
     <a href="#" class="nav-search" aria-label="Поиск"><span>⌕</span></a>
   </nav>
 
-  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск услуги" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div><div id="searchDefault"><div class="search-section-header"><h3>Популярные услуги</h3></div><div class="search-hits-scroll" id="searchHits"></div></div><div class="search-results" id="searchResults"></div><div class="search-no-results" id="searchNoResults">Ничего не найдено</div></div></div>
+  <div class="search-overlay" id="searchOverlay"><div class="search-container"><div class="search-top"><div class="search-bar"><span>⌕</span><input type="text" id="searchInput" placeholder="Поиск по команде" autocomplete="off" /><button class="search-mic" id="searchMic" aria-label="Голосовой поиск">•</button></div><button class="search-close" id="searchClose" aria-label="Закрыть">×</button></div><div id="searchDefault"><div class="search-section-header"><h3>Форматы знакомства</h3></div><div class="search-hits-scroll" id="searchHits"></div></div><div class="search-results" id="searchResults"></div><div class="search-no-results" id="searchNoResults">Ничего не найдено</div></div></div>
 
   <script type="module" src="/src/main.js"></script>
 </body>

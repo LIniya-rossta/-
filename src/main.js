@@ -162,7 +162,7 @@ window.showToast = function(message) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 };
 
-const GARAGE_BOOKING_KEY = 'garage_booking_draft';
+const BLUEBIRD_BOOKING_KEY = 'bluebird_booking_draft';
 
 // ─── SESSION CART (kept for the existing catalog controls) ───
 const cart = {};
@@ -370,7 +370,7 @@ function initCartSystem() {
 window.initCartSystem = initCartSystem;
 initCartSystem();
 
-// Select a barber first, then continue to the service step.
+// Select a teacher first, then continue to the visit format step.
 window.openBarberBooking = function(card) {
   const barber = {
     id: card.dataset.barberId || '',
@@ -379,7 +379,7 @@ window.openBarberBooking = function(card) {
     rating: card.dataset.barberRating || '',
     image: card.dataset.barberImage || card.querySelector('.product-image img')?.src || ''
   };
-  sessionStorage.setItem(GARAGE_BOOKING_KEY, JSON.stringify({ barber }));
+  sessionStorage.setItem(BLUEBIRD_BOOKING_KEY, JSON.stringify({ barber }));
   sessionStorage.removeItem('flowerskg_cart');
   window.location.href = 'order.html';
 };
@@ -604,7 +604,7 @@ const searchHits = document.getElementById('searchHits');
 
 if (searchOverlay) {
   // Populate the compact service preview without changing the existing search UI
-  const hitImages = ['/images/garage/garage-front.jpg', '/images/garage/garage-interior.jpg', '/images/garage/garage-detail.jpg'];
+  const hitImages = ['/images/bluebird/workshop-wide.jpg', '/images/bluebird/independent-work.jpg', '/images/bluebird/outdoor-space.jpg'];
   if (searchHits) {
     hitImages.forEach(src => {
       const card = document.createElement('div');
@@ -730,7 +730,7 @@ if (searchOverlay) {
 // ===== TWO-STEP BOOKING =====
 if (document.querySelector('.order-page')) {
   const booking = (() => {
-    try { return JSON.parse(sessionStorage.getItem(GARAGE_BOOKING_KEY) || '{}'); }
+    try { return JSON.parse(sessionStorage.getItem(BLUEBIRD_BOOKING_KEY) || '{}'); }
     catch { return {}; }
   })();
   const selectedBarber = document.getElementById('selectedBarber');
@@ -753,12 +753,12 @@ if (document.querySelector('.order-page')) {
       selectedBarber.innerHTML = barber?.name ? `
         <div class="booking-barber-image"><img src="${safeText(barber.image)}" alt="${safeText(barber.name)}" /></div>
         <div class="booking-barber-copy">
-          <span class="booking-step">ШАГ 1 / МАСТЕР</span>
+          <span class="booking-step">ШАГ 1 / ПЕДАГОГ</span>
           <strong>${safeText(barber.name)}</strong>
           <small>${safeText(barber.role)}${barber.rating ? ` · ★ ${safeText(barber.rating)}` : ''}</small>
         </div>
         <a class="booking-change" href="catalog.html">Изменить</a>` :
-        '<div class="booking-empty">Сначала выберите мастера в каталоге</div>';
+        '<div class="booking-empty">Сначала выберите педагога в команде</div>';
     }
 
     if (serviceGrid) {
@@ -773,17 +773,17 @@ if (document.querySelector('.order-page')) {
     if (orderItems) {
       orderItems.innerHTML = service?.name ? `
         <div class="booking-service-summary">
-          <span class="booking-step">ВЫБРАННАЯ УСЛУГА</span>
+          <span class="booking-step">ВЫБРАННЫЙ ФОРМАТ</span>
           <strong>${safeText(service.name)}</strong>
           <span>${safeText(service.label || `${service.price} сом`)}</span>
         </div>` :
-        '<div class="booking-service-empty">Выберите одну услугу — она появится здесь перед отправкой записи.</div>';
+        '<div class="booking-service-empty">Выберите один формат — он появится здесь перед отправкой заявки.</div>';
     }
 
     if (submitSubtitle) {
-      submitSubtitle.textContent = service?.price
-        ? `${service.label || `${service.price} сом`}`
-        : 'Выберите услугу';
+      submitSubtitle.textContent = service?.name
+        ? `${service.label || 'по записи'}`
+        : 'Выберите формат';
     }
     if (submitBtn) submitBtn.disabled = !barber?.name || !service?.name;
   }
@@ -791,7 +791,7 @@ if (document.querySelector('.order-page')) {
   serviceGrid?.addEventListener('click', (event) => {
     const button = event.target.closest('.service-choice');
     if (!button || !booking.barber?.name) {
-      if (button && !booking.barber?.name) showToast('Сначала выберите мастера');
+      if (button && !booking.barber?.name) showToast('Сначала выберите педагога');
       return;
     }
 
@@ -802,7 +802,7 @@ if (document.querySelector('.order-page')) {
       label: button.dataset.serviceLabel || '',
       image: button.dataset.serviceImage || ''
     };
-    sessionStorage.setItem(GARAGE_BOOKING_KEY, JSON.stringify(booking));
+    sessionStorage.setItem(BLUEBIRD_BOOKING_KEY, JSON.stringify(booking));
     renderBooking();
   });
 
@@ -813,17 +813,17 @@ if (document.querySelector('.order-page')) {
     orderForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!booking.barber?.name) {
-        showToast('Сначала выберите мастера');
+        showToast('Сначала выберите педагога');
         return;
       }
       if (!booking.service?.name) {
-        showToast('Выберите услугу');
+        showToast('Выберите формат встречи');
         return;
       }
 
       const fields = [
-        { label: 'Барбер', value: booking.barber.name },
-        { label: 'Услуга', value: booking.service.name },
+        { label: 'Педагог', value: booking.barber.name },
+        { label: 'Формат встречи', value: booking.service.name },
         ...Array.from(orderForm.querySelectorAll('.order-field')).map(el => ({
           label: el.querySelector('label')?.textContent?.trim() || '',
           value: el.querySelector('input,textarea,select')?.value?.trim() || ''
@@ -844,7 +844,7 @@ if (document.querySelector('.order-page')) {
       }).then(r => { if (!r.ok) r.text().then(t => console.error('[booking] Server error:', t)); })
         .catch(error => console.error('[booking] Network error:', error.message));
 
-      sessionStorage.removeItem(GARAGE_BOOKING_KEY);
+      sessionStorage.removeItem(BLUEBIRD_BOOKING_KEY);
       if (submitBtn) submitBtn.disabled = true;
       showOrderSuccess();
     });
@@ -887,8 +887,8 @@ function showOrderSuccess() {
         <path d="M14 29L23 38L42 19" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <div class="order-success-label">Запись отправлена!</div>
-    <div class="order-success-sublabel">Мы свяжемся с вами и подтвердим время</div>`;
+    <div class="order-success-label">Заявка отправлена!</div>
+    <div class="order-success-sublabel">Мы свяжемся с вами и подтвердим экскурсию</div>`;
   document.body.appendChild(overlay);
 
   // Play sound

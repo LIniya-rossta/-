@@ -1,71 +1,62 @@
 {
-  "branding": { "logo": "/images/garage-mark.svg", "storeName": "ГАРАЖ BARBERSHOP" },
-  "hero": { "title": "ГАРАЖ", "subtitle": "твой гараж —\nтвой стиль", "buttonText": "Записаться" },
-  "hitsSection": { "title": "услуги «Гаража»" },
+  "branding": { "logo": "/images/bluebird-mark.svg", "storeName": "СИНЯЯ ПТИЦА" },
+  "hero": { "title": "СИНЯЯ\nПТИЦА", "subtitle": "сад, где ребёнок\nрастёт в своём темпе", "buttonText": "Записаться на экскурсию" },
+  "hitsSection": { "title": "Что можно увидеть на экскурсии" },
   "hits": [
-    { "id": 1, "image": "/images/garage/garage-front.jpg", "price": "700 сом" },
-    { "id": 2, "image": "/images/garage/garage-interior.jpg", "price": "600 сом" },
-    { "id": 3, "image": "/images/garage/garage-detail.jpg", "price": "от 100 сом" }
+    { "id": 1, "image": "/images/bluebird/workshop-wide.jpg", "price": "Монтессори-среда" },
+    { "id": 2, "image": "/images/bluebird/independent-work.jpg", "price": "Самостоятельность" },
+    { "id": 3, "image": "/images/bluebird/outdoor-space.jpg", "price": "Время на воздухе" }
   ],
-  "bannerText": "СТРИЖЕМ КАК ДЛЯ СЕБЯ — СТИЛЬ НАЧИНАЕТСЯ С ДЕТАЛЕЙ",
+  "bannerText": "БЕРЕЖНЫЙ РИТМ · МОНТЕССОРИ-СРЕДА · ТЁПЛОЕ ДЕТСТВО",
   "barbers": [
-    { "id": "akzhol", "name": "Акжол", "role": "Барбер · рекомендуют постоянные гости", "badge": "любимец гостей", "rating": "", "category": "top", "image": "/images/garage/garage-front.jpg" },
-    { "id": "uluk", "name": "Улук", "role": "Барбер · точный фейд и контур", "badge": "точная работа", "rating": "", "category": "top", "image": "/images/garage/garage-interior.jpg" },
-    { "id": "raul", "name": "Рауль", "role": "Барбер · мужские стрижки", "badge": "мастер своего дела", "rating": "", "category": "barber", "image": "/images/garage/garage-detail.jpg" },
-    { "id": "elyaman", "name": "Эляман", "role": "Барбер · стрижки и укладка", "badge": "рекомендуют клиенты", "rating": "", "category": "barber", "image": "/images/garage/garage-front.jpg" },
-    { "id": "alibek", "name": "Алибек", "role": "Барбер · аккуратный стиль", "badge": "барбер", "rating": "", "category": "barber", "image": "/images/garage/garage-interior.jpg" }
+    { "id": "camila", "name": "Камила", "role": "Руководитель · развитие сада и атмосфера доверия", "badge": "руководитель", "rating": "", "category": "lead", "image": "/images/bluebird/workshop.jpg" },
+    { "id": "nazgul", "name": "Назгуль", "role": "Педагог · мягкая адаптация и ежедневная забота", "badge": "адаптация", "rating": "", "category": "pedagogues", "image": "/images/bluebird/activity-beads.jpg" },
+    { "id": "bermet", "name": "Бермет", "role": "Педагог · уважительное сопровождение ребёнка", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/independent-work.jpg" },
+    { "id": "gulayim", "name": "Гүлайым", "role": "Педагог · чуткость, внимание и спокойный ритм", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/classroom.jpg" },
+    { "id": "tatiana", "name": "Татьяна", "role": "Преподаватель · творчество и занятия по интересам", "badge": "творчество", "rating": "", "category": "pedagogues", "image": "/images/bluebird/outdoor-space.jpg" }
   ],
   "faq": [
-    { "id": 1, "question": "Можно ли выбрать мастера?", "answer": "Да. Сначала выберите барбера в каталоге, затем услугу и оставьте удобное время — администратор подтвердит запись." },
-    { "id": 2, "question": "Сколько стоит мужская стрижка?", "answer": "Мужская стрижка в «Гараже» — 700 сом. Детская стрижка до 12 лет — 600 сом." },
-    { "id": 3, "question": "Есть ли акция?", "answer": "Да: стрижка + чистка лица сейчас стоят 1200 сом вместо 1400 сом." },
-    { "id": 4, "question": "Где находится барбершоп?", "answer": "Бишкек, улица Токтогула, 129, 1 этаж, Первомайский район." },
-    { "id": 5, "question": "Во сколько работаете?", "answer": "Ежедневно с 10:00 до 21:00, по предварительной записи." }
+    { "id": 1, "question": "Как устроена программа обучения?", "answer": "В основе сада — Монтессори-среда: ребёнок выбирает занятие, учится действовать самостоятельно и развивает навыки через реальные дела, творчество и общение. На экскурсии покажем материалы и расскажем, как проходит день." },
+    { "id": 2, "question": "Какое питание у детей?", "answer": "Родители отмечают разнообразное, сбалансированное меню и домашнюю выпечку. Актуальное меню, режим питания и возможность учесть особенности ребёнка лучше уточнить у администратора во время визита." },
+    { "id": 3, "question": "Как проходит обычный день?", "answer": "День строится в спокойном ритме: самостоятельная работа в среде, занятия и творчество, общение, прогулка, питание и отдых. Точный распорядок зависит от возраста и группы — его можно посмотреть на экскурсии." },
+    { "id": 4, "question": "С какого возраста принимаете и как проходит адаптация?", "answer": "В карточке 2ГИС указаны группы до 3 лет. Условия поступления, свободные места, список документов и мягкий план адаптации обсуждаются индивидуально после знакомства с семьёй." },
+    { "id": 5, "question": "Как записаться на экскурсию?", "answer": "Выберите педагога и удобный формат встречи, оставьте имя, телефон и желаемое время — администратор свяжется с вами и подтвердит визит." }
   ],
   "reviews": [
-    { "id": 1, "text": "Хорошие мастера, постригли очень хорошо — рекомендую.", "stars": 5, "color": "#241b1a", "avatar": "/images/garage-mark.svg" },
-    { "id": 2, "text": "К Акжолу хожу давно — всегда делает ровно так, как я хочу.", "stars": 5, "color": "#7b302d", "avatar": "/images/garage-mark.svg" },
-    { "id": 3, "text": "Улук — отличный барбер: контур, линии и аккуратность на высшем уровне.", "stars": 5, "color": "#43312a", "avatar": "/images/garage-mark.svg" },
-    { "id": 4, "text": "Мастер Рауль — настоящий профессионал своего дела.", "stars": 5, "color": "#1e2527", "avatar": "/images/garage-mark.svg" },
-    { "id": 5, "text": "Эляман отличный мастер, постриг очень классно.", "stars": 5, "color": "#9b4b39", "avatar": "/images/garage-mark.svg" },
-    { "id": 6, "text": "Приятная атмосфера, хорошие мастера и отличное соотношение цены и качества.", "stars": 5, "color": "#5b332d", "avatar": "/images/garage-mark.svg" }
+    { "id": 1, "text": "Руководитель · создаёт спокойную, уважительную атмосферу и собирает команду, которой доверяют родители.", "role": "Камила", "stars": 0, "color": "#2B7280", "avatar": "/images/bluebird/workshop.jpg" },
+    { "id": 2, "text": "Педагог · помогает ребёнку привыкнуть к саду мягко и постепенно, отвечает на вопросы родителей.", "role": "Назгуль", "stars": 0, "color": "#E9A35F", "avatar": "/images/bluebird/activity-beads.jpg" },
+    { "id": 3, "text": "Педагог · внимательное сопровождение, доброта и любовь к детям — то, что родители особенно отмечают.", "role": "Бермет", "stars": 0, "color": "#4B9AA4", "avatar": "/images/bluebird/independent-work.jpg" },
+    { "id": 4, "text": "Педагог · чуткость и уважение к индивидуальному темпу ребёнка каждый день.", "role": "Гүлайым", "stars": 0, "color": "#85B8A9", "avatar": "/images/bluebird/classroom.jpg" },
+    { "id": 5, "text": "Преподаватель · творческие занятия, в которых ребёнок может пробовать, исследовать и создавать.", "role": "Татьяна", "stars": 0, "color": "#D88E62", "avatar": "/images/bluebird/outdoor-space.jpg" },
+    { "id": 6, "text": "Команда сада · педагоги, няни и повара, которые помогают детям расти самостоятельными и уверенными.", "role": "Синяя птица", "stars": 0, "color": "#326B72", "avatar": "/images/bluebird/workshop-wide.jpg" }
   ],
   "contacts": {
-    "location": { "label": "Адрес", "value": "ул. Токтогула, 129 · 1 этаж", "url": "https://2gis.kg/bishkek/firm/70000001046783811" },
-    "phone": { "label": "Телефон", "value": "+996 770 032 987", "url": "tel:+996770032987" },
-    "instagram": { "label": "Instagram", "value": "@garaj_center_barbershop", "url": "https://instagram.com/garaj_center_barbershop" },
-    "whatsapp": { "label": "WhatsApp", "value": "Написать администратору", "url": "https://wa.me/996770032987" }
+    "location": { "label": "Адрес", "value": "5-й микрорайон, 4/2 · Бишкек", "url": "https://2gis.kg/bishkek/firm/70000001019326314" },
+    "phone": { "label": "Телефон", "value": "+996 555 665 335", "url": "tel:+996555665335" },
+    "instagram": { "label": "Instagram", "value": "@bluebird.kg", "url": "https://instagram.com/bluebird.kg" },
+    "whatsapp": { "label": "WhatsApp", "value": "Записаться на экскурсию", "url": "https://wa.me/996550007553" }
   },
   "categories": [
-    { "id": "all", "name": "Все мастера" },
-    { "id": "top", "name": "По отзывам" },
-    { "id": "barber", "name": "Барберы" }
+    { "id": "all", "name": "Вся команда" },
+    { "id": "lead", "name": "Руководитель" },
+    { "id": "pedagogues", "name": "Педагоги" }
   ],
   "products": [
-    { "id": 1, "name": "Мужская стрижка", "price": 700, "priceLabel": "700 сом", "image": "/images/garage/garage-front.jpg", "category": "hair" },
-    { "id": 2, "name": "Детская стрижка до 12 лет", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-interior.jpg", "category": "hair" },
-    { "id": 3, "name": "Оформление бороды", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-detail.jpg", "category": "beard" },
-    { "id": 4, "name": "Коррекция бороды", "price": 400, "priceLabel": "400 сом", "image": "/images/garage/garage-front.jpg", "category": "beard" },
-    { "id": 5, "name": "Королевское бритьё", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-interior.jpg", "category": "beard" },
-    { "id": 6, "name": "Стрижка + чистка лица", "price": 1200, "priceLabel": "1200 вместо 1400 сом", "image": "/images/garage/garage-front.jpg", "category": "combo" },
-    { "id": 7, "name": "Чистка лица + чёрная маска", "price": 700, "priceLabel": "700 сом", "image": "/images/garage/garage-detail.jpg", "category": "care" },
-    { "id": 8, "name": "Чистка лица + маска с глиной", "price": 500, "priceLabel": "500 сом", "image": "/images/garage/garage-interior.jpg", "category": "care" },
-    { "id": 9, "name": "Тонирование бороды", "price": 600, "priceLabel": "600 сом", "image": "/images/garage/garage-detail.jpg", "category": "care" },
-    { "id": 10, "name": "Горячий воск", "price": 100, "priceLabel": "от 100 сом", "image": "/images/garage/garage-front.jpg", "category": "care" }
+    { "id": 1, "name": "Экскурсия по саду", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/workshop-wide.jpg", "category": "visit" },
+    { "id": 2, "name": "Знакомство с руководителем", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/workshop.jpg", "category": "visit" },
+    { "id": 3, "name": "Консультация по адаптации", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/activity-beads.jpg", "category": "visit" },
+    { "id": 4, "name": "Встреча по поступлению", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/classroom.jpg", "category": "visit" }
   ],
   "cities": ["Бишкек"],
   "stores": [
-    { "id": 1, "address": "ул. Токтогула, 129", "city": "Бишкек · 1 этаж", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/firm/70000001046783811" },
-    { "id": 2, "address": "ул. Ахматбека Суюмбаева, 16", "city": "Бишкек", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/branches/70000001046783810" },
-    { "id": 3, "address": "ул. Тыналиева, 2/4", "city": "Бишкек", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/branches/70000001046783810" },
-    { "id": 4, "address": "5-й микрорайон, 1", "city": "Бишкек", "status": "open", "hours": "Ежедневно, 10:00–21:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/branches/70000001046783810" }
+    { "id": 1, "address": "5-й микрорайон, 4/2", "city": "Бишкек · 1 этаж", "status": "open", "hours": "08:30–18:00", "timezone": "Asia/Bishkek", "url": "https://2gis.kg/bishkek/firm/70000001019326314" }
   ],
   "orderForm": {
     "fields": [
       { "id": "name", "label": "Ваше имя", "placeholder": "Как к вам обращаться?", "type": "text", "required": true },
       { "id": "phone", "label": "Телефон", "placeholder": "+996", "type": "tel", "required": true },
-      { "id": "time", "label": "Желаемое время", "placeholder": "Например, сегодня после 18:00", "type": "text", "required": true },
-      { "id": "comment", "label": "Пожелание", "placeholder": "Форма стрижки, борода или комментарий к записи", "type": "text", "required": false }
+      { "id": "time", "label": "Желаемая дата и время экскурсии", "placeholder": "Например, в субботу после 11:00", "type": "text", "required": true },
+      { "id": "comment", "label": "Возраст ребёнка и вопросы", "placeholder": "Возраст ребёнка, питание, адаптация или другой вопрос", "type": "text", "required": false }
     ]
   }
 }
