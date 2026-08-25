@@ -1,11 +1,11 @@
 {
-  "branding": { "logo": "/images/bluebird-mark.svg", "storeName": "СИНЯЯ ПТИЦА" },
+  "branding": { "logo": "/images/bluebird-logo.jpg", "storeName": "СИНЯЯ ПТИЦА" },
   "hero": { "title": "СИНЯЯ", "subtitle": "ПТИЦА · частный сад\nв Бишкеке", "buttonText": "Записаться на экскурсию" },
   "hitsSection": { "title": "Всё, что важно родителям" },
   "hits": [
-    { "id": 1, "image": "/images/bluebird/workshop-wide.jpg", "price": "Программа", "section": "program", "alt": "Занятия в Монтессори-среде" },
-    { "id": 2, "image": "/images/bluebird/activity-beads-wide.jpg", "price": "Питание", "section": "menu", "alt": "Творческое занятие в саду" },
-    { "id": 3, "image": "/images/bluebird/outdoor-space.jpg", "price": "Распорядок дня", "section": "day", "alt": "Прогулка на территории сада" }
+    { "id": 1, "image": "/images/bluebird/temp/gallery-materials.jpg", "price": "Программа", "section": "program", "alt": "Материалы Монтессори-среды" },
+    { "id": 2, "image": "/images/bluebird/temp/gallery-menu.jpg", "price": "Питание", "section": "menu", "alt": "Питание в детском саду" },
+    { "id": 3, "image": "/images/bluebird/temp/gallery-outdoor.jpg", "price": "Распорядок дня", "section": "day", "alt": "Территория для прогулок" }
   ],
   "bannerText": "ПРОГРАММА · ПИТАНИЕ · РАСПОРЯДОК ДНЯ · ПОСТУПЛЕНИЕ",
   "guide": {
@@ -72,11 +72,11 @@
     { "id": "reading", "image": "/images/bluebird/temp/gallery-reading.jpg", "title": "Тихий уголок", "text": "Временный визуал зоны чтения и отдыха" }
   ],
   "barbers": [
-    { "id": "camila", "name": "Камила", "role": "Руководитель · развитие сада и атмосфера доверия", "badge": "руководитель", "rating": "", "category": "lead", "image": "/images/bluebird/workshop.jpg" },
-    { "id": "nazgul", "name": "Назгуль", "role": "Педагог · мягкая адаптация и ежедневная забота", "badge": "адаптация", "rating": "", "category": "pedagogues", "image": "/images/bluebird/activity-beads.jpg" },
-    { "id": "bermet", "name": "Бермет", "role": "Педагог · уважительное сопровождение ребёнка", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/independent-work.jpg" },
-    { "id": "gulayim", "name": "Гүлайым", "role": "Педагог · чуткость, внимание и спокойный ритм", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/classroom.jpg" },
-    { "id": "tatiana", "name": "Татьяна", "role": "Преподаватель · творчество и занятия по интересам", "badge": "творчество", "rating": "", "category": "pedagogues", "image": "/images/bluebird/outdoor-space.jpg" }
+    { "id": "camila", "name": "Камила", "role": "Руководитель · развитие сада и атмосфера доверия", "badge": "руководитель", "rating": "", "category": "lead", "image": "/images/bluebird/temp/gallery-classroom.jpg" },
+    { "id": "nazgul", "name": "Назгуль", "role": "Педагог · мягкая адаптация и ежедневная забота", "badge": "адаптация", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-materials.jpg" },
+    { "id": "bermet", "name": "Бермет", "role": "Педагог · уважительное сопровождение ребёнка", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-workshop.jpg" },
+    { "id": "gulayim", "name": "Гүлайым", "role": "Педагог · чуткость, внимание и спокойный ритм", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-reading.jpg" },
+    { "id": "tatiana", "name": "Татьяна", "role": "Преподаватель · творчество и занятия по интересам", "badge": "творчество", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-outdoor.jpg" }
   ],
   "faq": [
     { "id": 1, "question": "Как устроена программа обучения?", "answer": "В основе сада — Монтессори-среда: ребёнок выбирает занятие, учится действовать самостоятельно и развивает навыки через реальные дела, творчество и общение. На экскурсии покажем материалы и расскажем, как проходит день." },
@@ -86,12 +86,12 @@
     { "id": 5, "question": "Как записаться на экскурсию?", "answer": "Выберите педагога и удобный формат встречи, оставьте имя, телефон и желаемое время — администратор свяжется с вами и подтвердит визит." }
   ],
   "reviews": [
-    { "id": 1, "text": "Руководитель · создаёт спокойную, уважительную атмосферу и собирает команду, которой доверяют родители.", "role": "Камила", "stars": 0, "color": "#2B7280", "avatar": "/images/bluebird/workshop.jpg" },
-    { "id": 2, "text": "Педагог · помогает ребёнку привыкнуть к саду мягко и постепенно, отвечает на вопросы родителей.", "role": "Назгуль", "stars": 0, "color": "#E9A35F", "avatar": "/images/bluebird/activity-beads.jpg" },
-    { "id": 3, "text": "Педагог · внимательное сопровождение, доброта и любовь к детям — то, что родители особенно отмечают.", "role": "Бермет", "stars": 0, "color": "#4B9AA4", "avatar": "/images/bluebird/independent-work.jpg" },
-    { "id": 4, "text": "Педагог · чуткость и уважение к индивидуальному темпу ребёнка каждый день.", "role": "Гүлайым", "stars": 0, "color": "#85B8A9", "avatar": "/images/bluebird/classroom.jpg" },
-    { "id": 5, "text": "Преподаватель · творческие занятия, в которых ребёнок может пробовать, исследовать и создавать.", "role": "Татьяна", "stars": 0, "color": "#D88E62", "avatar": "/images/bluebird/outdoor-space.jpg" },
-    { "id": 6, "text": "Команда сада · педагоги, няни и повара, которые помогают детям расти самостоятельными и уверенными.", "role": "Синяя птица", "stars": 0, "color": "#326B72", "avatar": "/images/bluebird/workshop-wide.jpg" }
+    { "id": 1, "text": "Руководитель · создаёт спокойную, уважительную атмосферу и собирает команду, которой доверяют родители.", "role": "Камила", "stars": 0, "color": "#2B7280", "avatar": "/images/bluebird/temp/gallery-classroom.jpg" },
+    { "id": 2, "text": "Педагог · помогает ребёнку привыкнуть к саду мягко и постепенно, отвечает на вопросы родителей.", "role": "Назгуль", "stars": 0, "color": "#E9A35F", "avatar": "/images/bluebird/temp/gallery-materials.jpg" },
+    { "id": 3, "text": "Педагог · внимательное сопровождение, доброта и любовь к детям — то, что родители особенно отмечают.", "role": "Бермет", "stars": 0, "color": "#4B9AA4", "avatar": "/images/bluebird/temp/gallery-workshop.jpg" },
+    { "id": 4, "text": "Педагог · чуткость и уважение к индивидуальному темпу ребёнка каждый день.", "role": "Гүлайым", "stars": 0, "color": "#85B8A9", "avatar": "/images/bluebird/temp/gallery-reading.jpg" },
+    { "id": 5, "text": "Преподаватель · творческие занятия, в которых ребёнок может пробовать, исследовать и создавать.", "role": "Татьяна", "stars": 0, "color": "#D88E62", "avatar": "/images/bluebird/temp/gallery-outdoor.jpg" },
+    { "id": 6, "text": "Команда сада · педагоги, няни и повара, которые помогают детям расти самостоятельными и уверенными.", "role": "Синяя птица", "stars": 0, "color": "#326B72", "avatar": "/images/bluebird/temp/gallery-classroom.jpg" }
   ],
   "contacts": {
     "location": { "label": "Адрес", "value": "5-й микрорайон, 4/2 · Бишкек", "url": "https://2gis.kg/bishkek/firm/70000001019326314" },
@@ -108,10 +108,10 @@
     { "id": "admission", "name": "Поступление" }
   ],
   "products": [
-    { "id": "tour", "name": "Экскурсия по саду", "price": 0, "priceLabel": "рекомендуем", "image": "/images/bluebird/workshop-wide.jpg", "category": "visit" },
-    { "id": "admission", "name": "Встреча по поступлению", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/classroom.jpg", "category": "visit" },
-    { "id": "adaptation", "name": "Консультация по адаптации", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/activity-beads.jpg", "category": "visit" },
-    { "id": "director", "name": "Знакомство с руководителем", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/workshop.jpg", "category": "visit" }
+    { "id": "tour", "name": "Экскурсия по саду", "price": 0, "priceLabel": "рекомендуем", "image": "/images/bluebird/temp/gallery-classroom.jpg", "category": "visit" },
+    { "id": "admission", "name": "Встреча по поступлению", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/temp/gallery-menu.jpg", "category": "visit" },
+    { "id": "adaptation", "name": "Консультация по адаптации", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/temp/gallery-materials.jpg", "category": "visit" },
+    { "id": "director", "name": "Знакомство с руководителем", "price": 0, "priceLabel": "по записи", "image": "/images/bluebird/temp/gallery-reading.jpg", "category": "visit" }
   ],
   "cities": ["Бишкек"],
   "stores": [

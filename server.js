@@ -28,6 +28,30 @@ const DEFAULT_DATA_FILE = join(DATA_DIR, 'default-data.json');
 const BOOKINGS_FILE = join(DATA_DIR, 'booking-requests.json');
 const UPLOADS_DIR = join(__dirname, 'dist', 'uploads');
 
+const BLUEBIRD_IMAGE_MAP = {
+  '/images/bluebird-mark.svg': '/images/bluebird-logo.jpg',
+  '/images/bluebird/workshop-wide.jpg': '/images/bluebird/temp/gallery-classroom.jpg',
+  '/images/bluebird/workshop.jpg': '/images/bluebird/temp/gallery-workshop.jpg',
+  '/images/bluebird/activity-beads-wide.jpg': '/images/bluebird/temp/gallery-materials.jpg',
+  '/images/bluebird/activity-beads.jpg': '/images/bluebird/temp/gallery-materials.jpg',
+  '/images/bluebird/independent-work.jpg': '/images/bluebird/temp/gallery-reading.jpg',
+  '/images/bluebird/classroom.jpg': '/images/bluebird/temp/gallery-classroom.jpg',
+  '/images/bluebird/outdoor-space.jpg': '/images/bluebird/temp/gallery-outdoor.jpg'
+};
+
+function migrateBluebirdImages(value) {
+  let changed = false;
+  const visit = current => {
+    if (typeof current === 'string') return BLUEBIRD_IMAGE_MAP[current] || current;
+    if (Array.isArray(current)) return current.map(item => visit(item));
+    if (!current || typeof current !== 'object') return current;
+    return Object.fromEntries(Object.entries(current).map(([key, item]) => [key, visit(item)]));
+  };
+  const migrated = visit(value);
+  changed = JSON.stringify(migrated) !== JSON.stringify(value);
+  return { migrated, changed };
+}
+
 if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
 if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true });
 
@@ -58,6 +82,11 @@ function fileReadData() {
   // Merge new default keys
   const defaults = getDefaultData();
   let updated = false;
+  const imageMigration = migrateBluebirdImages(data);
+  if (imageMigration.changed) {
+    Object.assign(data, imageMigration.migrated);
+    updated = true;
+  }
   for (const key of Object.keys(defaults)) {
     if (!(key in data)) { data[key] = defaults[key]; updated = true; }
   }
@@ -131,6 +160,12 @@ async function dbInitDB() {
     );
   }
   const current = await dbReadData();
+  const imageMigration = migrateBluebirdImages(current);
+  if (imageMigration.changed) {
+    for (const [section, value] of Object.entries(imageMigration.migrated)) {
+      await dbWriteSection(section, value);
+    }
+  }
   const hasGuideSections = Array.isArray(current.categories) && current.categories.some(item => item.id === 'program') &&
     Array.isArray(current.products) && current.products.some(item => item.id === 'tour');
   if (!hasGuideSections) {
