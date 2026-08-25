@@ -5376,3 +5376,51 @@ body {
   white-space: normal;
   line-height: 1.35;
 }
+
+/* Final alignment pass for the compact parent portal navigation and copy. */
+.nav-item,
+.nav-search {
+  box-sizing: border-box;
+}
+
+.nav-symbol,
+.nav-search span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  flex: 0 0 28px;
+  line-height: 1;
+  transform: none;
+}
+
+.nav-symbol {
+  font-size: 22px;
+}
+
+.nav-search span {
+  font-size: 29px;
+}
+
+.guide-panel h2,
+.guide-panel-intro,
+.guide-panel-footer p,
+.parent-info-heading > div,
+.parent-info-heading small,
+.parent-menu-row strong,
+.parent-announcement {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.parent-info-heading {
+  align-items: center;
+}
+
+.parent-info-heading small {
+  max-width: 96px;
+}
+
+.parent-menu-row {
+  align-items: start;
+}
