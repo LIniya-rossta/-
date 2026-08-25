@@ -11,7 +11,7 @@
   <link rel="preload" as="image" href="/images/bluebird/temp/gallery-classroom.jpg">
 </head>
 <body>
-  <div class="app">
+  <div class="app portal-home-page">
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-bg"></div>
@@ -25,52 +25,39 @@
       <div class="hero-blur-bottom"></div>
       <div class="hero-band"></div>
       <h1 class="hero-title">СИНЯЯ</h1>
-      <p class="hero-subtitle">ПТИЦА · частный сад<br>в Бишкеке</p>
-      <a href="catalog.html" class="btn-primary">Разделы для родителей</a>
+      <p class="hero-subtitle">ПТИЦА · портал<br>для родителей</p>
+      <a href="#portalSections" class="btn-primary">Открыть разделы</a>
     </section>
 
-    <!-- Что можно увидеть -->
-    <section class="section hits">
-      <div class="section-header">
-        <h2>Что важно знать родителям</h2>
-        <a href="catalog.html" class="arrow-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        </a>
+    <section class="portal-home-intro">
+      <span class="eyebrow">СИНЯЯ ПТИЦА / ДЛЯ РОДИТЕЛЕЙ</span>
+      <h2>Всё важное<br><em>в одном месте</em></h2>
+      <p>Меню, занятия, распорядок, команда и новости сада.</p>
+    </section>
+
+    <section class="portal-sections" id="portalSections">
+      <div class="portal-section-heading">
+        <div><span class="eyebrow">НАВИГАЦИЯ</span><h2>Разделы для родителей</h2></div>
+        <span class="portal-section-count">06</span>
       </div>
-      <div class="hits-scroll-wrapper">
-      <div class="hits-scroll">
-        <div class="hit-card">
-          <div class="hit-card-bg"></div>
-          <div class="hit-image">
-            <img src="/images/bluebird/temp/gallery-materials.jpg" alt="Материалы для занятий в «Синей птице»" />
-          </div>
-          <span class="hit-price">Монтессори-среда</span>
-        </div>
-        <div class="hit-card">
-          <div class="hit-card-bg"></div>
-          <div class="hit-image">
-            <img src="/images/bluebird/temp/gallery-reading.jpg" alt="Спокойный уголок в «Синей птице»" />
-          </div>
-          <span class="hit-price">Самостоятельность</span>
-        </div>
-        <div class="hit-card">
-          <div class="hit-card-bg"></div>
-          <div class="hit-image">
-            <img src="/images/bluebird/temp/gallery-outdoor.jpg" alt="Территория и прогулки в «Синей птице»" />
-          </div>
-          <span class="hit-price">Время на воздухе</span>
-        </div>
-      </div>
+      <div class="portal-section-grid">
+        <a class="portal-section-card" href="catalog.html?section=program"><span class="portal-section-index">01</span><strong>Программа</strong><small>Занятия и среда</small><span class="portal-section-arrow">↗</span></a>
+        <a class="portal-section-card" href="catalog.html?section=menu"><span class="portal-section-index">02</span><strong>Питание</strong><small>Меню на сегодня</small><span class="portal-section-arrow">↗</span></a>
+        <a class="portal-section-card" href="catalog.html?section=day"><span class="portal-section-index">03</span><strong>Распорядок</strong><small>День ребёнка</small><span class="portal-section-arrow">↗</span></a>
+        <a class="portal-section-card" href="catalog.html?section=team"><span class="portal-section-index">04</span><strong>Педагоги</strong><small>Команда сада</small><span class="portal-section-arrow">↗</span></a>
+        <a class="portal-section-card" href="catalog.html?section=photos"><span class="portal-section-index">05</span><strong>Фото</strong><small>Среда и занятия</small><span class="portal-section-arrow">↗</span></a>
+        <a class="portal-section-card portal-section-card-admission" href="catalog.html?section=admission"><span class="portal-section-index">06</span><strong>Поступление</strong><small>Условия и заявка</small><span class="portal-section-arrow">↗</span></a>
       </div>
     </section>
 
-    <!-- Banner -->
-    <section class="section banner">
-      <div class="banner-image">
-        <img src="/images/bluebird/temp/gallery-workshop.jpg" alt="Творческая среда «Синей птицы»" loading="lazy" decoding="async" />
-        <div class="banner-blur"></div>
-        <p class="banner-text">БЕРЕЖНЫЙ РИТМ · МОНТЕССОРИ-СРЕДА · ТЁПЛОЕ ДЕТСТВО</p>
-      </div>
+    <section class="portal-today" id="homeToday">
+      <div class="portal-section-heading"><div><span class="eyebrow">ОБНОВЛЕНИЯ</span><h2>Сегодня в саду</h2></div><a href="catalog.html?section=menu">Открыть</a></div>
+      <div id="homeTodayContent" class="portal-today-content"><p>Меню и объявления администрации.</p></div>
+    </section>
+
+    <section class="portal-contact-strip">
+      <div><span class="eyebrow">НУЖНА ПОМОЩЬ?</span><h2>Контакты сада</h2></div>
+      <a href="stores.html">Адрес и часы работы <span>↗</span></a>
     </section>
 
     <!-- FAQ -->

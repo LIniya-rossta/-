@@ -1,6 +1,6 @@
 {
   "branding": { "logo": "/images/bluebird-logo.jpg", "storeName": "СИНЯЯ ПТИЦА" },
-  "hero": { "title": "СИНЯЯ", "subtitle": "ПТИЦА · частный сад\nв Бишкеке", "buttonText": "Разделы для родителей" },
+  "hero": { "title": "СИНЯЯ", "subtitle": "ПТИЦА · портал\nдля родителей", "buttonText": "Открыть разделы" },
   "hitsSection": { "title": "Всё, что важно родителям" },
   "hits": [
     { "id": 1, "image": "/images/bluebird/temp/gallery-materials.jpg", "price": "Программа", "section": "program", "alt": "Материалы Монтессори-среды" },
