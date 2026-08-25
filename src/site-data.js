@@ -193,10 +193,24 @@
     window.renderGuideSection = (section) => {
       const isTeam = section === 'team';
       const isPhotos = section === 'photos';
+      const isAdmission = section === 'admission';
       const guide = data.guide?.[section];
+      const catalogIntro = document.querySelector('.catalog-intro');
+      if (catalogIntro) catalogIntro.hidden = isAdmission;
       if (guidePanel) guidePanel.hidden = isTeam || isPhotos;
       if (teamPanel) teamPanel.hidden = !isTeam;
       if (galleryPanel) galleryPanel.hidden = !isPhotos;
+
+      if (guideCta) {
+        guideCta.hidden = !isAdmission;
+        if (isAdmission) {
+          guideCta.textContent = guide?.cta || 'Записаться по вопросам поступления';
+          guideCta.href = 'order.html?format=admission';
+        } else {
+          guideCta.textContent = '';
+          guideCta.removeAttribute('href');
+        }
+      }
 
       document.querySelectorAll('.catalog-tab').forEach(tab => {
         const active = tab.dataset.category === section;
@@ -209,14 +223,6 @@
       if (guideTitle) guideTitle.textContent = guide.title || '';
       if (guideIntro) guideIntro.textContent = guide.intro || '';
       if (guideNote) guideNote.textContent = guide.note || '';
-      if (guideCta) {
-        const isAdmission = section === 'admission';
-        guideCta.hidden = !isAdmission;
-        if (isAdmission) {
-          guideCta.textContent = guide.cta || 'Записаться по вопросам поступления';
-          guideCta.href = 'order.html?format=admission';
-        }
-      }
       if (guideBody) {
         const guideMarkup = guide.schedule?.length
           ? `<div class="guide-schedule">${guide.schedule.map(item => `<div class="guide-schedule-item"><span class="guide-schedule-time">${esc(item.time)}</span><div><strong>${esc(item.title)}</strong><p>${esc(item.text)}</p></div></div>`).join('')}</div>`

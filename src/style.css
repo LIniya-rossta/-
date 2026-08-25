@@ -5181,6 +5181,11 @@ body {
   justify-self: start;
 }
 
+.catalog-intro[hidden],
+.guide-panel-cta[hidden] {
+  display: none;
+}
+
 .guide-panel-team .products-grid {
   padding: 15px 0 0;
 }
