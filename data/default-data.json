@@ -90,11 +90,11 @@
     { "id": "reading", "image": "/images/bluebird/temp/gallery-reading.jpg", "title": "Тихий уголок", "text": "Отдых" }
   ],
   "barbers": [
-    { "id": "camila", "name": "Камила", "role": "Руководитель", "badge": "руководитель", "rating": "", "category": "lead", "image": "/images/bluebird/temp/gallery-classroom.jpg" },
-    { "id": "nazgul", "name": "Назгуль", "role": "Педагог по адаптации", "badge": "адаптация", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-materials.jpg" },
-    { "id": "bermet", "name": "Бермет", "role": "Педагог", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-workshop.jpg" },
-    { "id": "gulayim", "name": "Гүлайым", "role": "Педагог", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-reading.jpg" },
-    { "id": "tatiana", "name": "Татьяна", "role": "Творческие занятия", "badge": "творчество", "rating": "", "category": "pedagogues", "image": "/images/bluebird/temp/gallery-outdoor.jpg" }
+    { "id": "camila", "name": "Камила", "role": "Руководитель", "badge": "руководитель", "rating": "", "category": "lead", "image": "/images/bluebird/teacher-placeholder.png" },
+    { "id": "nazgul", "name": "Назгуль", "role": "Педагог по адаптации", "badge": "адаптация", "rating": "", "category": "pedagogues", "image": "/images/bluebird/teacher-placeholder.png" },
+    { "id": "bermet", "name": "Бермет", "role": "Педагог", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/teacher-placeholder.png" },
+    { "id": "gulayim", "name": "Гүлайым", "role": "Педагог", "badge": "педагог", "rating": "", "category": "pedagogues", "image": "/images/bluebird/teacher-placeholder.png" },
+    { "id": "tatiana", "name": "Татьяна", "role": "Творческие занятия", "badge": "творчество", "rating": "", "category": "pedagogues", "image": "/images/bluebird/teacher-placeholder.png" }
   ],
   "faq": [
     { "id": 1, "question": "Как устроена программа обучения?", "answer": "В основе сада — Монтессори-среда: ребёнок выбирает занятие, учится действовать самостоятельно и развивает навыки через реальные дела, творчество и общение. В этом разделе администрация публикует общие принципы программы." },
@@ -104,12 +104,12 @@
     { "id": 5, "question": "Как поступить в сад?", "answer": "Откройте раздел «Поступление» и оставьте заявку. Администратор свяжется с вами, расскажет о наличии мест, документах и порядке знакомства с садом." }
   ],
   "reviews": [
-    { "id": 1, "text": "Руководитель · создаёт спокойную, уважительную атмосферу и собирает команду, которой доверяют родители.", "role": "Камила", "stars": 0, "color": "#2B7280", "avatar": "/images/bluebird/temp/gallery-classroom.jpg" },
-    { "id": 2, "text": "Педагог · помогает ребёнку привыкнуть к саду мягко и постепенно, отвечает на вопросы родителей.", "role": "Назгуль", "stars": 0, "color": "#E9A35F", "avatar": "/images/bluebird/temp/gallery-materials.jpg" },
-    { "id": 3, "text": "Педагог · внимательное сопровождение, доброта и любовь к детям — то, что родители особенно отмечают.", "role": "Бермет", "stars": 0, "color": "#4B9AA4", "avatar": "/images/bluebird/temp/gallery-workshop.jpg" },
-    { "id": 4, "text": "Педагог · чуткость и уважение к индивидуальному темпу ребёнка каждый день.", "role": "Гүлайым", "stars": 0, "color": "#85B8A9", "avatar": "/images/bluebird/temp/gallery-reading.jpg" },
-    { "id": 5, "text": "Преподаватель · творческие занятия, в которых ребёнок может пробовать, исследовать и создавать.", "role": "Татьяна", "stars": 0, "color": "#D88E62", "avatar": "/images/bluebird/temp/gallery-outdoor.jpg" },
-    { "id": 6, "text": "Команда сада · педагоги, няни и повара, которые помогают детям расти самостоятельными и уверенными.", "role": "Синяя птица", "stars": 0, "color": "#326B72", "avatar": "/images/bluebird/temp/gallery-classroom.jpg" }
+    { "id": 1, "text": "Руководитель · создаёт спокойную, уважительную атмосферу и собирает команду, которой доверяют родители.", "role": "Камила", "stars": 0, "color": "#2B7280", "avatar": "/images/bluebird/teacher-placeholder.png" },
+    { "id": 2, "text": "Педагог · помогает ребёнку привыкнуть к саду мягко и постепенно, отвечает на вопросы родителей.", "role": "Назгуль", "stars": 0, "color": "#E9A35F", "avatar": "/images/bluebird/teacher-placeholder.png" },
+    { "id": 3, "text": "Педагог · внимательное сопровождение, доброта и любовь к детям — то, что родители особенно отмечают.", "role": "Бермет", "stars": 0, "color": "#4B9AA4", "avatar": "/images/bluebird/teacher-placeholder.png" },
+    { "id": 4, "text": "Педагог · чуткость и уважение к индивидуальному темпу ребёнка каждый день.", "role": "Гүлайым", "stars": 0, "color": "#85B8A9", "avatar": "/images/bluebird/teacher-placeholder.png" },
+    { "id": 5, "text": "Преподаватель · творческие занятия, в которых ребёнок может пробовать, исследовать и создавать.", "role": "Татьяна", "stars": 0, "color": "#D88E62", "avatar": "/images/bluebird/teacher-placeholder.png" },
+    { "id": 6, "text": "Команда сада · педагоги, няни и повара, которые помогают детям расти самостоятельными и уверенными.", "role": "Синяя птица", "stars": 0, "color": "#326B72", "avatar": "/images/bluebird/teacher-placeholder.png" }
   ],
   "contacts": {
     "location": { "label": "Адрес", "value": "5-й микрорайон, 4/2 · Бишкек", "url": "https://2gis.kg/bishkek/firm/70000001019326314" },
