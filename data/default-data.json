@@ -1,6 +1,6 @@
 {
   "branding": { "logo": "/images/bluebird-mark.svg", "storeName": "СИНЯЯ ПТИЦА" },
-  "hero": { "title": "СИНЯЯ\nПТИЦА", "subtitle": "сад, где ребёнок\nрастёт в своём темпе", "buttonText": "Записаться на экскурсию" },
+  "hero": { "title": "СИНЯЯ", "subtitle": "ПТИЦА · частный сад\nв Бишкеке", "buttonText": "Записаться на экскурсию" },
   "hitsSection": { "title": "Что можно увидеть на экскурсии" },
   "hits": [
     { "id": 1, "image": "/images/bluebird/workshop-wide.jpg", "price": "Монтессори-среда" },

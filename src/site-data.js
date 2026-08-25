@@ -30,7 +30,7 @@
       const title = document.querySelector('.hero-title');
       const subtitle = document.querySelector('.hero-subtitle');
       const btn = document.querySelector('.btn-primary');
-      if (title) title.innerHTML = esc(data.hero.title).replace(/\n/g, '<br>');
+      if (title) title.textContent = data.hero.title;
       if (subtitle) subtitle.innerHTML = (data.hero.subtitle || '').replace(/\n/g, '<br>');
       if (btn) btn.textContent = data.hero.buttonText;
     }
