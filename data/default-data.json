@@ -64,12 +64,12 @@
     }
   },
   "gallery": [
-    { "id": "workshop", "image": "/images/bluebird/workshop-wide.jpg", "title": "Занятия в группе", "text": "Совместная работа и творчество" },
-    { "id": "beads", "image": "/images/bluebird/activity-beads-wide.jpg", "title": "Творческая мастерская", "text": "Материалы для самостоятельной работы" },
-    { "id": "independent", "image": "/images/bluebird/independent-work.jpg", "title": "Работа в своём темпе", "text": "Подготовленная Монтессори-среда" },
-    { "id": "classroom", "image": "/images/bluebird/classroom.jpg", "title": "Пространство группы", "text": "Спокойная и понятная среда" },
-    { "id": "outdoor", "image": "/images/bluebird/outdoor-space.jpg", "title": "Время на воздухе", "text": "Прогулки и движение" },
-    { "id": "workshop-detail", "image": "/images/bluebird/workshop.jpg", "title": "Детали среды", "text": "Знакомство с материалами" }
+    { "id": "classroom", "image": "/images/bluebird/temp/gallery-classroom.jpg", "title": "Пространство группы", "text": "Временный визуал спокойной среды" },
+    { "id": "materials", "image": "/images/bluebird/temp/gallery-materials.jpg", "title": "Материалы для занятий", "text": "Временный визуал Монтессори-материалов" },
+    { "id": "outdoor", "image": "/images/bluebird/temp/gallery-outdoor.jpg", "title": "Территория и прогулки", "text": "Временный визуал пространства на воздухе" },
+    { "id": "menu", "image": "/images/bluebird/temp/gallery-menu.jpg", "title": "Питание", "text": "Временный визуал сервировки" },
+    { "id": "workshop", "image": "/images/bluebird/temp/gallery-workshop.jpg", "title": "Творческая мастерская", "text": "Временный визуал творческих занятий" },
+    { "id": "reading", "image": "/images/bluebird/temp/gallery-reading.jpg", "title": "Тихий уголок", "text": "Временный визуал зоны чтения и отдыха" }
   ],
   "barbers": [
     { "id": "camila", "name": "Камила", "role": "Руководитель · развитие сада и атмосфера доверия", "badge": "руководитель", "rating": "", "category": "lead", "image": "/images/bluebird/workshop.jpg" },
