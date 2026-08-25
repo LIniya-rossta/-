@@ -57,18 +57,6 @@
       if (banner) banner.textContent = data.bannerText;
     }
 
-    const homeToday = document.querySelector('#homeTodayContent');
-    if (homeToday && data.parentInfo) {
-      const info = data.parentInfo;
-      const firstMeal = Array.isArray(info.meals) && info.meals[0];
-      const firstAnnouncement = Array.isArray(info.announcements) && info.announcements[0];
-      homeToday.innerHTML = `
-        <div class="portal-today-grid">
-          <div class="portal-today-card"><span>МЕНЮ</span><strong>${esc(info.menuTitle || 'Меню на сегодня')}</strong><p>${esc(firstMeal ? `${firstMeal.time}: ${firstMeal.text}` : 'Меню уточняется')}</p></div>
-          <div class="portal-today-card"><span>ВАЖНО</span><strong>${esc(firstAnnouncement?.title || info.noticeTitle || 'Объявления')}</strong><p>${esc(firstAnnouncement?.text || info.noticeText || 'Новых сообщений нет')}</p></div>
-        </div>`;
-    }
-
     if (data.faq?.length) {
       const list = document.querySelector('.faq-list');
       if (list) {
