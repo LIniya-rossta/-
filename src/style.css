@@ -3868,14 +3868,16 @@ body {
 
 .hero-title {
   top: 248px;
-  font-size: 56px;
-  letter-spacing: 0.14em;
+  font-size: clamp(30px, 9.8vw, 42px);
+  letter-spacing: 0.06em;
   color: #fffaf4;
   text-shadow: 0 4px 24px rgba(14, 17, 18, 0.58);
+  white-space: nowrap;
 }
 
 .hero-subtitle {
-  top: 308px;
+  top: 304px;
+  width: 250px;
   color: #e9cbb2;
   text-shadow: 0 4px 20px rgba(14, 17, 18, 0.68);
 }
