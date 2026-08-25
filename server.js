@@ -52,13 +52,22 @@ function migrateBluebirdImages(value) {
   return { migrated, changed };
 }
 
+function restrictProductsToAdmission(data, defaults) {
+  if (!Array.isArray(data.products)) return false;
+  const admission = data.products.find(product => product?.id === 'admission') || defaults.products?.[0];
+  const next = admission ? [admission] : [];
+  if (JSON.stringify(next) === JSON.stringify(data.products)) return false;
+  data.products = next;
+  return true;
+}
+
 if (!existsSync(DATA_DIR)) mkdirSync(DATA_DIR, { recursive: true });
 if (!existsSync(UPLOADS_DIR)) mkdirSync(UPLOADS_DIR, { recursive: true });
 
 const VALID_SECTIONS = [
   'branding', 'hero', 'hitsSection', 'hits', 'bannerText',
   'faq', 'reviews', 'contacts', 'categories', 'barbers',
-  'products', 'cities', 'stores', 'orderForm', 'guide', 'gallery'
+  'products', 'cities', 'stores', 'orderForm', 'guide', 'gallery', 'parentInfo'
 ];
 
 let pool = null;
@@ -87,13 +96,14 @@ function fileReadData() {
     Object.assign(data, imageMigration.migrated);
     updated = true;
   }
+  if (restrictProductsToAdmission(data, defaults)) updated = true;
   for (const key of Object.keys(defaults)) {
     if (!(key in data)) { data[key] = defaults[key]; updated = true; }
   }
   // Migrate the previous barbershop-shaped content so an old persistent file
   // cannot bring back the obsolete filters and booking formats.
   const hasGuideSections = Array.isArray(data.categories) && data.categories.some(item => item.id === 'program') &&
-    Array.isArray(data.products) && data.products.some(item => item.id === 'tour');
+    Array.isArray(data.products) && data.products.some(item => item.id === 'admission');
   if (!hasGuideSections) {
     data.hits = defaults.hits;
     data.hitsSection = defaults.hitsSection;
@@ -166,10 +176,13 @@ async function dbInitDB() {
       await dbWriteSection(section, value);
     }
   }
+  if (restrictProductsToAdmission(current, defaults)) {
+    await dbWriteSection('products', current.products);
+  }
   const hasGuideSections = Array.isArray(current.categories) && current.categories.some(item => item.id === 'program') &&
-    Array.isArray(current.products) && current.products.some(item => item.id === 'tour');
+    Array.isArray(current.products) && current.products.some(item => item.id === 'admission');
   if (!hasGuideSections) {
-    for (const section of ['hitsSection', 'hits', 'categories', 'products', 'orderForm', 'guide', 'gallery']) {
+    for (const section of ['hitsSection', 'hits', 'categories', 'products', 'orderForm', 'guide', 'gallery', 'parentInfo']) {
       await dbWriteSection(section, defaults[section]);
     }
   }

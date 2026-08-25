@@ -166,42 +166,9 @@ function initCatalogTabs() {
 }
 window.initCatalogTabs = initCatalogTabs;
 
-// A teacher can be selected, but never blocks a regular tour booking.
-function initTeacherCards() {
-  document.querySelectorAll('.barber-card').forEach(card => {
-    if (card.dataset.bound === 'true') return;
-    card.dataset.bound = 'true';
-    const choose = event => {
-      event.preventDefault();
-      event.stopPropagation();
-      window.openBarberBooking(card);
-    };
-    card.querySelector('[data-select-barber]')?.addEventListener('click', choose);
-    card.querySelector('.card-cart-badge')?.addEventListener('click', choose);
-    card.addEventListener('click', event => {
-      if (!event.target.closest('button')) choose(event);
-    });
-  });
-}
+// Teachers are informational cards for enrolled families; they do not open a booking flow.
+function initTeacherCards() {}
 window.initCartSystem = initTeacherCards;
-
-window.openBarberBooking = function(card) {
-  const booking = readBooking();
-  booking.barber = {
-    id: card.dataset.barberId || '',
-    name: card.dataset.name || '',
-    role: card.dataset.barberRole || '',
-    image: card.dataset.barberImage || card.querySelector('.product-image img')?.src || ''
-  };
-  saveBooking(booking);
-  window.location.href = 'order.html?format=tour';
-};
-
-window.openBarberByName = function(name) {
-  const card = Array.from(document.querySelectorAll('.barber-card')).find(item => item.dataset.name === name);
-  if (card) return window.openBarberBooking(card);
-  window.location.href = 'catalog.html?section=team';
-};
 
 // Search uses all parent-facing content, not a hidden price/service catalog.
 function initSearch(data = window.__blueBirdSiteData || {}) {
@@ -221,7 +188,7 @@ function initSearch(data = window.__blueBirdSiteData || {}) {
   const teacherItems = (data.barbers || []).map(teacher => ({
     kind: 'teacher', id: teacher.id, title: teacher.name, text: teacher.role, href: 'catalog.html?section=team', image: teacher.image
   }));
-  const formatItems = (data.products || []).map(product => ({
+  const formatItems = (data.products || []).filter(product => product.id === 'admission').map(product => ({
     kind: 'format', id: product.id, title: product.name, text: product.priceLabel || 'по записи', href: `order.html?format=${product.id}`, image: product.image
   }));
   const items = [...guideItems, ...teacherItems, ...formatItems];
@@ -360,9 +327,12 @@ function initScrollEffects() {
   document.querySelectorAll('.section, .banner, .contacts, .faq').forEach(element => observer.observe(element));
 }
 
-// Optional teacher selection is passed into the same order form.
+// Admission form is the only contact-request flow on the parent portal.
 if (document.querySelector('.order-page')) {
   const booking = readBooking();
+  if (booking.service?.id !== 'admission') delete booking.service;
+  delete booking.barber;
+  saveBooking(booking);
   const selectedTeacher = document.getElementById('selectedBarber');
   const serviceGrid = document.getElementById('serviceChoices');
   const summary = document.getElementById('orderItems');
@@ -371,11 +341,7 @@ if (document.querySelector('.order-page')) {
 
   function renderBooking() {
     if (selectedTeacher) {
-      selectedTeacher.innerHTML = booking.barber?.name ? `
-        <div class="booking-barber-image"><img src="${safeText(booking.barber.image)}" alt="${safeText(booking.barber.name)}" /></div>
-        <div class="booking-barber-copy"><span class="booking-step">ДОПОЛНИТЕЛЬНО / ПЕДАГОГ</span><strong>${safeText(booking.barber.name)}</strong><small>${safeText(booking.barber.role)}</small></div>
-        <a class="booking-change" href="catalog.html?section=team">Изменить</a>` :
-        '<div class="booking-empty">Педагог не выбран — это нормально. При желании можно <a href="catalog.html?section=team">выбрать его отдельно</a>.</div>';
+      selectedTeacher.innerHTML = '<div class="booking-empty">Администратор свяжется с вами по вопросам поступления и подскажет следующий шаг.</div>';
     }
 
     serviceGrid?.querySelectorAll('.service-choice').forEach(button => {
@@ -387,9 +353,9 @@ if (document.querySelector('.order-page')) {
     if (summary) {
       summary.innerHTML = booking.service?.name ? `
         <div class="booking-service-summary"><span class="booking-step">ВЫБРАННЫЙ ФОРМАТ</span><strong>${safeText(booking.service.name)}</strong><span>${safeText(booking.service.label || 'по записи')}</span></div>` :
-        '<div class="booking-service-empty">Выберите один формат встречи — после этого появится кнопка отправки заявки.</div>';
+        '<div class="booking-service-empty">Заявка по вопросам поступления будет отправлена после заполнения формы.</div>';
     }
-    if (submitSubtitle) submitSubtitle.textContent = booking.service?.name ? 'Заявка без оплаты' : 'Выберите формат';
+    if (submitSubtitle) submitSubtitle.textContent = booking.service?.name ? 'Заявка без оплаты' : 'Заполните форму';
     if (submitButton) submitButton.disabled = !booking.service?.name;
   }
 
@@ -411,7 +377,7 @@ if (document.querySelector('.order-page')) {
   });
 
   function applyQueryFormat() {
-    const format = new URLSearchParams(location.search).get('format');
+    const format = new URLSearchParams(location.search).get('format') || 'admission';
     if (!format || booking.service?.id) return;
     const button = Array.from(serviceGrid?.querySelectorAll('.service-choice') || []).find(item => item.dataset.serviceId === format);
     if (button) selectService(button);
@@ -429,7 +395,7 @@ if (document.querySelector('.order-page')) {
     event.preventDefault();
     const form = event.currentTarget;
     if (!booking.service?.name) {
-      showToast('Выберите формат встречи');
+      showToast('Откройте форму поступления');
       return;
     }
     if (!form.checkValidity()) {
@@ -444,8 +410,7 @@ if (document.querySelector('.order-page')) {
     }
 
     const fields = [
-      ...(booking.barber?.name ? [{ label: 'Педагог', value: booking.barber.name }] : []),
-      { label: 'Формат встречи', value: booking.service.name },
+      { label: 'Тип обращения', value: booking.service.name },
       ...Array.from(form.querySelectorAll('.order-field')).map(field => ({
         label: field.querySelector('label')?.textContent?.trim() || '',
         value: field.querySelector('input, textarea, select')?.value?.trim() || ''
@@ -457,7 +422,7 @@ if (document.querySelector('.order-page')) {
       const response = await fetch('/api/order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fields, items, total: booking.service.price, source: 'bluebird-excursion' })
+        body: JSON.stringify({ fields, items, total: booking.service.price, source: 'bluebird-admission' })
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || result.ok === false) throw new Error(result.error || 'Не удалось отправить заявку');
@@ -482,7 +447,7 @@ function showOrderSuccess(requestId) {
   overlay.innerHTML = `
     <div class="order-success-circle"><svg class="order-success-check" width="56" height="56" viewBox="0 0 56 56" fill="none"><path d="M14 29L23 38L42 19" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
     <div class="order-success-label">Заявка принята</div>
-    <div class="order-success-sublabel">Мы свяжемся с вами для подтверждения экскурсии.</div>
+    <div class="order-success-sublabel">Мы свяжемся с вами по вопросам поступления и ответим на вопросы.</div>
     <div class="order-success-actions"><a href="index.html">Вернуться на сайт</a><a href="https://2gis.kg/bishkek/firm/70000001019326314" target="_blank" rel="noopener">Открыть 2ГИС</a></div>`;
   document.body.appendChild(overlay);
   requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('visible')));

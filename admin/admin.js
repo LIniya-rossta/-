@@ -1,4 +1,4 @@
-/* Floristyle Admin Panel */
+/* Blue Bird parent portal admin panel */
 
 const API = '';
 let token = sessionStorage.getItem('admin_token') || '';
@@ -112,6 +112,10 @@ async function collectAndSave() {
   switch (section) {
     case 'branding': return saveSection('branding', collectBranding());
     case 'hero': return saveSection('hero', collectHero());
+    case 'parentInfo': return saveSection('parentInfo', collectParentInfo());
+    case 'guide': return saveSection('guide', collectGuide());
+    case 'barbers': return saveSection('barbers', collectBarbers());
+    case 'gallery': return saveSection('gallery', collectGallery());
     case 'hits': {
       await saveSection('hitsSection', collectHitsSection());
       return saveSection('hits', collectHits());
@@ -132,13 +136,17 @@ async function collectAndSave() {
 const sectionTitles = {
   branding: 'Бренд магазина',
   hero: 'Главная страница',
-  hits: 'Хиты',
+  parentInfo: 'Сегодня в саду',
+  guide: 'Разделы для родителей',
+  barbers: 'Педагоги и команда',
+  gallery: 'Фотографии сада',
+  hits: 'Карточки главной',
   banner: 'Баннер',
   faq: 'Часто задаваемые вопросы',
   reviews: 'Отзывы',
   contacts: 'Контакты',
   categories: 'Категории каталога',
-  products: 'Товары',
+  products: 'Поступление',
   stores: 'Филиалы',
   cities: 'Города',
   orderForm: 'Форма заказа'
@@ -181,6 +189,10 @@ function renderSection() {
   switch (currentSection) {
     case 'branding': return renderBranding(c);
     case 'hero': return renderHero(c);
+    case 'parentInfo': return renderParentInfo(c);
+    case 'guide': return renderGuide(c);
+    case 'barbers': return renderBarbers(c);
+    case 'gallery': return renderGallery(c);
     case 'hits': return renderHits(c);
     case 'banner': return renderBanner(c);
     case 'faq': return renderFaq(c);
@@ -271,6 +283,185 @@ function collectHero() {
     subtitle: document.getElementById('heroSubtitle').value.replace(/\\n/g, '\n'),
     buttonText: document.getElementById('heroButton').value
   };
+}
+
+// --- PARENT UPDATES ---
+function renderParentInfo(c) {
+  const d = siteData.parentInfo || {};
+  const meals = d.meals || [];
+  const announcements = d.announcements || [];
+  c.innerHTML = `
+    <div class="card">
+      <div class="card-header"><h3>Блок «Сегодня в саду»</h3></div>
+      <p style="color:#777;font-size:13px;margin:-8px 0 18px;">Эти данные видят родители во вкладке «Питание». Обновляйте меню и объявления каждый день.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Заголовок</label><input type="text" id="parentTitle" value="${escHtml(d.title)}" /></div>
+        <div class="form-group"><label>Дата</label><input type="text" id="parentDate" value="${escHtml(d.date)}" placeholder="Сегодня · 25 августа" /></div>
+      </div>
+      <div class="form-group"><label>Короткое описание</label><textarea id="parentIntro" rows="2">${escHtml(d.intro)}</textarea></div>
+      <div class="form-group"><label>Подпись обновления</label><input type="text" id="parentUpdatedAt" value="${escHtml(d.updatedAt)}" placeholder="Обновлено утром" /></div>
+    </div>
+    <div class="section-header"><h2>Меню на сегодня</h2><button class="add-btn" onclick="addParentMeal()">+ Добавить приём пищи</button></div>
+    <div class="card" id="parentMealsList">
+      <div class="form-group"><label>Заголовок меню</label><input type="text" class="parent-menu-title-input" value="${escHtml(d.menuTitle || 'Меню на сегодня')}" /></div>
+      ${meals.map((meal, i) => `
+        <div class="item-card parent-meal-row" data-idx="${i}">
+          <div class="item-card-header"><span class="item-number">Приём пищи #${i + 1}</span><button class="delete-btn" onclick="deleteParentMeal(${i})">Удалить</button></div>
+          <div class="form-row"><div class="form-group"><label>Название</label><input type="text" class="parent-meal-time" value="${escHtml(meal.time)}" placeholder="Завтрак" /></div><div class="form-group"><label>Что входит</label><input type="text" class="parent-meal-text" value="${escHtml(meal.text)}" placeholder="Каша, фрукт, чай" /></div></div>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-header"><h3>Напоминание</h3></div>
+      <div class="form-group"><label>Заголовок</label><input type="text" id="parentNoticeTitle" value="${escHtml(d.noticeTitle)}" /></div>
+      <div class="form-group"><label>Текст</label><textarea id="parentNoticeText" rows="2">${escHtml(d.noticeText)}</textarea></div>
+    </div>
+    <div class="section-header"><h2>Объявления (${announcements.length})</h2><button class="add-btn" onclick="addParentAnnouncement()">+ Добавить</button></div>
+    <div id="parentAnnouncementsList">${announcements.map((item, i) => `
+      <div class="item-card parent-announcement-row" data-idx="${i}">
+        <div class="item-card-header"><span class="item-number">Объявление #${i + 1}</span><button class="delete-btn" onclick="deleteParentAnnouncement(${i})">Удалить</button></div>
+        <div class="form-row"><div class="form-group"><label>Заголовок</label><input type="text" class="parent-announcement-title" value="${escHtml(item.title)}" /></div><div class="form-group"><label>Дата / метка</label><input type="text" class="parent-announcement-date" value="${escHtml(item.date)}" /></div></div>
+        <div class="form-group"><label>Текст</label><textarea class="parent-announcement-text" rows="2">${escHtml(item.text)}</textarea></div>
+      </div>`).join('')}</div>`;
+}
+
+window.addParentMeal = function() {
+  siteData.parentInfo = siteData.parentInfo || { meals: [], announcements: [] };
+  siteData.parentInfo.meals = siteData.parentInfo.meals || [];
+  siteData.parentInfo.meals.push({ time: '', text: '' });
+  renderParentInfo(document.getElementById('adminContent'));
+};
+
+window.deleteParentMeal = function(i) {
+  siteData.parentInfo.meals.splice(i, 1);
+  renderParentInfo(document.getElementById('adminContent'));
+};
+
+window.addParentAnnouncement = function() {
+  siteData.parentInfo = siteData.parentInfo || { meals: [], announcements: [] };
+  siteData.parentInfo.announcements = siteData.parentInfo.announcements || [];
+  siteData.parentInfo.announcements.push({ title: '', text: '', date: '' });
+  renderParentInfo(document.getElementById('adminContent'));
+};
+
+window.deleteParentAnnouncement = function(i) {
+  siteData.parentInfo.announcements.splice(i, 1);
+  renderParentInfo(document.getElementById('adminContent'));
+};
+
+function collectParentInfo() {
+  const source = siteData.parentInfo || {};
+  return {
+    title: document.getElementById('parentTitle').value.trim(),
+    intro: document.getElementById('parentIntro').value.trim(),
+    date: document.getElementById('parentDate').value.trim(),
+    updatedAt: document.getElementById('parentUpdatedAt').value.trim(),
+    menuTitle: document.querySelector('.parent-menu-title-input').value.trim(),
+    meals: Array.from(document.querySelectorAll('.parent-meal-row')).map(row => ({
+      time: row.querySelector('.parent-meal-time').value.trim(),
+      text: row.querySelector('.parent-meal-text').value.trim()
+    })),
+    noticeTitle: document.getElementById('parentNoticeTitle').value.trim(),
+    noticeText: document.getElementById('parentNoticeText').value.trim(),
+    announcements: Array.from(document.querySelectorAll('.parent-announcement-row')).map(row => ({
+      title: row.querySelector('.parent-announcement-title').value.trim(),
+      text: row.querySelector('.parent-announcement-text').value.trim(),
+      date: row.querySelector('.parent-announcement-date').value.trim()
+    }))
+  };
+}
+
+// --- GUIDE CONTENT ---
+function renderGuide(c) {
+  const guide = siteData.guide || {};
+  const labels = { program: 'Программа', menu: 'Питание', day: 'Распорядок дня', admission: 'Поступление' };
+  c.innerHTML = `<p style="color:#777;font-size:13px;margin:0 0 20px;">Редактируйте содержание родительских разделов. Кнопка заявки показывается только в разделе «Поступление».</p>${Object.entries(labels).map(([key, label]) => {
+    const item = guide[key] || {};
+    const entries = item.schedule || item.points || [];
+    return `<div class="card guide-admin-card" data-guide-key="${key}">
+      <div class="card-header"><h3>${label}</h3></div>
+      <div class="form-group"><label>Надзаголовок</label><input type="text" class="guide-eyebrow" value="${escHtml(item.eyebrow)}" /></div>
+      <div class="form-group"><label>Заголовок</label><input type="text" class="guide-title" value="${escHtml(item.title)}" /></div>
+      <div class="form-group"><label>Описание</label><textarea class="guide-intro" rows="3">${escHtml(item.intro)}</textarea></div>
+      <div class="form-group"><label>Примечание</label><textarea class="guide-note" rows="2">${escHtml(item.note)}</textarea></div>
+      <div class="form-group"><label>${item.schedule ? 'Расписание' : 'Ключевые пункты'} (JSON)</label><textarea class="guide-items" rows="6">${escHtml(JSON.stringify(entries, null, 2))}</textarea></div>
+    </div>`;
+  }).join('')}`;
+}
+
+function collectGuide() {
+  const current = siteData.guide || {};
+  const result = {};
+  document.querySelectorAll('.guide-admin-card').forEach(card => {
+    const key = card.dataset.guideKey;
+    const original = current[key] || {};
+    let entries = original.schedule || original.points || [];
+    try {
+      const parsed = JSON.parse(card.querySelector('.guide-items').value || '[]');
+      if (Array.isArray(parsed)) entries = parsed;
+    } catch { showToast(`Проверьте JSON в разделе «${key}»`); }
+    result[key] = {
+      ...original,
+      eyebrow: card.querySelector('.guide-eyebrow').value.trim(),
+      title: card.querySelector('.guide-title').value.trim(),
+      intro: card.querySelector('.guide-intro').value.trim(),
+      note: card.querySelector('.guide-note').value.trim(),
+      ...(original.schedule ? { schedule: entries } : { points: entries })
+    };
+  });
+  return result;
+}
+
+// --- TEAM ---
+function renderBarbers(c) {
+  const people = siteData.barbers || [];
+  c.innerHTML = `<div class="section-header"><h2>Педагоги (${people.length})</h2><button class="add-btn" onclick="addBarber()">+ Добавить педагога</button></div><div id="barbersList">${people.map((person, i) => `
+    <div class="item-card barber-admin-row">
+      <div class="item-card-header"><span class="item-number">Педагог #${i + 1}</span><button class="delete-btn" onclick="deleteBarber(${i})">Удалить</button></div>
+      <div class="inline-flex"><div class="image-upload" style="width:100px;height:100px;"><img src="${escHtml(person.image || '')}" /><input type="file" accept="image/*" onchange="uploadBarberImage(${i}, this)" /></div><div style="flex:1;"><div class="form-row"><div class="form-group"><label>Имя</label><input type="text" class="barber-name" value="${escHtml(person.name)}" /></div><div class="form-group"><label>Роль / метка</label><input type="text" class="barber-badge" value="${escHtml(person.badge)}" /></div></div><div class="form-group"><label>Описание</label><input type="text" class="barber-role-input" value="${escHtml(person.role)}" /></div></div></div>
+      <input type="hidden" class="barber-image-url" value="${escHtml(person.image)}" />
+    </div>`).join('')}</div>`;
+}
+
+window.addBarber = function() { siteData.barbers = siteData.barbers || []; siteData.barbers.push({ id: Date.now(), name: '', role: '', badge: 'педагог', category: 'pedagogues', image: '' }); renderBarbers(document.getElementById('adminContent')); };
+window.deleteBarber = function(i) { siteData.barbers.splice(i, 1); renderBarbers(document.getElementById('adminContent')); };
+window.uploadBarberImage = async function(i, input) {
+  if (!input.files[0]) return;
+  try { const { url } = await uploadImage(input.files[0]); siteData.barbers[i].image = url; renderBarbers(document.getElementById('adminContent')); showToast('Фото педагога загружено'); } catch { showToast('Ошибка загрузки'); }
+};
+function collectBarbers() {
+  return Array.from(document.querySelectorAll('.barber-admin-row')).map((row, i) => ({
+    id: siteData.barbers[i]?.id || Date.now() + i,
+    name: row.querySelector('.barber-name').value.trim(),
+    badge: row.querySelector('.barber-badge').value.trim(),
+    role: row.querySelector('.barber-role-input').value.trim(),
+    category: siteData.barbers[i]?.category || 'pedagogues',
+    image: row.querySelector('.barber-image-url').value
+  }));
+}
+
+// --- GALLERY ---
+function renderGallery(c) {
+  const photos = siteData.gallery || [];
+  c.innerHTML = `<div class="section-header"><h2>Фотографии (${photos.length})</h2><button class="add-btn" onclick="addGalleryPhoto()">+ Добавить фото</button></div><div id="galleryAdminList">${photos.map((photo, i) => `
+    <div class="item-card gallery-admin-row">
+      <div class="item-card-header"><span class="item-number">Фото #${i + 1}</span><button class="delete-btn" onclick="deleteGalleryPhoto(${i})">Удалить</button></div>
+      <div class="inline-flex"><div class="image-upload" style="width:130px;height:90px;"><img src="${escHtml(photo.image || '')}" /><input type="file" accept="image/*" onchange="uploadGalleryPhoto(${i}, this)" /></div><div style="flex:1;"><div class="form-group"><label>Заголовок</label><input type="text" class="gallery-title" value="${escHtml(photo.title)}" /></div><div class="form-group"><label>Описание</label><input type="text" class="gallery-text" value="${escHtml(photo.text)}" /></div></div></div>
+      <input type="hidden" class="gallery-image-url" value="${escHtml(photo.image)}" />
+    </div>`).join('')}</div>`;
+}
+window.addGalleryPhoto = function() { siteData.gallery = siteData.gallery || []; siteData.gallery.push({ id: Date.now(), image: '', title: '', text: '' }); renderGallery(document.getElementById('adminContent')); };
+window.deleteGalleryPhoto = function(i) { siteData.gallery.splice(i, 1); renderGallery(document.getElementById('adminContent')); };
+window.uploadGalleryPhoto = async function(i, input) {
+  if (!input.files[0]) return;
+  try { const { url } = await uploadImage(input.files[0]); siteData.gallery[i].image = url; renderGallery(document.getElementById('adminContent')); showToast('Фото загружено'); } catch { showToast('Ошибка загрузки'); }
+};
+function collectGallery() {
+  return Array.from(document.querySelectorAll('.gallery-admin-row')).map((row, i) => ({
+    id: siteData.gallery[i]?.id || Date.now() + i,
+    image: row.querySelector('.gallery-image-url').value,
+    title: row.querySelector('.gallery-title').value.trim(),
+    text: row.querySelector('.gallery-text').value.trim()
+  }));
 }
 
 // --- HITS ---

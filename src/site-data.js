@@ -145,12 +145,10 @@
         <div class="product-card barber-card" data-category="${esc(teacher.category)}" data-name="${esc(teacher.name)}" data-price="0" data-barber-id="${esc(teacher.id)}" data-barber-role="${esc(teacher.role)}" data-barber-rating="${esc(teacher.rating || '')}" data-barber-image="${esc(teacher.image)}">
           <div class="product-image">
             <img src="${esc(teacher.image)}" alt="Педагог ${esc(teacher.name)}" loading="lazy" />
-            <button class="card-cart-badge" type="button" aria-label="Выбрать педагога"><span>+</span></button>
           </div>
           <div class="product-info">
             <div class="product-name">${esc(teacher.name)}</div>
             <div class="product-price">✦ ${esc(teacher.badge || 'педагог')}</div>
-            <div class="product-actions"><button class="btn-order" type="button" data-select-barber>Выбрать педагога</button></div>
             <div class="barber-role">${esc(teacher.role)}</div>
           </div>
         </div>`).join('');
@@ -175,6 +173,23 @@
     const guideNote = document.querySelector('#guidePanelNote');
     const guideCta = document.querySelector('#guidePanelCta');
 
+    const renderParentInfo = (info = {}) => {
+      const meals = Array.isArray(info.meals) ? info.meals : [];
+      const announcements = Array.isArray(info.announcements) ? info.announcements : [];
+      if (!meals.length && !announcements.length && !info.noticeText) return '';
+      return `
+        <section class="parent-info-card" aria-label="Актуальная информация для родителей">
+          <div class="parent-info-heading">
+            <div><span class="parent-info-kicker">ДЛЯ РОДИТЕЛЕЙ / TODAY</span><strong>${esc(info.title || 'Сегодня в саду')}</strong></div>
+            <small>${esc(info.date || '')}<br>${esc(info.updatedAt || '')}</small>
+          </div>
+          <p class="parent-info-intro">${esc(info.intro || '')}</p>
+          ${meals.length ? `<div class="parent-menu-card"><div class="parent-menu-title">${esc(info.menuTitle || 'Меню на сегодня')}</div>${meals.map(meal => `<div class="parent-menu-row"><span>${esc(meal.time)}</span><strong>${esc(meal.text)}</strong></div>`).join('')}</div>` : ''}
+          ${info.noticeText ? `<div class="parent-notice"><strong>${esc(info.noticeTitle || 'Важно')}</strong><p>${esc(info.noticeText)}</p></div>` : ''}
+          ${announcements.length ? `<div class="parent-announcements">${announcements.map(item => `<article class="parent-announcement"><small>${esc(item.date || '')}</small><strong>${esc(item.title)}</strong><p>${esc(item.text)}</p></article>`).join('')}</div>` : ''}
+        </section>`;
+    };
+
     window.renderGuideSection = (section) => {
       const isTeam = section === 'team';
       const isPhotos = section === 'photos';
@@ -195,13 +210,18 @@
       if (guideIntro) guideIntro.textContent = guide.intro || '';
       if (guideNote) guideNote.textContent = guide.note || '';
       if (guideCta) {
-        guideCta.textContent = guide.cta || 'Записаться на экскурсию';
-        guideCta.href = `order.html?format=${encodeURIComponent(guide.format || 'tour')}`;
+        const isAdmission = section === 'admission';
+        guideCta.hidden = !isAdmission;
+        if (isAdmission) {
+          guideCta.textContent = guide.cta || 'Записаться по вопросам поступления';
+          guideCta.href = 'order.html?format=admission';
+        }
       }
       if (guideBody) {
-        guideBody.innerHTML = guide.schedule?.length
+        const guideMarkup = guide.schedule?.length
           ? `<div class="guide-schedule">${guide.schedule.map(item => `<div class="guide-schedule-item"><span class="guide-schedule-time">${esc(item.time)}</span><div><strong>${esc(item.title)}</strong><p>${esc(item.text)}</p></div></div>`).join('')}</div>`
           : `<div class="guide-points">${(guide.points || []).map(point => `<article class="guide-point"><span class="guide-point-mark">✦</span><div><h3>${esc(point.title)}</h3><p>${esc(point.text)}</p></div></article>`).join('')}</div>`;
+        guideBody.innerHTML = `${guideMarkup}${section === 'menu' ? renderParentInfo(data.parentInfo) : ''}`;
       }
     };
 
@@ -233,11 +253,12 @@
   if (page === 'order.html') {
     const serviceGrid = document.getElementById('serviceChoices');
     if (serviceGrid && data.products?.length) {
-      serviceGrid.innerHTML = data.products.map(product => `
-        <button class="service-choice${product.id === 'tour' ? ' recommended' : ''}" type="button" data-service-id="${esc(product.id)}" data-service-name="${esc(product.name)}" data-service-price="${esc(product.price)}" data-service-label="${esc(product.priceLabel || 'по записи')}" data-service-image="${esc(product.image)}">
-          <span class="service-choice-image"><img src="${esc(product.image)}" alt="${esc(product.name)}" loading="lazy" /></span>
-          <span class="service-choice-copy"><strong>${esc(product.name)}</strong><small>${esc(product.priceLabel || 'по записи')}</small></span><span class="service-choice-check">✓</span>
-        </button>`).join('');
+      const admissionProduct = data.products.find(product => product.id === 'admission') || data.products[0];
+      serviceGrid.innerHTML = admissionProduct ? `
+        <button class="service-choice selected" type="button" data-service-id="${esc(admissionProduct.id)}" data-service-name="${esc(admissionProduct.name)}" data-service-price="${esc(admissionProduct.price)}" data-service-label="${esc(admissionProduct.priceLabel || 'администратор свяжется с вами')}" data-service-image="${esc(admissionProduct.image)}">
+          <span class="service-choice-image"><img src="${esc(admissionProduct.image)}" alt="${esc(admissionProduct.name)}" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>${esc(admissionProduct.name)}</strong><small>${esc(admissionProduct.priceLabel || 'администратор свяжется с вами')}</small></span><span class="service-choice-check">✓</span>
+        </button>` : '';
     }
 
     const form = document.getElementById('orderForm');

@@ -5021,6 +5021,146 @@ body {
   line-height: 1.38;
 }
 
+.parent-info-card {
+  display: grid;
+  gap: 11px;
+  margin-top: 16px;
+  padding: 13px;
+  border: 1px solid rgba(185, 69, 56, 0.18);
+  border-radius: 20px;
+  background: rgba(255, 252, 247, 0.78);
+}
+
+.parent-info-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.parent-info-heading > div {
+  display: grid;
+  gap: 4px;
+}
+
+.parent-info-kicker {
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.parent-info-heading strong {
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.parent-info-heading small {
+  color: var(--text-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.parent-info-intro {
+  margin: 0;
+  color: var(--text-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  line-height: 1.38;
+}
+
+.parent-menu-card {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid rgba(33, 27, 26, 0.08);
+  border-radius: 15px;
+  background: rgba(247, 239, 229, 0.7);
+}
+
+.parent-menu-title {
+  padding: 9px 10px 7px;
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.parent-menu-row {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 9px;
+  padding: 8px 10px;
+  border-top: 1px solid rgba(33, 27, 26, 0.07);
+}
+
+.parent-menu-row span {
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.parent-menu-row strong {
+  color: var(--text-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.parent-notice {
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(231, 241, 235, 0.72);
+}
+
+.parent-notice strong,
+.parent-announcement strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text);
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.parent-notice p,
+.parent-announcement p {
+  margin: 0;
+  color: var(--text-light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.parent-announcements {
+  display: grid;
+  gap: 8px;
+}
+
+.parent-announcement {
+  display: grid;
+  gap: 2px;
+  padding: 9px 10px;
+  border-left: 2px solid rgba(185, 69, 56, 0.45);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.parent-announcement small {
+  color: var(--accent);
+  font-family: 'Manrope', sans-serif;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .guide-panel-footer {
   display: grid;
   gap: 12px;

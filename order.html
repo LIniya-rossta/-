@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Экскурсия — Синяя птица</title>
+  <title>Поступление — Синяя птица</title>
   <link rel="stylesheet" href="/src/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,36 +21,24 @@
     </div>
 
     <!-- Title -->
-    <h1 class="order-title">Запись на экскурсию<br><em>в «Синюю птицу»</em></h1>
+    <h1 class="order-title">Поступление в сад<br><em>«Синяя птица»</em></h1>
 
     <!-- Selected barber -->
     <div class="booking-barber" id="selectedBarber">
-      <div class="booking-empty">Педагог — по желанию. Его можно выбрать отдельно в разделе «Педагоги».</div>
+      <div class="booking-empty">Оставьте контакты — администрация расскажет о наличии мест, документах и мягкой адаптации.</div>
     </div>
 
     <!-- Service selection -->
     <section class="service-picker" aria-labelledby="servicePickerTitle">
       <div class="service-picker-heading">
-        <span class="eyebrow">ШАГ 1 / ФОРМАТ</span>
-        <h2 id="servicePickerTitle">Как хотите<br><em>познакомиться с садом?</em></h2>
-        <p class="order-helper">Обычно выбирают экскурсию по саду. Если у вас есть конкретный вопрос, можно сразу выбрать встречу по поступлению или адаптации.</p>
+        <span class="eyebrow">ЗАЯВКА / ПОСТУПЛЕНИЕ</span>
+        <h2 id="servicePickerTitle">Расскажите<br><em>о вашей семье</em></h2>
+        <p class="order-helper">Администратор свяжется с вами и подскажет актуальные условия, возрастные группы, документы и порядок знакомства с садом.</p>
       </div>
       <div class="service-choice-grid" id="serviceChoices">
-        <button class="service-choice" type="button" data-service-id="1" data-service-name="Экскурсия по саду" data-service-price="0" data-service-label="по записи" data-service-image="/images/bluebird/temp/gallery-classroom.jpg">
-          <span class="service-choice-image"><img src="/images/bluebird/temp/gallery-classroom.jpg" alt="Экскурсия по саду" loading="lazy" /></span>
-          <span class="service-choice-copy"><strong>Экскурсия по саду</strong><small>по записи</small></span><span class="service-choice-check">✓</span>
-        </button>
-        <button class="service-choice" type="button" data-service-id="2" data-service-name="Знакомство с руководителем" data-service-price="0" data-service-label="по записи" data-service-image="/images/bluebird/temp/gallery-reading.jpg">
-          <span class="service-choice-image"><img src="/images/bluebird/temp/gallery-reading.jpg" alt="Знакомство с руководителем" loading="lazy" /></span>
-          <span class="service-choice-copy"><strong>Знакомство с руководителем</strong><small>по записи</small></span><span class="service-choice-check">✓</span>
-        </button>
-        <button class="service-choice" type="button" data-service-id="3" data-service-name="Консультация по адаптации" data-service-price="0" data-service-label="по записи" data-service-image="/images/bluebird/temp/gallery-materials.jpg">
-          <span class="service-choice-image"><img src="/images/bluebird/temp/gallery-materials.jpg" alt="Консультация по адаптации" loading="lazy" /></span>
-          <span class="service-choice-copy"><strong>Консультация по адаптации</strong><small>по записи</small></span><span class="service-choice-check">✓</span>
-        </button>
-        <button class="service-choice" type="button" data-service-id="4" data-service-name="Встреча по поступлению" data-service-price="0" data-service-label="по записи" data-service-image="/images/bluebird/temp/gallery-menu.jpg">
-          <span class="service-choice-image"><img src="/images/bluebird/temp/gallery-menu.jpg" alt="Встреча по поступлению" loading="lazy" /></span>
-          <span class="service-choice-copy"><strong>Встреча по поступлению</strong><small>по записи</small></span><span class="service-choice-check">✓</span>
+        <button class="service-choice selected" type="button" data-service-id="admission" data-service-name="Вопросы по поступлению" data-service-price="0" data-service-label="администратор свяжется с вами" data-service-image="/images/bluebird/temp/gallery-menu.jpg">
+          <span class="service-choice-image"><img src="/images/bluebird/temp/gallery-menu.jpg" alt="Вопросы по поступлению" loading="lazy" /></span>
+          <span class="service-choice-copy"><strong>Вопросы по поступлению</strong><small>администратор свяжется с вами</small></span><span class="service-choice-check">✓</span>
         </button>
       </div>
     </section>
@@ -63,7 +51,7 @@
       <form class="order-form" id="orderForm">
         <div class="order-field"><label>Ваше имя</label><input type="text" name="name" placeholder="Как к вам обращаться?" required /></div>
         <div class="order-field"><label>Телефон</label><input type="tel" name="phone" placeholder="+996" required maxlength="15" /></div>
-        <div class="order-field"><label>Желаемая дата и время экскурсии</label><input type="text" name="time" placeholder="Например, в субботу после 11:00" required /></div>
+        <div class="order-field"><label>Когда удобно связаться</label><input type="text" name="time" placeholder="Например, в будни после 18:00" required /></div>
         <div class="order-field"><label>Возраст ребёнка</label><input type="text" name="childAge" placeholder="Например, 2 года" required /></div>
         <div class="order-field"><label>Что важно обсудить</label><input type="text" name="comment" placeholder="Питание, адаптация, документы или другой вопрос" /></div>
       </form>
